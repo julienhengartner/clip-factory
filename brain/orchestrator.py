@@ -154,6 +154,8 @@ class BrainAgent:
         if not self._lock.acquire(blocking=False):
             raise FactoryError("Es läuft bereits eine Produktion")
         try:
+            if self.s.content_mode == "bobbington":
+                return self._produce_bobbington(topic)
             if self.s.content_mode == "bobstadt" and not idea_id:
                 episode = self.planner.plan(wish=topic)
                 if episode is not None:
@@ -197,6 +199,42 @@ class BrainAgent:
     def _fail(self, video_id: str, message: str) -> dict:
         self.memory.log("error", self.name, message, video_id=video_id)
         return self.memory.update_video(video_id, status=VideoStatus.FAILED, error=message[:1000])
+
+    def bobbington_used_premises(self) -> set[str]:
+        used = set()
+        for v in self.memory.list_videos(limit=500):
+            ep = (v.get("episode") or {}).get("bobbington")
+            if ep and v["status"] not in ("failed",):
+                used.add(ep["id"])
+        return used
+
+    def _produce_bobbington(self, wish: str | None = None) -> dict:
+        """Next Bobbington episode: the pilot first, then generated episodes that fit the simulation."""
+        from bobbington import generator
+        from bobbington.production import ROOT as BOB_ROOT, EpisodeProducer
+        from bobbington.simulation import CitySimulation
+        used_ids = self.bobbington_used_premises()
+        pilot = BOB_ROOT / "episodes" / "pilot_mayor_bans_mondays.json"
+        if "s01e01" not in used_ids:
+            path = pilot
+        else:
+            used_premises = {p["id"] for p in generator.PREMISES
+                             if f"s01e{generator.PREMISES.index(p) + 2:02d}" in used_ids}
+            if wish:
+                match = [p for p in generator.PREMISES if wish.lower() in (p["id"] + " " + p["title"]).lower()]
+                used_premises -= {m["id"] for m in match}
+            premise = generator.choose_premise(used_premises, CitySimulation(self.db).report(), seed=wish or "")
+            if premise is None:
+                raise InsufficientMaterialError("All authored premises have been produced – new premises needed")
+            number = generator.PREMISES.index(premise) + 2
+            path = self.s.data_dir / "episodes" / f"s01e{number:02d}_{premise['id']}.json"
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(generator.build_episode(premise, number).model_dump_json(by_alias=True, exclude_none=True,
+                                                                                     indent=2), encoding="utf-8")
+        self.memory.log("info", self.name, f"Bobbington: producing {path.name} ({self.s.bobbington_quality})")
+        producer = EpisodeProducer(self.s)
+        result = producer.produce(path, self.s.bobbington_quality)
+        return producer.register(result, self.memory)
 
     def _produce_episode(self, episode: Episode) -> dict:
         idea = Idea(title=episode.title, angle=f"Bobstadt-Episode: {episode.type}", category="bobstadt",

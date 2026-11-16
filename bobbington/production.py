@@ -98,13 +98,41 @@ class EpisodeProducer:
         self.s.ensure_dirs()
         self.voices = VoiceBank(self.s.piper_voices_dir, self.s.cache_dir / "tts")
 
-    def render(self, timeline_json: Path, out: Path, quality: str) -> Path:
+    def _render_range(self, timeline_json: Path, out: Path, quality: str, first: int, last: int) -> Path:
         cmd = [str(self.s.blender_bin), "-b", "--factory-startup", "-P", str(ROOT / "blender" / "render_episode.py"),
-               "--", str(timeline_json), str(out), quality]
+               "--", str(timeline_json), str(out), quality, str(first), str(last)]
         proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", check=False)
         if proc.returncode != 0 or not out.is_file():
             tail = "\n".join((proc.stdout + proc.stderr).splitlines()[-25:])
-            raise RuntimeError(f"Blender render failed:\n{tail}")
+            raise RuntimeError(f"Blender render failed (frames {first}-{last}):\n{tail}")
+        return out
+
+    @staticmethod
+    def _complete(path: Path, frames: int) -> bool:
+        """A chunk counts as done only if ffprobe reads it with the expected frame count (no half files)."""
+        if not path.is_file():
+            return False
+        proc = subprocess.run(["ffprobe", "-v", "error", "-count_packets", "-select_streams", "v:0", "-show_entries",
+                               "stream=nb_read_packets", "-of", "csv=p=0", str(path)], capture_output=True, text=True)
+        return proc.returncode == 0 and proc.stdout.strip().isdigit() and int(proc.stdout.strip()) == frames
+
+    def render(self, timeline_json: Path, out: Path, quality: str, chunk_frames: int = 300) -> Path:
+        """Renders in chunks (separate Blender runs) and resumes after an interruption: finished chunks are kept."""
+        tl = json.loads(Path(timeline_json).read_text(encoding="utf-8"))
+        total = tl["total_frames"]
+        chunk_dir = out.parent / f"{out.stem}_chunks"
+        chunk_dir.mkdir(parents=True, exist_ok=True)
+        parts = []
+        for i, first in enumerate(range(0, total, chunk_frames)):
+            last = min(total, first + chunk_frames) - 1
+            part = chunk_dir / f"chunk_{i:02d}_{first:05d}-{last:05d}.mp4"
+            if not self._complete(part, last - first + 1):
+                part.unlink(missing_ok=True)
+                self._render_range(timeline_json, part, quality, first, last)
+            parts.append(part)
+        lst = chunk_dir / "list.txt"
+        lst.write_text("".join(f"file '{p.resolve().as_posix()}'\n" for p in parts), encoding="utf-8")
+        run_ffmpeg(["-f", "concat", "-safe", "0", "-i", str(lst), "-c", "copy", str(out)], self.s.ffmpeg_bin)
         return out
 
     def produce(self, episode_path: Path, quality: str = "final", work_dir: Path | None = None,

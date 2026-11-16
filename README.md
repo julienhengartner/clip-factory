@@ -1,19 +1,66 @@
-# BürgermeisterBob AI Video Factory
+# Bobbington – AI Video Factory
 
-Eine selbstlernende Videofabrik für deutsche TikTok-Videos (9:16, 1080×1920, H.264/AAC, **60–75 s**)
-für **Bürgermeister Bob und Bobstadt**: Jeder Follower ist ein Einwohner und bringt 1.000 € in die Stadtkasse,
-und die Community entscheidet, was gebaut wird.
-
-Das KI-Gehirn führt den Stadtzustand, wertet Kommentare als Stimmen aus und plant die nächste Folge
-(Bau, Meilenstein, Finanzierungslücke, Abstimmung, Namenswahl). Es schreibt das Skript mit echten Zahlen und
-verifizierten Hintergrundfakten, vertont es und rendert eine isometrische Stadtanimation mit Untertiteln.
-Danach prüft es die Qualität und veröffentlicht nach deiner Freigabe auf TikTok.
+**Bobbington – *A Town Full of Bad Decisions.*** Eine animierte 3D-Comedy-Serie in britischem Englisch über
+Mayor Winston Boggle und seine Stadt. Die Fabrik schreibt bzw. generiert Folgen, vertont jede Figur mit eigener
+Stimme, animiert die Figuren in Blender, mischt Ton und Untertitel, prüft die Qualität (60–75 s, 9:16,
+1080×1920, H.264/AAC) und veröffentlicht nach Freigabe auf TikTok. Darunter läuft eine fiktive Stadtsimulation.
 
 Codebasis: <https://github.com/julienhengartner/clip-factory>. Läuft nativ unter Windows (ohne WSL und ohne
-Docker), mit SQLite als Gedächtnis.
+Docker), mit SQLite als Gedächtnis. Alle verwendeten Werkzeuge sind kostenlos.
 
 > **Grundsatz:** Ohne ausdrückliche Freigabe ist alles kostenlos und lokal. Es entstehen keine API-Kosten,
 > es wird nichts veröffentlicht und es werden keine Ergebnisse erfunden.
+
+## Bobbington (aktuelle Richtung)
+
+| Bereich | Stand |
+|---|---|
+| Serien-Bibel (`docs/bible/README.md`, Quelle `bobbington/bible.py`) | ✅ Marke, Palette, Stadtgeschichte, Traditionen, 6 Figuren mit Biografie, Aussehen, Stimme, Beziehungen |
+| Stadtidentität `assets/brand/` | ✅ Logo, Wappen („Ex Errore Gloria“), Flagge als SVG |
+| 3D-Figuren (Blender 4.5 LTS, prozedural, mit Armature-Rig) | ✅ alle 6 Figuren, Referenzbild `docs/bible/cast_lineup.jpg` |
+| Sets | ✅ Büro des Bürgermeisters, Ratssaal, Main Street, Pub „The Leaning Pickle“, Titelkarte |
+| Figurenanimation | ✅ Lippensynchronität aus der Stimme, Blinzeln, Atmen, Blickwechsel, 16 Gesten, Mimik je Emotion |
+| Kamera | ✅ Totale, Zwei-Personen-Einstellung, Nahaufnahme, Push-in, Schärfentiefe |
+| Stimmen (Piper, offline) | ✅ britische Stimmen, je Figur unterschiedlich (Lizenzen siehe unten) |
+| Ton | ✅ Titelfanfare, Sting, 8 Soundeffekte – selbst erzeugt, lizenzfrei |
+| Pilot „THE MAYOR BANS MONDAYS!“ | ✅ Drehbuch, ca. 74 s; Render siehe „Produktion“ |
+| Episodengenerator | ✅ 3 weitere Prämissen; wählt passend zur Simulation, keine Wiederholung |
+| Stadtsimulation | ✅ 2.450 Einwohner, £1.000.000 (fiktiv), Abteilungen, Hauptbuch mit Prüfung, Projekte, Betriebe, Beschwerden, Abstimmungen |
+
+**Produktion einer Folge:**
+
+```powershell
+python -m bobbington.production episodes\pilot_mayor_bans_mondays.json --quality draft   # ~25 min, 540x960 hochskaliert
+python -m bobbington.production episodes\pilot_mayor_bans_mondays.json --quality final   # ~1–1,5 h, 1080x1920
+python -m bobbington.docs                     # Bibel und Markendateien neu erzeugen
+blender -b --factory-startup -P blender\reference_sheet.py -- docs\bible\cast_lineup.png   # Besetzungsbild
+```
+
+Das fertige Video erscheint in der Videobibliothek (`python -m app.main serve`). „Neues Video“ erzeugt im
+Bobbington-Modus die nächste Folge, zuerst den Piloten. Erst die **Freigabe** schreibt die Folgen einer Episode
+(Kosten, Beschwerden, Projekte) ins Hauptbuch der Stadt.
+
+**Einmalige Einrichtung (kostenlos):**
+- Blender 4.5 LTS portabel nach `C:\Tools\blender-4.5.16-windows-x64\` (Pfad: `BBOB_BLENDER_BIN`)
+- `pip install piper-tts==1.3.0` (in der venv; GPL-3.0, wird nur als eigenständiges Programm aufgerufen)
+- Piper-Stimmen nach `C:\Tools\piper-voices\` (Pfad: `BBOB_PIPER_VOICES_DIR`) aus
+  <https://huggingface.co/rhasspy/piper-voices>: `en_GB-northern_english_male-medium`, `en_GB-vctk-medium`,
+  `en_GB-alba-medium`, `en_GB-cori-medium` (jeweils `.onnx` + `.onnx.json`)
+
+**Stimmlizenzen** (werden in `credits.txt` und in der TikTok-Beschreibung genannt): northern_english_male –
+OpenSLR 83, CC BY-SA 4.0 · vctk – University of Edinburgh, CC BY 4.0 · alba – University of Edinburgh, CC BY 4.0 ·
+cori – LibriVox, Public Domain. Nicht verwendet: `semaine` (nur nicht kommerziell), `alan` und `jenny_dioco`
+(Lizenz unklar).
+
+**Ehrliche Einordnung der Qualität:** Die Figuren sind schlichte, aus Grundformen aufgebaute 3D-Cartoonfiguren
+mit Rig, und die Animation ist echte Rig-Animation (keine Kamerafahrt über Standbilder). Das ist eine
+funktionierende Produktionspipeline, aber noch nicht das Niveau detailliert modellierter Studio-Figuren mit
+Gesichts-Rigs. Die Bewegungen sind keyframe-basiert und eher steif, und die Piper-Stimmen klingen synthetisch.
+Der nächste Qualitätssprung wären handmodellierte Figuren in Blender (gleiche Rig-Namen, dann funktioniert die
+Animation weiter) und bessere Stimmen, was kostenpflichtig wäre und nur nach Freigabe in Frage kommt.
+
+Die früheren Modi **Bobstadt** (`BBOB_CONTENT_MODE=bobstadt`) und **Wissen** (`wissen`) bleiben verfügbar und
+sind unten beschrieben.
 
 ---
 

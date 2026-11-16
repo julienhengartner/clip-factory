@@ -241,3 +241,58 @@ print("PROBE=" + json.dumps(out))
         assert {"root", "spine", "head", "arm.L", "arm.R", "leg.L", "leg.R", "brow.L", "brow.R"} <= set(info["bones"])
         assert info["has_mouth"] and info["parts"] >= 20
         assert info["height"] == CAST[cid]["look"]["height"]
+
+
+def test_brain_produces_pilot_first_then_generated_episodes(tmp_path, monkeypatch):
+    from bobbington.production import EpisodeProducer
+    from brain.orchestrator import BrainAgent
+    from storage.models import QCCheck, QCReport
+    from tests.conftest import make_settings
+    from tests.fakes import wiki_transport
+    produced = []
+
+    def fake_produce(self, path, quality="final", **kw):
+        produced.append(Path(path).name)
+        video = tmp_path / f"{len(produced)}.mp4"
+        video.write_bytes(b"x")
+        report = QCReport(checks=[QCCheck(name="length_minimum", passed=True, detail="ok", value=70.0)])
+        return {"episode": load_episode(path), "qc": report, "video": video, "thumbnail": video, "quality": quality}
+
+    monkeypatch.setattr(EpisodeProducer, "produce", fake_produce)
+    brain = BrainAgent(make_settings(tmp_path, content_mode="bobbington"), http_transport=wiki_transport({}))
+    v1 = brain.produce()
+    assert produced[0] == "pilot_mayor_bans_mondays.json" and v1["status"] == "ready"
+    v2 = brain.produce()
+    assert produced[1].startswith("s01e0") and produced[1] != produced[0]
+    v3 = brain.produce()
+    assert produced[2] != produced[1]                                  # no premise twice
+    brain.approve(v1["id"])                                             # approval writes the story into the town
+    from bobbington.simulation import CitySimulation
+    assert len(CitySimulation(brain.db).ledger("episode:s01e01")) == 2
+
+
+def test_chunked_render_resumes_after_interruption(tmp_path, monkeypatch):
+    from bobbington.production import EpisodeProducer
+    from tests.conftest import make_settings
+    from video_engine.ffmpeg import run_ffmpeg
+    tl = tmp_path / "timeline.json"
+    tl.write_text(json.dumps({"total_frames": 60}), encoding="utf-8")
+    calls = []
+
+    def fake_range(self, timeline_json, out, quality, first, last):
+        calls.append((first, last))
+        n = last - first + 1
+        run_ffmpeg(["-f", "lavfi", "-i", f"testsrc=size=64x112:rate=24", "-frames:v", str(n), "-c:v", "libx264",
+                    "-pix_fmt", "yuv420p", str(out)])
+        return out
+
+    monkeypatch.setattr(EpisodeProducer, "_render_range", fake_range)
+    prod = EpisodeProducer(make_settings(tmp_path))
+    out = prod.render(tl, tmp_path / "render.mp4", "draft", chunk_frames=25)
+    assert calls == [(0, 24), (25, 49), (50, 59)] and out.is_file()
+    # interruption: one chunk is broken -> only that chunk is rendered again
+    broken = sorted((tmp_path / "render_chunks").glob("chunk_01_*.mp4"))[0]
+    broken.write_bytes(b"half a file")
+    calls.clear()
+    prod.render(tl, tmp_path / "render.mp4", "draft", chunk_frames=25)
+    assert calls == [(25, 49)]

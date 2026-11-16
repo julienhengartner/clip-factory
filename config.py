@@ -61,9 +61,11 @@ class Settings(BaseSettings):
     http_retries: int = 2
 
     # --- Inhalt ---------------------------------------------------------
-    # bobstadt: Episoden der Community-Aufbausimulation (wie der Instagram-Kanal)
-    # wissen:   Wissensvideos aus recherchierten Themen
-    content_mode: Literal["bobstadt", "wissen"] = "bobstadt"
+    # bobbington: animierte 3D-Comedy-Serie (offizielle Richtung, Blender)
+    # bobstadt:   Episoden der Community-Aufbausimulation (frühere Richtung)
+    # wissen:     Wissensvideos aus recherchierten Themen
+    content_mode: Literal["bobbington", "bobstadt", "wissen"] = "bobbington"
+    bobbington_quality: Literal["draft", "final"] = "final"
 
     # --- Bobbington (3D-Serie) ---------------------------------------------
     blender_bin: Path = Path("C:/Tools/blender-4.5.16-windows-x64/blender.exe")

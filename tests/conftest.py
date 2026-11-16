@@ -29,6 +29,7 @@ def make_settings(tmp_path: Path, **overrides) -> Settings:
         tiktok_client_key=None, tiktok_client_secret=None, tiktok_redirect_uri=None,
         meta_access_token=None, instagram_user_id=None, app_token=None,
         research_rss_feeds=[],
+        content_mode="bobstadt",
     )
     base.update(overrides)
     s = Settings(**base)
