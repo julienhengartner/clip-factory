@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" width="400" height="480">
+  <title>Coat of arms of Bobbington</title>
+  <!-- crest: a traffic cone -->
+  <path d="M200,18 L228,92 H172 Z" fill="#E8742C" stroke="#1B1B1F" stroke-width="3"/>
+  <rect x="180" y="46" width="40" height="10" fill="#F3E9D2"/><rect x="164" y="90" width="72" height="10" fill="#1B1B1F"/>
+  <!-- supporters: two confused geese -->
+  <g fill="#F3E9D2" stroke="#1B1B1F" stroke-width="3">
+    <ellipse cx="55" cy="300" rx="38" ry="55"/><path d="M55,250 q-5,-60 30,-70 q12,4 4,14 q-20,4 -18,56 z"/>
+    <ellipse cx="345" cy="300" rx="38" ry="55"/><path d="M345,250 q5,-60 -30,-70 q-12,4 -4,14 q20,4 18,56 z"/>
+  </g>
+  <text x="80" y="176" font-family="Georgia" font-size="22" fill="#1B1B1F">?</text>
+  <text x="308" y="176" font-family="Georgia" font-size="22" fill="#1B1B1F">?</text>
+  <!-- shield: burgundy field, gold chevron, three cream teacups -->
+  <path d="M100,110 H300 V270 Q300,370 200,410 Q100,370 100,270 Z" fill="#7A1F2B" stroke="#C9A227" stroke-width="10"/>
+  <path d="M110,280 L200,200 L290,280 L290,315 L200,235 L110,315 Z" fill="#C9A227"/>
+  <g transform="translate(150,165)"><path d="M-22,-12 h44 v14 a22,18 0 0 1 -44,0 z" fill="#F3E9D2"/><path d="M22,-8 a10,10 0 0 1 0,16" fill="none" stroke="#F3E9D2" stroke-width="5"/></g><g transform="translate(250,165)"><path d="M-22,-12 h44 v14 a22,18 0 0 1 -44,0 z" fill="#F3E9D2"/><path d="M22,-8 a10,10 0 0 1 0,16" fill="none" stroke="#F3E9D2" stroke-width="5"/></g><g transform="translate(200,300)"><path d="M-22,-12 h44 v14 a22,18 0 0 1 -44,0 z" fill="#F3E9D2"/><path d="M22,-8 a10,10 0 0 1 0,16" fill="none" stroke="#F3E9D2" stroke-width="5"/></g>
+  <!-- motto scroll -->
+  <path d="M60,420 H340 L325,445 L340,470 H60 L75,445 Z" fill="#F3E9D2" stroke="#C9A227" stroke-width="4"/>
+  <text x="200" y="453" text-anchor="middle" font-family="Georgia" font-weight="bold" font-size="22" fill="#4E1219">EX ERRORE GLORIA</text>
+</svg>

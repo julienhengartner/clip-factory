@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360" width="600" height="360">
+  <title>Flag of Bobbington</title>
+  <rect width="600" height="360" fill="#7A1F2B"/>
+  <rect y="140" width="600" height="80" fill="#1F4D3A"/>
+  <rect y="132" width="600" height="8" fill="#C9A227"/><rect y="220" width="600" height="8" fill="#C9A227"/>
+  <circle cx="300" cy="180" r="72" fill="#F3E9D2" stroke="#C9A227" stroke-width="8"/>
+  <path d="M262,160 h76 v20 a38,30 0 0 1 -76,0 z" fill="#7A1F2B"/>
+  <path d="M338,166 a14,14 0 0 1 0,24" fill="none" stroke="#7A1F2B" stroke-width="7"/>
+</svg>

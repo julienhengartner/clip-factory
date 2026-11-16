@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" width="900" height="260">
+  <title>Bobbington logo</title>
+  <rect width="900" height="260" rx="28" fill="#7A1F2B"/>
+  <rect x="12" y="12" width="876" height="236" rx="20" fill="none" stroke="#C9A227" stroke-width="4"/>
+  <g transform="translate(70,40)">
+    <path d="M0,10 H120 V100 Q120,160 60,180 Q0,160 0,100 Z" fill="#1F4D3A" stroke="#C9A227" stroke-width="6"/>
+    <path d="M10,110 L60,65 L110,110 L110,128 L60,85 L10,128 Z" fill="#C9A227"/>
+    <path d="M42,30 h36 v10 a18,14 0 0 1 -36,0 z" fill="#F3E9D2"/>
+  </g>
+  <text x="235" y="140" font-family="Georgia" font-weight="bold" font-size="96" fill="#C9A227" letter-spacing="4">BOBBINGTON</text>
+  <text x="240" y="195" font-family="Georgia" font-style="italic" font-size="34" fill="#F3E9D2">A Town Full of Bad Decisions.</text>
+</svg>
