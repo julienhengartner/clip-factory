@@ -44,7 +44,23 @@ def hashtags(title: str, category: str, script_text: str, max_tags: int = 6) -> 
     return tags[:max_tags]
 
 
+BOBBINGTON_TAGS = ["#bobbington", "#britishcomedy", "#animation", "#3danimation", "#mayor", "#comedy"]
+
+
+def caption_bobbington(video: dict) -> str:
+    ep = (video.get("episode") or {}).get("bobbington", {})
+    from bobbington.voices import VOICE_CREDITS
+    from bobbington.bible import CAST, SERIES
+    models = sorted({CAST[l["speaker"]]["voice"]["model"] for s in ep.get("shots", []) for l in s.get("lines", [])})
+    credit = "Voices: Piper TTS – " + "; ".join(VOICE_CREDITS[m].split(" – ", 1)[1] for m in models) if models else ""
+    parts = [f"{ep.get('title', video.get('title'))} – {ep.get('logline', '')}".strip(" –"),
+             f"Bobbington: {SERIES['tagline']}", credit, " ".join(BOBBINGTON_TAGS)]
+    return "\n\n".join(p for p in parts if p)[:2200]
+
+
 def caption(video: dict) -> str:
+    if video.get("category") == "bobbington":
+        return caption_bobbington(video)
     script = video.get("script") or {}
     segs = script.get("segments", [])
     cta = next((s["text"] for s in segs if s["role"] == "cta"), "")

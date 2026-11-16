@@ -378,9 +378,17 @@ class BrainAgent:
         if v["status"] != VideoStatus.READY.value:
             raise FactoryError(f"Nur geprüfte Videos (Status 'ready') können freigegeben werden – aktuell '{v['status']}'")
         self.memory.log("info", self.name, "Video freigegeben", video_id=video_id)
-        if v.get("episode"):
+        if v.get("episode") and "bobbington" in v["episode"]:
+            self._apply_bobbington(video_id, v["episode"]["bobbington"])
+        elif v.get("episode"):
             self._apply_episode(video_id, Episode(**v["episode"]))
         return self.memory.update_video(video_id, status=VideoStatus.APPROVED, approved_at=utcnow())
+
+    def _apply_bobbington(self, video_id: str, episode: dict) -> None:
+        """Approved Bobbington episodes become town history: costs/complaints go into the simulation ledger."""
+        from bobbington.simulation import CitySimulation
+        result = CitySimulation(self.db).apply_episode(episode["id"], episode.get("sim_effects", []))
+        self.memory.log("info", "simulation", f"Episode {episode['id']} angewendet: {result}", video_id=video_id)
 
     def _apply_episode(self, video_id: str, episode: Episode) -> None:
         """Erst die Freigabe macht eine Episode zur Stadtgeschichte (Bau, Meilenstein, Name)."""

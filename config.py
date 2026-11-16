@@ -65,6 +65,11 @@ class Settings(BaseSettings):
     # wissen:   Wissensvideos aus recherchierten Themen
     content_mode: Literal["bobstadt", "wissen"] = "bobstadt"
 
+    # --- Bobbington (3D-Serie) ---------------------------------------------
+    blender_bin: Path = Path("C:/Tools/blender-4.5.16-windows-x64/blender.exe")
+    piper_voices_dir: Path = Path("C:/Tools/piper-voices")
+    animation_fps: int = 24
+
     # --- Anbieter -------------------------------------------------------
     voice_provider: Literal["windows", "elevenlabs"] = "windows"
     windows_voice: str = "Microsoft Hedda Desktop"
