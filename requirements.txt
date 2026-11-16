@@ -1,0 +1,21 @@
+# Exakt die Versionen der eingerichteten Windows-Umgebung (Python 3.12.10). Keine neuen Pakete nötig.
+fastapi==0.163.1
+uvicorn==0.54.0
+pydantic==2.14.3
+pydantic-settings==2.16.3
+python-dotenv==1.2.4
+httpx==0.28.1
+pillow==11.3.0
+numpy==2.5.5
+
+# Kostenpflichtige Dienste (nur aktiv mit BBOB_ALLOW_PAID_APIS=true und Schlüssel)
+openai==3.51.0
+elevenlabs==2.78.0
+
+# Installiert, derzeit nicht benötigt (FFmpeg übernimmt Schnitt und Analyse)
+opencv-python==5.0.0.93
+moviepy==2.2.1
+
+# Tests
+pytest==9.2.0
+pytest-asyncio==1.5.0
