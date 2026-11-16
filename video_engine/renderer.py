@@ -19,9 +19,9 @@ class VideoRenderer:
         clips = []
         for sc in scenes:
             for k, shot in enumerate(sc.shots):
-                if not shot.image_path:
+                if not shot.image_path and not shot.frames_dir:
                     raise ValueError(f"Szene {sc.index}, Shot {k}: kein Bild")
-                clips.append(render_shot(Path(shot.image_path), shot, workdir / f"s{sc.index:02d}_{k}.mp4", self.s))
+                clips.append(render_shot(Path(shot.image_path or "."), shot, workdir / f"s{sc.index:02d}_{k}.mp4", self.s))
         lst = workdir / "clips.txt"
         lst.write_text("".join(f"file '{c.resolve().as_posix()}'\n" for c in clips), encoding="utf-8")
         run_ffmpeg(["-f", "concat", "-safe", "0", "-i", str(lst), "-c", "copy", str(out_path)], self.s.ffmpeg_bin)

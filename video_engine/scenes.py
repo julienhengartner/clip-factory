@@ -45,6 +45,11 @@ def motion_filter(motion: str, w: int, h: int, frames: int, fps: int) -> tuple[l
 def render_shot(image: Path, shot: Shot, out_path: Path, settings: Settings) -> Path:
     w, h, fps = settings.video_width, settings.video_height, settings.fps
     frames = max(1, round(shot.duration * fps))
+    if shot.frames_dir:  # vorgerenderte Animation (exakt `frames` Einzelbilder in Ausgabegrösse)
+        run_ffmpeg(["-framerate", str(fps), "-i", str(Path(shot.frames_dir) / "f_%04d.png"),
+                    "-vf", f"scale={w}:{h},format=yuv420p,setsar=1", "-frames:v", str(frames), "-r", str(fps),
+                    "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-an", str(out_path)], settings.ffmpeg_bin)
+        return out_path
     pre, vf = motion_filter(shot.motion, w, h, frames, fps)
     run_ffmpeg([*pre, "-i", str(image), "-vf", vf + ",format=yuv420p,setsar=1", "-frames:v", str(frames),
                 "-r", str(fps), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-an", str(out_path)],

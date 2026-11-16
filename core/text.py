@@ -20,7 +20,8 @@ _ABBREVIATIONS = ("z. B.", "z.B.", "u. a.", "u.a.", "d. h.", "d.h.", "bzw.", "ca
                   "etc.", "vgl.", "evtl.", "usw.", "Mio.", "Mrd.", "Jh.", "v. Chr.", "n. Chr.", "geb.", "gest.")
 _PLACEHOLDER = "⁣"  # unsichtbares Trennzeichen als temporärer Ersatz für Punkte in Abkürzungen
 
-_WORD_RE = re.compile(r"[0-9A-Za-zÄÖÜäöüßÀ-ÿ]+(?:[-'’][0-9A-Za-zÄÖÜäöüßÀ-ÿ]+)*")
+# Zahlen mit Tausenderpunkt/Komma (13.400 · 4,38) gelten als EIN Wort
+_WORD_RE = re.compile(r"\d+(?:[.,]\d+)+|[0-9A-Za-zÄÖÜäöüßÀ-ÿ]+(?:[-'’][0-9A-Za-zÄÖÜäöüßÀ-ÿ]+)*")
 
 
 def normalize_space(text: str) -> str:
