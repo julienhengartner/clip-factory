@@ -41,6 +41,12 @@
   .bad { background: rgba(255,93,108,.12); color: var(--bad); }
   .notice { color: var(--muted); font-size: 13px; min-height: 20px; margin: 4px 4px 18px; }
   .notice.err { color: var(--bad); }
+  .city { margin: -8px 4px 18px; font-size: 13px; color: var(--muted); }
+  .city b { color: var(--text); font-weight: 600; }
+  .city .warn { color: var(--warn); }
+  .sched { display: flex; gap: 6px; width: 100%; }
+  .sched input { flex: 1; min-width: 0; background: var(--panel-2); border: 1px solid var(--line); color: var(--text);
+                 border-radius: 10px; padding: 6px 8px; font: inherit; font-size: 12px; color-scheme: dark; }
   .busy { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); }
   .spinner { width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent;
              border-radius: 50%; animation: spin .8s linear infinite; }
@@ -105,6 +111,7 @@
     <button class="primary" id="go" type="submit">Neues Video</button>
   </form>
   <div class="notice" id="notice"></div>
+  <div class="city" id="city" hidden></div>
 
   <div class="grid" id="grid"></div>
   <div class="empty" id="empty" hidden>Noch keine Videos. Starte oben das erste.</div>
@@ -159,6 +166,7 @@ function card(v) {
   if (v.duration_s) th.append(el("div", "dur", fmtDur(v.duration_s)));
   const body = el("div", "body");
   body.append(el("div", "title", v.title || v.topic), el("div", "meta", fmtDate(v.created_at)));
+  if (v.scheduled_for && !["published", "publishing"].includes(v.status)) body.append(el("div", "pubinfo", "Geplant: " + fmtDate(v.scheduled_for)));
   if (v.publication) body.append(el("div", "pubinfo", (PUB[v.publication.status] || v.publication.status) + (v.publication.message && v.publication.status !== "published" ? ` – ${v.publication.message}` : "")));
   if (["qc_failed", "failed"].includes(v.status) && (v.qc_issues?.length || v.error))
     body.append(el("div", "issue", (v.qc_issues?.[0] || v.error || "").slice(0, 140)));
@@ -177,6 +185,14 @@ function card(v) {
       const r = await api(`/api/videos/${v.id}/publish`, { method: "POST" }); notice(r.message); }, blockers.join("\n"));
     b.disabled = blockers.length > 0; a.append(b);
     if (blockers.length) body.append(el("div", "pubinfo", "Noch nicht veröffentlichbar: " + blockers[0]));
+    const row = el("div", "sched"); const inp = el("input"); inp.type = "datetime-local";
+    inp.title = "Veröffentlichungszeit planen (lokale Zeit)";
+    row.append(inp, button(v.scheduled_for ? "Neu planen" : "Planen", "", async () => {
+      if (!inp.value) throw new Error("Bitte Datum und Uhrzeit wählen");
+      await api(`/api/videos/${v.id}/schedule`, { method: "POST", body: JSON.stringify({ at: new Date(inp.value).toISOString() }) });
+    }));
+    if (v.scheduled_for) row.append(button("×", "", () => api(`/api/videos/${v.id}/schedule`, { method: "POST", body: JSON.stringify({ at: null }) }), "Planung entfernen"));
+    a.append(row);
   }
   body.append(a); c.append(th, body); return c;
 }
@@ -212,6 +228,15 @@ async function refresh() {
     if (s.producing) { const n = $("notice"); n.classList.remove("err"); n.replaceChildren(); const b = el("span", "busy"); b.append(el("span", "spinner"), document.createTextNode("Bob produziert gerade ein Video – das dauert etwa 1–2 Minuten.")); n.append(b); }
     else if (s.last_production_error) notice("Letzte Produktion fehlgeschlagen: " + s.last_production_error, true);
     else if (!$("notice").classList.contains("err")) notice(`Heute produziert: ${s.videos_today}/${s.max_videos_per_day} automatisch · Veröffentlichung ${s.publishing_allowed ? "erlaubt" : "gesperrt"}`);
+    const cityEl = $("city");
+    if (s.city && s.city.residents != null) {
+      cityEl.hidden = false; cityEl.replaceChildren();
+      const fmt = (n) => new Intl.NumberFormat("de-DE").format(n);
+      cityEl.append(document.createTextNode("Bobstadt: "), el("b", "", `${fmt(s.city.residents)} Einwohner`),
+        document.createTextNode(" · Kasse "), el("b", "", `${fmt(s.city.available_eur)} €`),
+        document.createTextNode(` · ${s.city.buildings} Gebäude`));
+      if (!s.city.confirmed) cityEl.append(el("span", "warn", " · Stadtstand unbestätigt (python -m app.main city)"));
+    } else cityEl.hidden = true;
     const grid = $("grid"); grid.replaceChildren(...videos.map(card));
     $("empty").hidden = videos.length > 0;
     clearTimeout(timer); timer = setTimeout(refresh, s.producing || videos.some(v => ["producing", "publishing"].includes(v.status)) ? 3000 : 15000);

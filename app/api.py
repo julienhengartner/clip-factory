@@ -13,7 +13,7 @@ from storage.models import VideoStatus
 
 PUBLIC_FIELDS = ("id", "topic", "title", "hook", "category", "status", "duration_s", "words", "wpm", "revisions",
                  "voice_provider", "image_provider", "script_provider", "error", "created_at", "approved_at",
-                 "published_at")
+                 "published_at", "scheduled_for")
 
 
 class CreateVideo(BaseModel):
@@ -22,6 +22,10 @@ class CreateVideo(BaseModel):
 
 class Automation(BaseModel):
     enabled: bool
+
+
+class Schedule(BaseModel):
+    at: str | None = Field(default=None, max_length=40)
 
 
 class Reject(BaseModel):
@@ -115,6 +119,14 @@ def build_router(brain: BrainAgent) -> APIRouter:
         try:
             return public(brain.reject(video_id, body.reason if body else ""))
         except FactoryError as exc:
+            raise HTTPException(409, str(exc))
+
+    @r.post("/api/videos/{video_id}/schedule")
+    def schedule(video_id: str, body: Schedule) -> dict:
+        video_or_404(video_id)
+        try:
+            return public(brain.schedule(video_id, body.at))
+        except (FactoryError, ValueError) as exc:
             raise HTTPException(409, str(exc))
 
     @r.post("/api/videos/{video_id}/publish")

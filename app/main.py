@@ -10,6 +10,8 @@
 from __future__ import annotations
 
 import argparse
+import threading
+from contextlib import asynccontextmanager
 import hmac
 import ipaddress
 import json
@@ -22,6 +24,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse
 
 from app.api import build_router
+from brain.city import fmt_eur
 from brain.orchestrator import BrainAgent
 from config import Settings, get_settings
 
@@ -41,7 +44,23 @@ def is_loopback(host: str) -> bool:
 def create_app(settings: Settings | None = None, brain: BrainAgent | None = None) -> FastAPI:
     brain = brain or BrainAgent(settings)
     s = brain.s
-    app = FastAPI(title="BürgermeisterBob Video Factory", version="0.2.0", docs_url=None, redoc_url=None)
+    @asynccontextmanager
+    async def lifespan(_app: FastAPI):
+        """Solange die Oberfläche läuft: alle 5 Minuten geplante Veröffentlichungen prüfen (nur wenn erlaubt)."""
+        stop = threading.Event()
+        if s.allow_publishing:
+            def loop() -> None:
+                while not stop.wait(300):
+                    try:
+                        brain.publish_due()
+                    except Exception as exc:  # noqa: BLE001
+                        brain.memory.log("error", "scheduler", f"Prüfung geplanter Veröffentlichungen: {exc}")
+            threading.Thread(target=loop, name="publish-timer", daemon=True).start()
+        yield
+        stop.set()
+
+    app = FastAPI(title="BürgermeisterBob Video Factory", version="0.3.0", docs_url=None, redoc_url=None,
+                  lifespan=lifespan)
     app.state.brain = brain
     token = s.app_token.get_secret_value() if s.app_token else None
 
@@ -89,6 +108,11 @@ def main(argv: list[str] | None = None) -> int:
     dl = sub.add_parser("daily")
     dl.add_argument("--force", action="store_true")
     sub.add_parser("status")
+    ct = sub.add_parser("city", help="Bobstadt-Stadtstand anzeigen und pflegen")
+    ct.add_argument("--einwohner", type=int, help="aktuelle Followerzahl = Einwohner")
+    ct.add_argument("--ausgaben-korrektur", type=int, help="Euro, um die Ausgaben an die echten Kanalzahlen anzugleichen")
+    ct.add_argument("--bestaetigen", action="store_true", help="Startbestand und Zahlen als korrekt bestätigen")
+    sub.add_parser("publish-due", help="fällige freigegebene Videos veröffentlichen (nur wenn erlaubt)")
     sub.add_parser("backup")
     sub.add_parser("tiktok-auth")
     args = p.parse_args(argv)
@@ -117,6 +141,23 @@ def main(argv: list[str] | None = None) -> int:
         _print({**brain.status(), "ffmpeg": shutil.which(s.ffmpeg_bin), "database": str(s.db_path),
                 "learned_speech_rates": brain.memory.insights("speech_rate"),
                 "recommendations": brain.memory.get_insight("strategy", "recommendations")})
+        return 0
+    if args.cmd == "city":
+        if args.einwohner is not None:
+            brain.city.set_residents(args.einwohner)
+        if args.ausgaben_korrektur is not None:
+            brain.city.set_spent_adjust(args.ausgaben_korrektur)
+        if args.bestaetigen:
+            brain.city.confirm()
+        st = brain.city.state()
+        _print({"einwohner": st.residents, "quelle": st.residents_source, "budget_eur": st.budget_eur,
+                "ausgaben_eur": st.spent_eur, "kasse_eur": st.available_eur, "bestaetigt": st.confirmed,
+                "gebaeude": [f"{b['name']} ({fmt_eur(b['cost_eur'])}){'' if b['confirmed'] else ' – unbestätigt'}"
+                             for b in st.buildings if b["status"] == "built"],
+                "wuensche": [(p["value"], p["votes"]) for p in brain.memory.proposals("building")[:5]]})
+        return 0
+    if args.cmd == "publish-due":
+        _print(brain.publish_due())
         return 0
     if args.cmd == "backup":
         print(brain.backup())

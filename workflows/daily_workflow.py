@@ -77,7 +77,7 @@ class DailyWorkflow:
         self.brain = brain
         self.sleep = sleep
 
-    def _research(self) -> dict:
+    def _research_topics(self) -> dict:
         b = self.brain
         new = b.strategy.ideas_from_research(b.research.discover())
         from_comments = []
@@ -99,13 +99,15 @@ class DailyWorkflow:
         b = self.brain
         if not b.s.allow_publishing:
             return {"status": "disabled"}
-        results = []
-        for v in b.memory.list_videos(status="approved"):
-            if b.publish_blockers(v):
-                continue
-            outcome = b.publish(v["id"])
-            results.append({"id": v["id"], "status": outcome.status})
-        return {"published": results}
+        return {"published": b.publish_due()}
+
+    def _research(self) -> dict:
+        b = self.brain
+        if b.s.content_mode == "bobstadt":
+            st = b.city.state()
+            return {"mode": "bobstadt", "residents": st.residents, "available_eur": st.available_eur,
+                    "top_wishes": [(p["value"], p["votes"]) for p in b.memory.proposals("building")[:3]]}
+        return self._research_topics()
 
     def _tiktok_status(self) -> dict:
         client = self.brain.publisher.client
@@ -118,6 +120,7 @@ class DailyWorkflow:
         return [
             ("instagram", lambda: b.instagram.run()),
             ("comments", lambda: {**b.comments.analyze_pending(), "requests": b.comments.audience_requests()}),
+            ("votes", b.city.collect_votes),
             ("followers", lambda: b.followers.report("instagram")),
             ("tiktok_status", self._tiktok_status),
             ("performance", b.collect_tiktok_performance),
