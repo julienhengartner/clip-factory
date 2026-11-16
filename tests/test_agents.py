@@ -156,11 +156,21 @@ def test_strategy_avoids_repeats_and_sensitive(settings, memory):
     assert memory.list_ideas("new") == []  # nach Produktion -> Wiederholung verworfen
 
 
-def test_style_profile_default_and_user_override(settings, memory):
-    strat = Strategy(settings, memory)
-    assert strat.style().source == "default_assumption" and strat.style().confirmed is False
-    (settings.data_dir / "style_profile.json").write_text(json.dumps({"tone": "trocken"}), encoding="utf-8")
-    assert strat.style().tone == "trocken" and strat.style().source == "user"
+def test_style_profile_default_and_user_override(tmp_path, memory):
+    wissen = Strategy(make_settings(tmp_path / "w", content_mode="wissen"), memory)
+    assert wissen.style().source == "default_assumption" and wissen.style().confirmed is False
+    s = make_settings(tmp_path / "b")
+    strat = Strategy(s, memory)
+    profile = strat.style()
+    data = json.loads((s.data_dir / "style_profile.json").read_text(encoding="utf-8"))
+    assert {"gesichert", "nicht_feststellbar", "annahmen"} <= set(data)
+    assert "Jeder Follower = 1 Einwohner" in data["gesichert"]["bio"]
+    assert profile.source == "observed+assumptions" and profile.confirmed is False
+    data["annahmen"]["tone"] = "trocken"
+    data["bestaetigt"] = True
+    (s.data_dir / "style_profile.json").write_text(json.dumps(data), encoding="utf-8")
+    strat.ensure_style_file()  # darf Nutzeränderungen nicht überschreiben
+    assert strat.style().tone == "trocken" and strat.style().confirmed is True
 
 
 def test_learning_from_performance(memory):

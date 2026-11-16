@@ -1,9 +1,16 @@
 # BürgermeisterBob AI Video Factory
 
-Eine selbstlernende Videofabrik für deutsche TikTok-Videos (9:16, 1080×1920, H.264/AAC, **60–75 s**).
-Sie recherchiert Themen, schreibt Skripte, vertont sie und erzeugt Visuals und Untertitel. Danach schneidet
-sie das Video, prüft die Qualität, archiviert es und veröffentlicht es nach menschlicher Freigabe auf TikTok.
-Sie läuft nativ unter Windows, ohne WSL und ohne Docker; als Datenbank dient SQLite.
+Eine selbstlernende Videofabrik für deutsche TikTok-Videos (9:16, 1080×1920, H.264/AAC, **60–75 s**)
+für **Bürgermeister Bob und Bobstadt**: Jeder Follower ist ein Einwohner und bringt 1.000 € in die Stadtkasse,
+und die Community entscheidet, was gebaut wird.
+
+Das KI-Gehirn führt den Stadtzustand, wertet Kommentare als Stimmen aus und plant die nächste Folge
+(Bau, Meilenstein, Finanzierungslücke, Abstimmung, Namenswahl). Es schreibt das Skript mit echten Zahlen und
+verifizierten Hintergrundfakten, vertont es und rendert eine isometrische Stadtanimation mit Untertiteln.
+Danach prüft es die Qualität und veröffentlicht nach deiner Freigabe auf TikTok.
+
+Codebasis: <https://github.com/julienhengartner/clip-factory>. Läuft nativ unter Windows (ohne WSL und ohne
+Docker), mit SQLite als Gedächtnis.
 
 > **Grundsatz:** Ohne ausdrückliche Freigabe ist alles kostenlos und lokal. Es entstehen keine API-Kosten,
 > es wird nichts veröffentlicht und es werden keine Ergebnisse erfunden.
@@ -14,16 +21,18 @@ Sie läuft nativ unter Windows, ohne WSL und ohne Docker; als Datenbank dient SQ
 1. [Stand](#stand)
 2. [Schnellstart unter Windows](#schnellstart-unter-windows)
 3. [Bedienung](#bedienung)
-4. [So entsteht ein Video](#so-entsteht-ein-video)
-5. [Videolänge (60–75 s)](#videolänge-6075-s)
-6. [Sicherheit & Kosten](#sicherheit--kosten)
-7. [Integrationen einrichten](#integrationen-einrichten)
-8. [Tägliche Automatisierung](#tägliche-automatisierung)
-9. [Gedächtnis & Lernen](#gedächtnis--lernen)
-10. [Architektur](#architektur)
-11. [Tests](#tests)
-12. [Migration auf Ubuntu](#migration-auf-ubuntu)
-13. [Bekannte Grenzen](#bekannte-grenzen)
+4. [Bobstadt-Modus](#bobstadt-modus)
+5. [So entsteht ein Video](#so-entsteht-ein-video)
+6. [Videolänge (60–75 s)](#videolänge-6075-s)
+7. [Sicherheit & Kosten](#sicherheit--kosten)
+8. [Integrationen einrichten](#integrationen-einrichten)
+9. [Tägliche Automatisierung](#tägliche-automatisierung)
+10. [Gedächtnis & Lernen](#gedächtnis--lernen)
+11. [Architektur](#architektur)
+12. [Tests](#tests)
+13. [Migration auf Ubuntu](#migration-auf-ubuntu)
+14. [Bekannte Grenzen](#bekannte-grenzen)
+15. [GitHub](#github)
 
 ---
 
@@ -31,14 +40,18 @@ Sie läuft nativ unter Windows, ohne WSL und ohne Docker; als Datenbank dient SQ
 
 | Bereich | Status |
 |---|---|
-| Gedächtnis (SQLite, 14 Tabellen, Migrationen, Backups) | ✅ fertig, getestet |
+| Gedächtnis (SQLite, 16 Tabellen, Migrationen, Backups) | ✅ fertig, getestet |
+| **Bobstadt:** Stadtzustand, Kommentar-Stimmen, Episodenplanung | ✅ live getestet (Startbestand **unbestätigt**) |
+| **Isometrische Stadtgrafik** mit Bau-Animation (kostenlos) | ✅ live getestet |
+| Stilprofil `data/style_profile.json` (Beobachtung vs. Annahme) | ✅ angelegt, **bitte prüfen** |
+| Geplante Veröffentlichungszeit | ✅ getestet (Veröffentlichung selbst erst nach TikTok-Einrichtung) |
 | Brain Agent + 14 Agenten | ✅ fertig, getestet |
 | Recherche (Wikipedia-API, RSS) inkl. Quellenprüfung | ✅ live getestet (kostenlos) |
 | Skript mit Längen-Regelkreis auf Basis echter Sprechdauer | ✅ live getestet |
 | Deutsche Stimme lokal (Windows „Hedda“), wortgenaue Zeitstempel | ✅ live getestet (kostenlos) |
 | Visuals (Motion-Graphics, Kamerafahrten, Wechsel ≤ 4,5 s) | ✅ live getestet |
 | Karaoke-Untertitel (Wort für Wort), SRT-Export | ✅ live getestet |
-| Qualitätskontrolle (16 Prüfungen) | ✅ live getestet |
+| Qualitätskontrolle (17 Prüfungen) | ✅ live getestet |
 | Videobibliothek (Web-Oberfläche) | ✅ API live getestet, Darstellung noch nicht im Browser gesichtet |
 | Tagesablauf mit Sperre, Kontingent, Wiederholungen | ✅ live getestet |
 | ElevenLabs, OpenAI (Bilder/Text) | ⚙️ implementiert, mit simulierten Antworten getestet; **live erst nach Kostenfreigabe** |
@@ -61,7 +74,7 @@ cd C:\buergermeisterbob-ai-video-factory
 pip install -r requirements.txt     # alles ist bereits installiert – prüft nur
 copy .env.example .env              # optional; ohne .env läuft alles kostenlos
 
-python -m pytest                    # 99 Tests, ca. 50 Sekunden
+python -m pytest                    # 115 Tests, ca. 80 Sekunden
 python -m app.main status           # Systemstatus
 python -m app.main serve            # Oberfläche: http://127.0.0.1:8000
 ```
@@ -82,11 +95,48 @@ python -m app.main produce "Erfindung des Telefons"   # Video zu einem Thema
 python -m app.main produce                             # Bob wählt selbst
 python -m app.main daily --force                       # Tagesablauf jetzt einmal ausführen
 python -m app.main backup                              # Gedächtnis sichern
+python -m app.main city                                # Bobstadt-Stand anzeigen
+python -m app.main city --einwohner 13512 --bestaetigen   # Stand pflegen/bestätigen
+python -m app.main publish-due                         # geplante, fällige Videos veröffentlichen
 python -m app.main tiktok-auth                         # TikTok-Konto verbinden
 ```
 
 Alle Ergebnisse liegen in `data\videos\<id>\`: `video.mp4`, `thumbnail.jpg`, `subtitles.srt/.ass`,
 `script.json`, `qc.json` und `sources.txt`.
+
+## Bobstadt-Modus
+
+Standard ist `BBOB_CONTENT_MODE=bobstadt`. Mit `wissen` erzeugt die Fabrik stattdessen Wissensvideos aus recherchierten Themen.
+
+**Spielregel** (öffentlich in der Bio beobachtet): Einwohner = Follower, Budget = Follower × 1.000 €,
+Kasse = Budget − Ausgaben. Die Einwohnerzahl kommt aus der Instagram-API, sobald diese eingerichtet ist;
+bis dahin aus deiner Eingabe (`city --einwohner`).
+
+**Episoden**, aus den öffentlich sichtbaren Beitragstexten abgeleitet:
+
+| Folge | Wann | Wirkung nach Freigabe |
+|---|---|---|
+| Meilenstein | neue 500er-Marke erreicht | Meilenstein gilt als gefeiert |
+| Bau | Wunsch mit ≥ 2 Stimmen und bezahlbar, oder ein Gebäude per Thema im Eingabefeld | Gebäude wird gebaut, Kasse sinkt |
+| Finanzierungslücke | Wunsch ist zu teuer | rechnet vor, wie viele neue Einwohner fehlen |
+| Abstimmung | keine klaren Wünsche | Community wählt aus drei bezahlbaren Optionen |
+| Namenswahl | Namensvorschläge mit ≥ 3 Stimmen | Viertel bekommt den Namen |
+
+**Stimmen** kommen aus Kommentaren: eine Stimme pro Person (Autor nur als Hash), Spam ausgeschlossen.
+Gebäudewünsche werden über Schlüsselwörter aus dem Katalog erkannt, Namen über Muster wie `Name: „Sonnenhang“`.
+
+**Wichtig:** Der Startbestand (13.400 Einwohner; Stadion, Döner, Krankenhaus, Bahnhof, Wohntürme) stammt aus
+öffentlich sichtbaren Beitragstexten. Die **Gebäudepreise sind Spieldesign-Annahmen**. Bis du den Stand
+bestätigst, warnt die Qualitätskontrolle bei jedem Video: „Zahlen vor Freigabe prüfen“.
+
+```powershell
+python -m app.main city --einwohner 13512             # echte Followerzahl
+python -m app.main city --ausgaben-korrektur 250000    # Kasse an echte Kanalzahlen angleichen
+python -m app.main city --bestaetigen                  # Startbestand bestätigen
+```
+
+Preise und Gebäude lassen sich in `data\city_catalog.json` überschreiben, z. B.
+`[{"key": "freibad", "cost_eur": 1800000}]`.
 
 ## So entsteht ein Video
 
@@ -202,13 +252,13 @@ Erkenntnisse, Ereignis- und Fehlerprotokoll, Läufe, Einstellungen und API-Nutzu
 - **Empfehlungen:** welche Kategorien wiederholt und welche gemieden werden sollen.
 - **Häufige QC-Fehler:** werden als Erkenntnis gespeichert.
 
-**Stilprofil:** Das Profil ist derzeit eine **Annahme** (`source: default_assumption`), weil der Instagram-Kanal
-ohne autorisierten Zugriff nicht ausgewertet wird. Eigene Vorgaben kommen in `data\style_profile.json`, z. B.:
+**Stilprofil** (`data\style_profile.json`): Es wurde aus einem **einmaligen Abruf der öffentlichen
+Profilseite ohne Anmeldung** angelegt; ein Scraping von Videos oder Followern findet nicht statt. Die Datei trennt:
+- `gesichert`: Bio, Followerzahl (gerundet), Hashtags, wiederkehrende Formate aus Beitragstexten;
+- `nicht_feststellbar`: Stimme, Schnitt, Musik, Videolänge, Zielgruppe (ohne Videozugriff nicht sichtbar);
+- `annahmen`: Tonfall, Humor und Bildstil. Daraus leitet die Fabrik die Vorgaben ab.
 
-```json
-{ "tone": "trocken, schlagfertig", "humor": "Lokalpolitik-Satire ohne Spott über Personen",
-  "topics": ["Gemeindeleben", "kuriose Geschichte"], "audience": "25–45, Schweiz" }
-```
+Bitte die Annahmen prüfen und anpassen, dann `"bestaetigt": true` setzen. Die Datei wird nie überschrieben.
 
 ## Architektur
 
@@ -234,7 +284,7 @@ scripts/                   Windows-Aufgabenplanung
 ## Tests
 
 ```powershell
-python -m pytest            # 99 Tests
+python -m pytest            # 115 Tests
 ```
 
 - **Echte** Tests ohne Kosten: Windows-Stimme, FFmpeg-Rendering und -Analyse, kompletter Ablauf von der
@@ -256,6 +306,12 @@ python -m pytest            # 99 Tests
 
 ## Bekannte Grenzen
 
+- **Bobstadt-Zahlen:** Startbestand und Gebäudepreise sind unbestätigt bzw. angenommen (siehe oben).
+- **Grafik:** Die isometrische Stadt ist eine schlichte, kostenlose Eigenproduktion und keine Kopie der Kanal-Animation,
+  deren genaues Aussehen ohne Videozugriff nicht bekannt ist.
+- **Planen:** Die TikTok-API bietet keine eigene Terminplanung. Die Fabrik veröffentlicht zum geplanten Zeitpunkt
+  selbst, solange die Oberfläche läuft (Prüfung alle 5 Minuten), oder per `python -m app.main publish-due`.
+
 - **Skriptqualität offline:** Der kostenlose Autor setzt verifizierte Lexikonsätze plus Bobs Moderation zusammen.
   Das ist faktentreu, aber sprachlich hölzern und nicht witzig. Für wirklich unterhaltsame Skripte braucht es ein
   Sprachmodell (OpenAI hier eingebaut, Anthropic nach Freigabe).
@@ -266,3 +322,12 @@ python -m pytest            # 99 Tests
 - **TikTok/Instagram** sind noch nicht live getestet (fehlende Zugänge).
 - **Absturz während einer Produktion:** Beim nächsten Start werden hängende Produktionen (älter als 1 h) als
   fehlgeschlagen markiert.
+
+## GitHub
+
+- Repository: <https://github.com/julienhengartner/clip-factory> (**öffentlich**)
+- Commits laufen unter der GitHub-Noreply-Adresse (`git config user.email` nur für dieses Repository),
+  damit keine private E-Mail-Adresse öffentlich wird.
+- Nie im Repository: `.env`, `data\` (Gedächtnis, Videos, Logs, Backups, Tokens), `*.token`,
+  `.claude/settings.local.json`, Musikdateien.
+- Erster Push bzw. Anmeldung: `git push -u origin main`. Git Credential Manager öffnet dabei die GitHub-Anmeldung im Browser.
