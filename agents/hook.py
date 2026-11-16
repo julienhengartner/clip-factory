@@ -26,6 +26,15 @@ PATTERNS: dict[str, list[str]] = {
 }
 
 
+EPISODE_PATTERNS: dict[str, list[str]] = {
+    "meilenstein": ["{n} Einwohner! Bobstadt wächst weiter.", "Geschafft: {n} Einwohner!"],
+    "bau": ["Bobstadt bekommt {acc}!", "Die Bagger rollen: {name}!"],
+    "finanzierung": ["{name}? Das Geld reicht nicht.", "Für {acc} fehlt Geld."],
+    "abstimmung": ["Ihr entscheidet: Was baut Bobstadt?", "Drei Ideen. Ein Budget. Ihr wählt!"],
+    "namenswahl": ["Das neue Viertel hat einen Namen!", "Ihr habt gewählt: {name}!"],
+}
+
+
 def max_hook_words(wpm: float) -> int:
     return max(5, min(10, int(HOOK_SECONDS * wpm / 60)))
 
@@ -72,5 +81,26 @@ class HookAgent(Agent):
             stats = learned.get(c.pattern, {})
             mean, n = float(stats.get("mean", 1.0)), int(stats.get("n", 0))
             c.score = round(mean + 0.3 / math.sqrt(n + 1) + rng.random() * 0.05, 4)
+        cands.sort(key=lambda c: c.score, reverse=True)
+        return cands[0], cands
+
+    def choose_episode(self, episode, wpm: float = 150.0) -> tuple[HookCandidate, list[HookCandidate]]:
+        """Hooks für Bobstadt-Episoden; Muster heissen 'ep_<typ>_<n>' und werden ebenfalls gelernt."""
+        limit = max_hook_words(wpm)
+        learned = self.memory.insights("hook_pattern")
+        rng = random.Random(episode.title)
+        cands = []
+        for n, t in enumerate(EPISODE_PATTERNS.get(episode.type, [])):
+            try:
+                text = t.format(**episode.hook_vars)
+            except KeyError:
+                continue
+            if word_count(text) <= limit:
+                pattern = f"ep_{episode.type}_{n}"
+                stats = learned.get(pattern, {})
+                score = float(stats.get("mean", 1.0)) + 0.3 / math.sqrt(int(stats.get("n", 0)) + 1) + rng.random() * 0.05
+                cands.append(HookCandidate(text=text, pattern=pattern, score=round(score, 4)))
+        if not cands:
+            cands = [HookCandidate(text="Neues aus Bobstadt!", pattern=f"ep_{episode.type}_fallback", score=0.5)]
         cands.sort(key=lambda c: c.score, reverse=True)
         return cands[0], cands

@@ -35,11 +35,13 @@ from agents.video_director import VideoDirectorAgent
 from agents.video_editing import VideoEditingAgent
 from agents.voice import VoiceAgent
 from brain.budget import BudgetGuard
+from brain.city import City
+from brain.episodes import Episode, EpisodePlanner
 from brain.learning import LearningAgent
 from brain.memory import Memory
 from brain.strategy import Strategy, categorize
 from config import Settings, get_settings
-from core.errors import FactoryError, InsufficientMaterialError, NotConfiguredError
+from core.errors import ExternalApiError, FactoryError, InsufficientMaterialError, NotConfiguredError
 from core.logging import get_logger, setup_logging
 from core.text import similarity
 from integrations.http import make_client
@@ -50,6 +52,7 @@ from video_engine.duration import LengthVerdict, evaluate_length
 from video_engine.ffmpeg import FFmpegError
 
 log = get_logger("brain")
+CITY_SOURCE = "Bobstadt-Stadtzustand (Gedächtnis der Videofabrik)"
 
 
 class BrainAgent:
@@ -66,6 +69,8 @@ class BrainAgent:
         self.ctx = AgentContext(settings=self.s, memory=self.memory, budget=self.budget,
                                 http=make_client(self.s, http_transport), tokens=TokenStore(self.s.secrets_dir))
         self.strategy = Strategy(self.s, self.memory)
+        self.city = City(self.s, self.memory)
+        self.planner = EpisodePlanner(self.city, self.memory)
         o = agent_overrides
         self.research = o.get("research") or ResearchAgent(self.ctx)
         self.instagram = o.get("instagram") or InstagramMonitorAgent(self.ctx)
@@ -149,6 +154,14 @@ class BrainAgent:
         if not self._lock.acquire(blocking=False):
             raise FactoryError("Es läuft bereits eine Produktion")
         try:
+            if self.s.content_mode == "bobstadt" and not idea_id:
+                episode = self.planner.plan(wish=topic)
+                if episode is not None:
+                    return self._produce_episode(episode)
+                if not topic:
+                    raise InsufficientMaterialError("Keine Bobstadt-Episode planbar – Einwohnerzahl unbekannt? "
+                                                    "(python -m app.main city --einwohner N)")
+                self.memory.log("info", self.name, f"'{topic}' ist kein Gebäude – produziere ein Wissensvideo")
             tried: set[int] = set()
             last_error: Exception | None = None
             for _ in range(max_idea_attempts if not (topic or idea_id) else 1):
@@ -185,12 +198,38 @@ class BrainAgent:
         self.memory.log("error", self.name, message, video_id=video_id)
         return self.memory.update_video(video_id, status=VideoStatus.FAILED, error=message[:1000])
 
-    def _pipeline(self, video: dict, idea: Idea) -> dict:
-        vid = video["id"]
-        out = self.s.videos_dir / vid
-        work = out / "work"
-        style = self.strategy.style()
+    def _produce_episode(self, episode: Episode) -> dict:
+        idea = Idea(title=episode.title, angle=f"Bobstadt-Episode: {episode.type}", category="bobstadt",
+                    origin="bobstadt", status="used")
+        idea.id = self.memory.add_idea(idea)
+        video = self.memory.create_video(episode.title, idea.id, "bobstadt")
+        self.memory.update_video(video["id"], episode_json=episode.model_dump())
+        self._step(video["id"], 1, f"Episode gewählt: {episode.type} – {episode.title}"
+                                   + ("" if episode.confirmed_state else " (Stadtstand UNBESTÄTIGT)"))
+        try:
+            return self._pipeline(video, idea, episode)
+        except Exception as exc:  # noqa: BLE001 – jeder Fehler wird protokolliert
+            log.exception("Episoden-Produktion fehlgeschlagen")
+            return self._fail(video["id"], f"{type(exc).__name__}: {exc}")
 
+    def _prepare_episode(self, vid: str, idea: Idea, episode: Episode, wpm: float, target: int):
+        items = []
+        for topic in episode.fact_topics:
+            try:
+                items += self.research.research_topic(topic, max_articles=1)
+            except (ExternalApiError, httpx.HTTPError) as exc:  # Wissensteil ist optional – die Handlung trägt
+                self._step(vid, 2, f"Recherche zu '{topic}' nicht möglich: {exc}", "warning")
+        verified = [i for i in items if i.verified]
+        self._step(vid, 2, f"Recherche: {len(items)} Quelle(n) zu {', '.join(episode.fact_topics) or '–'}")
+        material = self.research.material(verified) if verified else []
+        self._step(vid, 3, f"Quellen geprüft: {len(verified)} verifiziert, {len(material)} Sätze Wissen")
+        self._step(vid, 4, f"Videoidee: {idea.angle}")
+        hook, candidates = self.hook.choose_episode(episode, wpm)
+        script = self.writer.write_episode(episode, material, hook, target)
+        script.sources = [i.url for i in verified] + [CITY_SOURCE]
+        return hook, candidates, script, material, True
+
+    def _prepare_topic(self, vid: str, idea: Idea, style, wpm: float, target: int):
         items = self.memory.get_research(idea.research_ids)
         self._step(vid, 2, f"Recherche: {len(items)} Quelle(n)")
         verified = [i for i in items if i.verified]
@@ -199,27 +238,40 @@ class BrainAgent:
         material = self.research.material(verified)
         self._step(vid, 3, f"Quellen geprüft: {len(verified)} verifiziert, {len(material)} Sätze Material")
         self._step(vid, 4, f"Videoidee: {idea.angle}")
+        hook, candidates = self.hook.choose(idea, " ".join(material[:6]), wpm)
+        script = self.writer.write(idea, material, hook, target, style)
+        script.sources = [i.url for i in verified]
+        return hook, candidates, script, material, bool(verified)
 
+    def _pipeline(self, video: dict, idea: Idea, episode: Episode | None = None) -> dict:
+        vid = video["id"]
+        out = self.s.videos_dir / vid
+        work = out / "work"
+        style = self.strategy.style()
         voice_name = self.voice.provider_name
         wpm = self.writer.speech_rate(voice_name)
-        context = " ".join(material[:6])
-        hook, candidates = self.hook.choose(idea, context, wpm)
+        target = self.writer.target_words(voice_name)
+        if episode is not None:
+            hook, candidates, script, material, sources_ok = self._prepare_episode(vid, idea, episode, wpm, target)
+        else:
+            hook, candidates, script, material, sources_ok = self._prepare_topic(vid, idea, style, wpm, target)
         for c in candidates:
             self.memory.add_hook(vid, c.text, c.pattern, c.score, c is hook)
         self._step(vid, 5, f"Hook ({hook.pattern}): {hook.text}")
-
-        target = self.writer.target_words(voice_name)
-        script = self.writer.write(idea, material, hook, target, style)
-        script.sources = [i.url for i in verified]
         self._step(vid, 6, f"Skript ({script.provider}): {script.word_count} Wörter, Ziel {target} bei {wpm:.0f} wpm")
 
         scenes, total, revisions = None, 0.0, 0
+        fallback = None  # letzte veröffentlichbare Fassung (60–80 s), falls eine Feinkorrektur misslingt
         for revision in range(self.s.max_script_revisions + 1):
             # Vorab-Schätzung (kostenlos): grob korrigieren, bevor vertont wird
             for _ in range(3):
                 est = script.word_count / wpm * 60
                 if est < self.s.min_duration_s + 2:
-                    script = self.writer.expand(script, idea, material, math.ceil((self.s.target_duration_s - est) * wpm / 60))
+                    try:
+                        script = self.writer.expand(script, idea, material,
+                                                    math.ceil((self.s.target_duration_s - est) * wpm / 60))
+                    except InsufficientMaterialError:
+                        break  # die echte Messung entscheidet
                 elif est > self.s.ideal_max_duration_s:
                     script = self.writer.shorten(script, idea, math.ceil((est - self.s.target_duration_s) * wpm / 60))
                 else:
@@ -228,24 +280,44 @@ class BrainAgent:
                                f"{script.word_count / wpm * 60:.1f} s geschätzt")
             planned = self.director.plan(script, style)
             self._step(vid, 8, f"Szenenplan: {len(planned)} Szenen")
-            shutil.rmtree(work / "audio", ignore_errors=True)
-            scenes, total, measured = self.voice.synthesize(planned, work / "audio")
+            scenes, total, measured = self.voice.synthesize(planned, work / f"audio_r{revision}")
             wpm = measured or wpm
             length = evaluate_length(total, self.s)
             self._step(vid, 10, f"Voice-over ({voice_name}): {total:.2f} s gemessen, {measured:.0f} wpm – {length.message}")
             revisions = revision
-            if length.publishable:
+            if length.verdict == LengthVerdict.IDEAL:
                 break
-            if revision == self.s.max_script_revisions:
-                raise FactoryError(f"Länge nach {revision} Überarbeitungen nicht erreicht: {length.message}")
-            if length.verdict == LengthVerdict.TOO_SHORT:
-                extra = math.ceil(length.missing_s * wpm / 60) + 3
-                script = self.writer.expand(script, idea, material, extra)
-                self._step(vid, 7, f"Zu kurz – Skript um ca. {extra} Wörter erweitert", "warning")
-            else:
-                excess = math.ceil((total - self.s.target_duration_s) * wpm / 60)
-                script = self.writer.shorten(script, idea, excess)
-                self._step(vid, 7, f"Zu lang – Skript um ca. {excess} Wörter gekürzt", "warning")
+            last = revision == self.s.max_script_revisions
+            try:
+                if length.verdict == LengthVerdict.ACCEPTABLE:
+                    # 75–80 s ist erlaubt, Ideal hat aber Vorrang: kürzen, sofern noch Revisionen übrig sind
+                    fallback = (script, scenes, total, revision)
+                    if last:
+                        break
+                    excess = math.ceil((total - self.s.target_duration_s) * wpm / 60)
+                    shorter = self.writer.shorten(script, idea, excess)
+                    if shorter.word_count >= script.word_count:
+                        break  # nichts Kürzbares mehr (nur Handlung) – akzeptabel bleibt akzeptabel
+                    script = shorter
+                    self._step(vid, 7, f"Über Ideal – Skript um ca. {excess} Wörter gekürzt", "warning")
+                    continue
+                if last:
+                    raise FactoryError(f"Länge nach {revision} Überarbeitungen nicht erreicht: {length.message}")
+                if length.verdict == LengthVerdict.TOO_SHORT:
+                    extra = math.ceil(length.missing_s * wpm / 60) + 3
+                    script = self.writer.expand(script, idea, material, extra)
+                    self._step(vid, 7, f"Zu kurz – Skript um ca. {extra} Wörter erweitert", "warning")
+                else:
+                    excess = math.ceil((total - self.s.target_duration_s) * wpm / 60)
+                    script = self.writer.shorten(script, idea, excess)
+                    self._step(vid, 7, f"Zu lang – Skript um ca. {excess} Wörter gekürzt", "warning")
+            except (FactoryError, InsufficientMaterialError):
+                if fallback is None:
+                    raise
+                script, scenes, total, revisions = fallback
+                self._step(vid, 7, f"Korrektur nicht möglich – verwende Fassung Rev. {revisions} ({total:.2f} s)",
+                           "warning")
+                break
         assert scenes is not None
         self.memory.update_video(vid, title=script.title, hook=hook.text, hook_pattern=hook.pattern,
                                  script_json=script.model_dump(), words=script.word_count, wpm=wpm,
@@ -254,7 +326,7 @@ class BrainAgent:
         scenes = self.editing.cut(scenes)
         self._step(vid, 11, f"Szenen geschnitten: {sum(len(s.shots) for s in scenes)} Shots "
                             f"(max. {self.s.max_shot_s} s pro Bild)")
-        scenes = self.images.create(scenes, work / "images", script.title)
+        scenes = self.images.create(scenes, work / "images", script.title, city=episode.city if episode else None)
         self._step(vid, 9, f"Visuals erzeugt ({self.images.provider})")
         cues, ass, srt = self.subtitles.build(scenes, out)
         self._step(vid, 13, f"Untertitel: {len(cues)} Einblendungen")
@@ -272,7 +344,8 @@ class BrainAgent:
         self._step(vid, 14, f"Musik: {Path(music).name if music else 'keine (nur lizenzierte Musik erlaubt)'}")
         self._step(vid, 15, f"9:16-Video gerendert: {final.name}")
 
-        report = self.qc.check(final, scenes, script, cues, sources_verified=bool(verified))
+        report = self.qc.check(final, scenes, script, cues, sources_verified=sources_ok,
+                               state_confirmed=episode.confirmed_state if episode else None)
         for name, n in (("laenge_minimum", 16), ("lautheit", 17), ("untertitel_vollstaendig", 18)):
             c = report.get(name)
             if c:
@@ -305,7 +378,24 @@ class BrainAgent:
         if v["status"] != VideoStatus.READY.value:
             raise FactoryError(f"Nur geprüfte Videos (Status 'ready') können freigegeben werden – aktuell '{v['status']}'")
         self.memory.log("info", self.name, "Video freigegeben", video_id=video_id)
+        if v.get("episode"):
+            self._apply_episode(video_id, Episode(**v["episode"]))
         return self.memory.update_video(video_id, status=VideoStatus.APPROVED, approved_at=utcnow())
+
+    def _apply_episode(self, video_id: str, episode: Episode) -> None:
+        """Erst die Freigabe macht eine Episode zur Stadtgeschichte (Bau, Meilenstein, Name)."""
+        fx = episode.effects
+        if fx.get("build"):
+            self.memory.add_building(fx["build"], fx["name"], fx["cost"], "built",
+                                     "community" if fx.get("votes") else "bob", video_id=video_id)
+            self.memory.set_proposal_status("building", fx["build"], "accepted")
+        if fx.get("milestone"):
+            self.memory.set_setting("city.last_milestone", int(fx["milestone"]))
+        if fx.get("name"):
+            districts = self.memory.get_setting("city.districts", [])
+            self.memory.set_setting("city.districts", districts + [fx["name"]])
+            self.memory.set_proposal_status("name", fx["name"], "accepted")
+        self.memory.log("info", "city", f"Episode angewendet: {episode.type} {fx}", video_id=video_id)
 
     def reject(self, video_id: str, reason: str = "") -> dict:
         v = self.memory.get_video(video_id)
@@ -324,6 +414,46 @@ class BrainAgent:
 
     def publish_blockers(self, video: dict) -> list[str]:
         return self.publisher.blockers(video)
+
+    def schedule(self, video_id: str, when: str | None) -> dict:
+        """Veröffentlichungszeit planen (ISO-Zeit mit Zeitzone) oder Planung entfernen (None).
+        TikTok bietet keine Terminplanung über die API – die Fabrik veröffentlicht selbst zum geplanten Zeitpunkt."""
+        from datetime import datetime, timezone
+        v = self.memory.get_video(video_id)
+        if not v:
+            raise KeyError(video_id)
+        if v["status"] not in (VideoStatus.READY.value, VideoStatus.APPROVED.value):
+            raise FactoryError("Planen ist nur für geprüfte bzw. freigegebene Videos möglich")
+        if when:
+            dt = datetime.fromisoformat(when)
+            if dt.tzinfo is None:
+                dt = dt.astimezone()  # lokale Zeit des Rechners
+            if dt <= datetime.now(timezone.utc):
+                raise FactoryError("Der geplante Zeitpunkt liegt in der Vergangenheit")
+            when = dt.astimezone(timezone.utc).isoformat(timespec="minutes")
+        self.memory.log("info", self.name, f"Veröffentlichung geplant: {when or 'keine Planung'}", video_id=video_id)
+        return self.memory.update_video(video_id, scheduled_for=when)
+
+    def due_for_publishing(self) -> list[dict]:
+        """Freigegebene Videos ohne Planung oder mit erreichtem Zeitpunkt."""
+        now = utcnow()
+        return [v for v in self.memory.list_videos(status="approved")
+                if not v.get("scheduled_for") or v["scheduled_for"] <= now]
+
+    def publish_due(self) -> list[dict]:
+        if not self.s.allow_publishing:
+            return []
+        results = []
+        for v in self.due_for_publishing():
+            if self.publish_blockers(v):
+                continue
+            try:
+                outcome = self.publish(v["id"])
+                results.append({"id": v["id"], "status": outcome.status})
+            except Exception as exc:  # noqa: BLE001 – protokollieren, nächstes Video versuchen
+                self.memory.log("error", self.name, f"Geplante Veröffentlichung fehlgeschlagen: {exc}", video_id=v["id"])
+                results.append({"id": v["id"], "status": "error", "error": str(exc)[:200]})
+        return results
 
     # --- Analyse & Lernen ------------------------------------------------------------
     def collect_tiktok_performance(self) -> dict:
@@ -349,9 +479,18 @@ class BrainAgent:
             "tiktok_missing": self.publisher.client.missing_requirements(),
             "instagram_missing": self.instagram.graph.missing_requirements(),
             "style_profile": self.strategy.style().source,
+            "content_mode": self.s.content_mode,
+            "city": self._city_status(),
             "videos_today": self.memory.videos_created_today(),
             "max_videos_per_day": self.s.max_videos_per_day,
         }
+
+    def _city_status(self) -> dict | None:
+        if self.s.content_mode != "bobstadt":
+            return None
+        st = self.city.state()
+        return {"residents": st.residents, "residents_source": st.residents_source, "available_eur": st.available_eur,
+                "buildings": len([b for b in st.buildings if b["status"] == "built"]), "confirmed": st.confirmed}
 
     def backup(self) -> Path:
         path = self.db.backup(self.s.backups_dir, self.s.backups_keep)

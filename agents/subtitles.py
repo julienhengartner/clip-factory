@@ -15,7 +15,7 @@ from video_engine.subtitles import write_ass, write_srt
 MAX_WORDS = 3
 MAX_CHARS = 20
 GAP_BREAK_S = 0.35
-_TOKEN = re.compile(r"[0-9A-Za-zÄÖÜäöüßÀ-ÿ]+(?:[-'’][0-9A-Za-zÄÖÜäöüßÀ-ÿ]+)*")
+_TOKEN = re.compile(r"\d+(?:[.,]\d+)+|[0-9A-Za-zÄÖÜäöüßÀ-ÿ]+(?:[-'’][0-9A-Za-zÄÖÜäöüßÀ-ÿ]+)*")
 
 
 def sentence_end_flags(text: str) -> list[bool]:

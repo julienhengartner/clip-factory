@@ -24,6 +24,8 @@ from video_engine.duration import evaluate_length
 from video_engine.ffmpeg import probe_duration
 
 BASE_TAGS = ["#bürgermeisterbob", "#wusstestdu", "#lernenmittiktok"]
+# auf dem Instagram-Kanal beobachtete Hashtags (16.11.2026)
+BOBSTADT_TAGS = ["#bürgermeisterbob", "#bobstadt", "#citybuilder", "#isometric"]
 CATEGORY_TAGS = {"technik": "#erfindungen", "wissenschaft": "#wissenschaft", "geschichte": "#geschichte",
                  "politik": "#gemeinde", "kultur": "#kultur", "sport": "#sport", "natur": "#natur"}
 FINAL_OK = {"PUBLISH_COMPLETE"}
@@ -32,7 +34,7 @@ FAILED = {"FAILED"}
 
 
 def hashtags(title: str, category: str, script_text: str, max_tags: int = 6) -> list[str]:
-    tags = list(BASE_TAGS)
+    tags = list(BOBSTADT_TAGS if category == "bobstadt" else BASE_TAGS)
     if category in CATEGORY_TAGS:
         tags.append(CATEGORY_TAGS[category])
     for kw in keywords(f"{title} {title} {script_text}", 4):
@@ -48,7 +50,7 @@ def caption(video: dict) -> str:
     cta = next((s["text"] for s in segs if s["role"] == "cta"), "")
     question = cta.split("?")[0] + "?" if "?" in cta else ""
     full = " ".join(s["text"] for s in segs)
-    sources = sorted({urlparse(u).hostname or u for u in script.get("sources", [])})
+    sources = sorted({urlparse(u).hostname for u in script.get("sources", []) if u.startswith("http")})
     src = ("Quellen: " + ", ".join(sources) + (" (Texte: Wikipedia, CC BY-SA)" if any("wikipedia" in s for s in sources) else "")) \
         if sources else ""
     parts = [f"{video.get('title') or video['topic']} – {video.get('hook') or ''}".strip(" –"), question, src,

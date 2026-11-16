@@ -25,6 +25,9 @@ MAX_SENTENCE_WORDS = 28
 INTROS = ["Ich bin Bürgermeister Bob, und unser Thema heute lautet: {title}.",
           "Bürgermeister Bob hier. Heute auf meinem Schreibtisch: {title}.",
           "Hier ist Bob, euer Bürgermeister. Heute: {title}."]
+EPISODE_INTROS = ["Hier ist Bob, euer Bürgermeister – und es gibt Neuigkeiten aus Bobstadt.",
+                  "Bürgermeister Bob hier, mit frischen Nachrichten aus dem Rathaus von Bobstadt.",
+                  "Willkommen zurück in Bobstadt, hier spricht euer Bürgermeister Bob."]
 TURNS = ["Und jetzt wird es spannend.", "Aber das ist noch nicht alles.",
          "Jetzt kommt der Teil, den kaum jemand kennt.", "Und genau hier wird es interessant."]
 TAKEAWAYS = ["Was lernen wir daraus? Grosse Veränderungen beginnen oft mit einer einzigen Idee.",
@@ -135,8 +138,28 @@ class ScriptWriterAgent(Agent):
     def _story(self, script: Script) -> list[str]:
         return [s.text for s in script.segments if s.role == "story"]
 
-    def _frame_of(self, script: Script) -> dict[str, str]:
-        return {r: (script.segment(r).text if script.segment(r) else "") for r in ("hook", "intro", "turn", "takeaway", "cta")}
+    def _replace_story(self, script: Script, story: list[str]) -> Script:
+        """Ersetzt nur die austauschbaren Faktensätze (role=story); Handlung, Hook und Abschluss bleiben.
+        Liegt ein Wendepunkt (turn) zwischen Faktensätzen, wird er wieder nach ca. 45 % eingefügt."""
+        segs = script.segments
+        idx = [i for i, s in enumerate(segs) if s.role == "story"]
+        turn_i = next((i for i, s in enumerate(segs) if s.role == "turn"), None)
+        if not idx:
+            anchor = next((i for i, s in enumerate(segs) if s.role in ("takeaway", "cta")), len(segs))
+            pre, post, mid_turn = segs[:anchor], segs[anchor:], None
+        else:
+            mid_turn = segs[turn_i] if turn_i is not None and idx[0] < turn_i < idx[-1] else None
+            pre = [s for i, s in enumerate(segs[:idx[0]])]
+            post = [s for s in segs[idx[-1] + 1:]]
+        facts = [ScriptSegment(role="story", text=t) for t in story]
+        if not facts and pre and pre[-1].role == "turn":
+            pre = pre[:-1]  # keine Überleitung ohne folgendes Wissen
+        if mid_turn is not None and len(facts) > 1:
+            split = max(1, round(len(facts) * 0.45))
+            facts = facts[:split] + [mid_turn] + facts[split:]
+        elif not idx and facts and not any(s.role == "turn" for s in pre):
+            facts = [ScriptSegment(role="turn", text=TURNS[0])] + facts
+        return script.model_copy(update={"segments": pre + facts + post, "revision": script.revision + 1})
 
     def expand(self, script: Script, idea: Idea, material: list[str], extra_words: int) -> Script:
         """Ergänzt weitere verifizierte Sätze; wirft InsufficientMaterialError, wenn nichts mehr da ist."""
@@ -152,24 +175,43 @@ class ScriptWriterAgent(Agent):
         if not added:
             raise InsufficientMaterialError(f"Kein weiteres verifiziertes Material für '{idea.title}' – Thema reicht "
                                             f"nicht für {self.s.min_duration_s:.0f} Sekunden")
-        frame = self._frame_of(script)
-        if not frame["turn"]:
-            frame["turn"] = TURNS[0]
         ordered = [s for s in all_sentences if s in added or s in story] + [s for s in story if s not in all_sentences]
-        return self._assemble(idea, frame, ordered, script.hook_pattern, script.revision + 1) \
-            .model_copy(update={"provider": script.provider, "sources": script.sources})
+        return self._replace_story(script, ordered)
 
     def shorten(self, script: Script, idea: Idea, excess_words: int) -> Script:
         story = self._story(script)
         removed = 0
-        # die am wenigsten relevanten Sätze zuerst streichen
+        keep_min = 2 if not any(s.role == "plot" for s in script.segments) else 0
         for s in reversed(rank_sentences(story, f"{idea.title} {idea.angle}")):
-            if len(story) <= 2 or removed >= excess_words:
+            if len(story) <= keep_min or removed >= excess_words:
                 break
             story.remove(s)
             removed += word_count(s)
-        return self._assemble(idea, self._frame_of(script), story, script.hook_pattern, script.revision + 1) \
-            .model_copy(update={"provider": script.provider, "sources": script.sources})
+        return self._replace_story(script, story)
+
+    # --- Bobstadt-Episoden ---------------------------------------------------------
+    def write_episode(self, episode, material: list[str], hook: HookCandidate, target_words: int,
+                      seed: str | None = None) -> Script:
+        """Handlung mit echten Zahlen aus dem Stadtzustand + verifizierte Fakten als Wissensteil."""
+        rng = random.Random(seed or episode.title)
+        intro = rng.choice(EPISODE_INTROS)
+        segs = [ScriptSegment(role="hook", text=hook.text), ScriptSegment(role="intro", text=intro)]
+        segs += [ScriptSegment(role="plot", text=pl.text, visual=pl.visual, data=pl.data) for pl in episode.plot]
+        fixed = sum(word_count(s.text) for s in segs) + word_count(episode.takeaway) + word_count(episode.cta)
+        sentences = usable_sentences(material)
+        story, words = [], fixed + word_count(episode.fact_intro)
+        chosen = set()
+        for s in rank_sentences(sentences, " ".join(episode.fact_topics) + " " + (episode.building_name or "")):
+            if words >= target_words:
+                break
+            chosen.add(s)
+            words += word_count(s)
+        story = [s for s in sentences if s in chosen]
+        if story:
+            segs.append(ScriptSegment(role="turn", text=episode.fact_intro))
+            segs += [ScriptSegment(role="story", text=s) for s in story]
+        segs += [ScriptSegment(role="takeaway", text=episode.takeaway), ScriptSegment(role="cta", text=episode.cta)]
+        return Script(title=episode.title, segments=segs, provider="offline-episode", hook_pattern=hook.pattern)
 
     # --- Sprachmodell (optional, kostenpflichtig) --------------------------------
     def _write_llm(self, idea: Idea, sentences: list[str], hook: HookCandidate, target_words: int,

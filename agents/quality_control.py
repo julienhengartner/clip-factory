@@ -26,12 +26,12 @@ class QualityControlAgent(Agent):
     name = "quality_control"
 
     def check(self, video: Path, scenes: list[Scene], script: Script, cues: list[SubtitleCue],
-              sources_verified: bool) -> QCReport:
+              sources_verified: bool, state_confirmed: bool | None = None) -> QCReport:
         a = analyze(video, self.s)
-        return self.evaluate(a, scenes, script, cues, sources_verified)
+        return self.evaluate(a, scenes, script, cues, sources_verified, state_confirmed)
 
     def evaluate(self, a: MediaAnalysis, scenes: list[Scene], script: Script, cues: list[SubtitleCue],
-                 sources_verified: bool) -> QCReport:
+                 sources_verified: bool, state_confirmed: bool | None = None) -> QCReport:
         s, checks = self.s, []
         length = evaluate_length(a.duration_s, s)
         checks.append(QCCheck(name="laenge_minimum", passed=length.verdict not in (LengthVerdict.TOO_SHORT, LengthVerdict.INVALID),
@@ -86,4 +86,8 @@ class QualityControlAgent(Agent):
                               detail=f"{wpm:.0f} Wörter/min (Orientierung {s.wpm_min:.0f}–{s.wpm_max:.0f})", value=round(wpm, 1)))
         checks.append(QCCheck(name="quellen_verifiziert", passed=sources_verified and bool(script.sources),
                               detail=f"{len(script.sources)} Quelle(n)"))
+        if state_confirmed is not None:
+            checks.append(QCCheck(name="stadtstand_bestaetigt", severity="warning", passed=state_confirmed,
+                                  detail="Zahlen stammen aus bestätigtem Stadtstand" if state_confirmed else
+                                  "Einwohner/Kasse/Gebäude noch unbestätigt – Zahlen im Video vor Freigabe prüfen"))
         return QCReport(checks=checks)

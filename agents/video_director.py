@@ -18,35 +18,37 @@ class VideoDirectorAgent(Agent):
     name = "video_director"
 
     def plan(self, script: Script, style: StyleProfile) -> list[Scene]:
-        groups: list[tuple[str, str]] = []
+        groups: list[tuple[str, str, str | None, dict]] = []
         for seg in script.segments:
-            if seg.role in ("hook", "cta", "turn", "intro", "takeaway"):
-                groups.append((seg.role, seg.text))
+            if seg.role in ("hook", "cta", "turn", "intro", "takeaway", "plot"):
+                groups.append((seg.role, seg.text, seg.visual, seg.data))
                 continue
             buf = ""
             for sent in split_sentences(seg.text) or [seg.text]:
                 if buf and word_count(buf) + word_count(sent) > MAX_SCENE_WORDS:
-                    groups.append((seg.role, buf))
+                    groups.append((seg.role, buf, None, {}))
                     buf = sent
                 else:
                     buf = f"{buf} {sent}".strip()
             if buf:
-                groups.append((seg.role, buf))
-        # aufeinanderfolgende kurze Story-Gruppen zusammenführen
-        merged: list[tuple[str, str]] = []
-        for role, text in groups:
-            if merged and role == "story" and merged[-1][0] == "story" and \
-                    word_count(merged[-1][1]) + word_count(text) <= MAX_SCENE_WORDS:
-                merged[-1] = (role, f"{merged[-1][1]} {text}")
+                groups.append((seg.role, buf, None, {}))
+        # aufeinanderfolgende kurze Fakten-Gruppen zusammenführen
+        merged: list[tuple[str, str, str | None, dict]] = []
+        for role, text, visual, data in groups:
+            if merged and role == "story" and merged[-1][0] == "story" and (
+                    word_count(merged[-1][1]) + word_count(text) <= MAX_SCENE_WORDS):
+                merged[-1] = (role, f"{merged[-1][1]} {text}", None, {})
             else:
-                merged.append((role, text))
+                merged.append((role, text, visual, data))
 
         scenes, prev_kw = [], ""
         title_kw = (keywords(script.title, 1) or [script.title])[0]
-        for i, (role, text) in enumerate(merged):
+        for i, (role, text, visual, data) in enumerate(merged):
             number = first_number(text)
             year = number if number and len(number) == 4 else None
-            if role == "hook":
+            if visual:
+                style_name = visual
+            elif role == "hook":
                 style_name = "hook"
             elif role == "intro":
                 style_name = "title"
@@ -65,6 +67,6 @@ class VideoDirectorAgent(Agent):
             prev_kw = kw
             prompt = (f"Hochformat-Illustration 9:16 für ein TikTok-Video. Stil: {style.visual_style}. "
                       f"Motiv passend zu: {text} Ohne Schrift, ohne Logos, keine realen erkennbaren Personen.")
-            scenes.append(Scene(index=i, role=role, text=text, style=style_name, keyword=kw, number=year,
-                                palette=i % 6, image_prompt=prompt))
+            scenes.append(Scene(index=i, role=role, text=text, style=style_name, keyword=data.get("keyword") or kw,
+                                number=year, palette=i % 6, image_prompt=prompt, data=data))
         return scenes
