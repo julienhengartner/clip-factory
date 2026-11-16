@@ -1,0 +1,7 @@
+# Einheitliche Zeilenenden (wichtig für die spätere Ubuntu-Migration)
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.png binary
+*.jpg binary
+*.mp4 binary
+*.db binary
