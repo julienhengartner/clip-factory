@@ -170,6 +170,34 @@ MIGRATIONS: list[str] = [
         created_at TEXT NOT NULL
     );
     """,
+    # --- Version 2: Bobstadt (Stadtzustand, Community-Vorschläge), Episoden, geplante Veröffentlichung ---
+    """
+    ALTER TABLE videos ADD COLUMN episode_json TEXT;
+    ALTER TABLE videos ADD COLUMN scheduled_for TEXT;
+    CREATE TABLE city_buildings (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        kind TEXT NOT NULL,
+        name TEXT NOT NULL,
+        cost_eur INTEGER NOT NULL,
+        status TEXT NOT NULL,              -- planned | built
+        origin TEXT NOT NULL,              -- seed | community | bob
+        confirmed INTEGER NOT NULL DEFAULT 1,
+        video_id TEXT,
+        note TEXT,
+        created_at TEXT NOT NULL,
+        built_at TEXT
+    );
+    CREATE TABLE proposals (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        kind TEXT NOT NULL,                -- building | name
+        value TEXT NOT NULL,
+        voters TEXT NOT NULL DEFAULT '[]', -- Hashes der Kommentar-Autoren (eine Stimme pro Person)
+        status TEXT NOT NULL DEFAULT 'open',
+        first_seen TEXT NOT NULL,
+        last_seen TEXT NOT NULL,
+        UNIQUE(kind, value)
+    );
+    """,
 ]
 
 

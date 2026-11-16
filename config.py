@@ -60,6 +60,11 @@ class Settings(BaseSettings):
     max_paid_calls_per_day: int = 40
     http_retries: int = 2
 
+    # --- Inhalt ---------------------------------------------------------
+    # bobstadt: Episoden der Community-Aufbausimulation (wie der Instagram-Kanal)
+    # wissen:   Wissensvideos aus recherchierten Themen
+    content_mode: Literal["bobstadt", "wissen"] = "bobstadt"
+
     # --- Anbieter -------------------------------------------------------
     voice_provider: Literal["windows", "elevenlabs"] = "windows"
     windows_voice: str = "Microsoft Hedda Desktop"

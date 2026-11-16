@@ -49,8 +49,10 @@ class HookCandidate(BaseModel):
 
 
 class ScriptSegment(BaseModel):
-    role: str   # hook | intro | story | turn | takeaway | cta
+    role: str   # hook | intro | plot | story | turn | takeaway | cta  (story = austauschbares Faktenmaterial)
     text: str
+    visual: str | None = None          # Bildvorgabe der Episode (city, build, cost, funding, vote, milestone …)
+    data: dict = Field(default_factory=dict)
 
 
 class Script(BaseModel):
@@ -86,13 +88,15 @@ class Shot(BaseModel):
     motion: str
     variant: int = 0
     image_path: str | None = None
+    frames_dir: str | None = None      # Einzelbild-Animation (z. B. Bau) statt Kamerafahrt
 
 
 class Scene(BaseModel):
     index: int
     role: str
     text: str
-    style: str = "keyword"   # hook | title | keyword | number | question | quote | cta
+    style: str = "keyword"   # hook | title | keyword | number | question | quote | cta | city | build | cost | funding | vote | milestone
+    data: dict = Field(default_factory=dict)
     keyword: str = ""
     number: str | None = None
     palette: int = 0

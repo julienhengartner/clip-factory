@@ -97,7 +97,7 @@ class Memory:
     _VIDEO_FIELDS = {"status", "title", "hook", "hook_pattern", "script_json", "scenes_json", "qc_json", "video_path",
                      "thumbnail_path", "duration_s", "words", "wpm", "voice_provider", "image_provider",
                      "script_provider", "revisions", "render_attempts", "error", "approved_at", "published_at",
-                     "category", "topic"}
+                     "category", "topic", "episode_json", "scheduled_for"}
 
     def create_video(self, topic: str, idea_id: int | None = None, category: str = "allgemein") -> dict:
         vid = uuid.uuid4().hex[:12]
@@ -110,7 +110,7 @@ class Memory:
         unknown = set(fields) - self._VIDEO_FIELDS
         if unknown:
             raise ValueError(f"Unbekannte Video-Felder: {unknown}")
-        for k in ("script_json", "scenes_json", "qc_json"):
+        for k in ("script_json", "scenes_json", "qc_json", "episode_json"):
             if k in fields and not isinstance(fields[k], (str, type(None))):
                 fields[k] = dumps(fields[k])
         if "status" in fields and isinstance(fields["status"], VideoStatus):
@@ -149,7 +149,52 @@ class Memory:
         d["script"] = loads(d.pop("script_json"))
         d["scenes"] = loads(d.pop("scenes_json"))
         d["qc"] = loads(d.pop("qc_json"))
+        d["episode"] = loads(d.pop("episode_json", None))
         return d
+
+    # --- Bobstadt: Gebäude & Community-Vorschläge ---------------------------------
+    def add_building(self, kind: str, name: str, cost_eur: int, status: str, origin: str, confirmed: bool = True,
+                     video_id: str | None = None, note: str | None = None) -> int:
+        ts = utcnow()
+        return self.db.execute(
+            "INSERT INTO city_buildings (kind, name, cost_eur, status, origin, confirmed, video_id, note, created_at,"
+            " built_at) VALUES (?,?,?,?,?,?,?,?,?,?)",
+            (kind, name, int(cost_eur), status, origin, int(confirmed), video_id, note, ts,
+             ts if status == "built" else None))
+
+    def buildings(self, status: str | None = None) -> list[dict]:
+        if status:
+            return self.db.query("SELECT * FROM city_buildings WHERE status=? ORDER BY id", (status,))
+        return self.db.query("SELECT * FROM city_buildings ORDER BY id")
+
+    def set_building_status(self, building_id: int, status: str) -> None:
+        self.db.execute("UPDATE city_buildings SET status=?, built_at=? WHERE id=?",
+                        (status, utcnow() if status == "built" else None, building_id))
+
+    def delete_building(self, building_id: int) -> None:
+        self.db.execute("DELETE FROM city_buildings WHERE id=?", (building_id,))
+
+    def vote(self, kind: str, value: str, voter: str | None) -> None:
+        """Eine Stimme pro Person und Vorschlag (Autor nur als Hash)."""
+        ts = utcnow()
+        row = self.db.query_one("SELECT id, voters FROM proposals WHERE kind=? AND value=?", (kind, value))
+        if row is None:
+            self.db.execute("INSERT INTO proposals (kind, value, voters, first_seen, last_seen) VALUES (?,?,?,?,?)",
+                            (kind, value, dumps([voter] if voter else []), ts, ts))
+            return
+        voters = loads(row["voters"], [])
+        if voter and voter not in voters:
+            voters.append(voter)
+        self.db.execute("UPDATE proposals SET voters=?, last_seen=? WHERE id=?", (dumps(voters), ts, row["id"]))
+
+    def proposals(self, kind: str, status: str = "open") -> list[dict]:
+        rows = self.db.query("SELECT * FROM proposals WHERE kind=? AND status=?", (kind, status))
+        for r in rows:
+            r["votes"] = len(loads(r.pop("voters"), []))
+        return sorted(rows, key=lambda r: (-r["votes"], r["first_seen"]))
+
+    def set_proposal_status(self, kind: str, value: str, status: str) -> None:
+        self.db.execute("UPDATE proposals SET status=? WHERE kind=? AND value=?", (status, kind, value))
 
     # --- Hooks -----------------------------------------------------------------------
     def add_hook(self, video_id: str, text: str, pattern: str, score: float, chosen: bool) -> None:

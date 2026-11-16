@@ -85,9 +85,23 @@ class Strategy:
     def style_file(self) -> Path:
         return self.s.data_dir / "style_profile.json"
 
+    def ensure_style_file(self) -> Path:
+        """Legt data/style_profile.json aus den Beobachtungen an, falls noch nicht vorhanden (nie überschreiben)."""
+        if not self.style_file.is_file():
+            from brain.style_observations import STYLE_PROFILE
+            self.style_file.parent.mkdir(parents=True, exist_ok=True)
+            self.style_file.write_text(json.dumps(STYLE_PROFILE, ensure_ascii=False, indent=2), encoding="utf-8")
+        return self.style_file
+
     def style(self) -> StyleProfile:
+        if self.s.content_mode == "bobstadt":
+            self.ensure_style_file()
         if self.style_file.is_file():
             data = json.loads(self.style_file.read_text(encoding="utf-8"))
+            if "annahmen" in data or "gesichert" in data:   # strukturiertes Profil (Beobachtung + Annahmen)
+                fields = {k: v for k, v in data.get("annahmen", {}).items() if k in StyleProfile.model_fields}
+                return StyleProfile(**{**DEFAULT_STYLE.model_dump(), **fields,
+                                       "source": "observed+assumptions", "confirmed": bool(data.get("bestaetigt"))})
             return StyleProfile(**{**DEFAULT_STYLE.model_dump(), **data, "source": "user", "confirmed": True})
         stored = self.memory.get_insight("style", "profile")
         if stored:
