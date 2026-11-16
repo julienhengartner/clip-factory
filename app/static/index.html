@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bürgermeister Bob · Video Factory</title>
+<style>
+  :root {
+    --bg: #0b0d12; --panel: #141821; --panel-2: #1b2030; --line: #262c3d; --text: #eef1f7; --muted: #8a93a8;
+    --accent: #ffc400; --accent-ink: #1a1400; --ok: #3ddc97; --warn: #ffb547; --bad: #ff5d6c; --info: #6ab8ff;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: radial-gradient(1200px 600px at 10% -10%, #1c2340 0%, transparent 60%), var(--bg);
+         color: var(--text); font: 15px/1.5 "Segoe UI", system-ui, -apple-system, sans-serif; min-height: 100vh; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 28px 20px 60px; }
+  header { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .logo { width: 44px; height: 44px; border-radius: 12px; background: var(--accent); color: var(--accent-ink);
+          display: grid; place-items: center; font-weight: 900; font-size: 22px; letter-spacing: -1px; }
+  h1 { margin: 0; font-size: 20px; letter-spacing: .2px; }
+  .sub { color: var(--muted); font-size: 13px; }
+  .toggle { display: flex; align-items: center; gap: 10px; background: var(--panel); border: 1px solid var(--line);
+            padding: 8px 14px; border-radius: 999px; cursor: pointer; user-select: none; }
+  .switch { width: 42px; height: 24px; border-radius: 999px; background: #39405a; position: relative; transition: .2s; }
+  .switch::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%;
+                   background: #fff; transition: .2s; }
+  .toggle.on .switch { background: var(--ok); }
+  .toggle.on .switch::after { left: 21px; }
+  .create { margin: 26px 0 10px; display: flex; gap: 10px; background: var(--panel); border: 1px solid var(--line);
+            padding: 10px; border-radius: var(--radius); }
+  .create input { flex: 1; min-width: 0; background: transparent; border: 0; color: var(--text); font-size: 16px;
+                  padding: 8px 10px; outline: none; }
+  .create input::placeholder { color: var(--muted); }
+  button { font: inherit; border: 0; border-radius: 10px; padding: 9px 14px; cursor: pointer; font-weight: 600;
+           background: var(--panel-2); color: var(--text); transition: transform .05s, opacity .2s; }
+  button:active { transform: scale(.98); }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  .primary { background: var(--accent); color: var(--accent-ink); padding: 10px 18px; }
+  .good { background: rgba(61,220,151,.15); color: var(--ok); }
+  .bad { background: rgba(255,93,108,.12); color: var(--bad); }
+  .notice { color: var(--muted); font-size: 13px; min-height: 20px; margin: 4px 4px 18px; }
+  .notice.err { color: var(--bad); }
+  .busy { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); }
+  .spinner { width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent;
+             border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;
+          display: flex; flex-direction: column; }
+  .thumb { aspect-ratio: 9 / 16; background: linear-gradient(160deg, #20263a, #11141c); position: relative;
+           cursor: pointer; overflow: hidden; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
+  .thumb:hover img { transform: scale(1.03); }
+  .thumb .play { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; transition: .2s;
+                 background: rgba(0,0,0,.25); font-size: 42px; }
+  .thumb:hover .play { opacity: 1; }
+  .dur { position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,.7); padding: 2px 8px; border-radius: 8px;
+         font-size: 12px; font-variant-numeric: tabular-nums; }
+  .pill { position: absolute; left: 8px; top: 8px; padding: 3px 10px; border-radius: 999px; font-size: 12px;
+          font-weight: 700; background: rgba(0,0,0,.65); }
+  .s-ready { color: var(--info); } .s-approved { color: var(--ok); } .s-published { color: var(--accent); }
+  .s-publishing { color: var(--warn); } .s-producing { color: var(--warn); } .s-qc_failed, .s-failed { color: var(--bad); }
+  .s-rejected { color: var(--muted); }
+  .placeholder { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); padding: 16px;
+                 text-align: center; font-size: 13px; }
+  .body { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .title { font-weight: 700; line-height: 1.3; }
+  .meta { color: var(--muted); font-size: 12px; }
+  .issue { color: var(--bad); font-size: 12px; }
+  .pubinfo { font-size: 12px; color: var(--muted); }
+  .actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+  .actions button, .actions a { font-size: 13px; padding: 7px 10px; }
+  a.btn { text-decoration: none; color: var(--text); background: var(--panel-2); border-radius: 10px; font-weight: 600; }
+  .empty { color: var(--muted); text-align: center; padding: 60px 0; }
+  dialog { border: 1px solid var(--line); background: var(--panel); color: var(--text); border-radius: 20px; padding: 0;
+           width: min(920px, 94vw); }
+  dialog::backdrop { background: rgba(0,0,0,.7); backdrop-filter: blur(4px); }
+  .modal { display: grid; grid-template-columns: minmax(0, 340px) 1fr; }
+  .modal video { width: 100%; aspect-ratio: 9/16; background: #000; display: block; }
+  .modal .info { padding: 20px 22px; overflow: auto; max-height: min(80vh, 640px); }
+  .modal h2 { margin: 0 0 6px; font-size: 18px; }
+  .modal .close { position: absolute; right: 12px; top: 10px; background: transparent; font-size: 22px; color: var(--muted); }
+  .checks { list-style: none; padding: 0; margin: 10px 0 0; font-size: 13px; }
+  .checks li { padding: 3px 0; color: var(--muted); }
+  .checks li.fail { color: var(--bad); } .checks li.warn { color: var(--warn); }
+  .script { font-size: 13px; color: #c7cddb; white-space: pre-wrap; margin-top: 12px; }
+  @media (max-width: 680px) { .modal { grid-template-columns: 1fr; } .modal video { max-height: 60vh; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="logo">B</div>
+      <div><h1>Bürgermeister Bob</h1><div class="sub">Video Factory</div></div>
+    </div>
+    <div class="toggle" id="auto" role="switch" aria-checked="false" tabindex="0">
+      <div class="switch"></div><span>Automatische Produktion</span>
+    </div>
+  </header>
+
+  <form class="create" id="create">
+    <input id="topic" maxlength="120" placeholder="Thema (optional – sonst wählt Bob selbst ein neues Thema)">
+    <button class="primary" id="go" type="submit">Neues Video</button>
+  </form>
+  <div class="notice" id="notice"></div>
+
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" hidden>Noch keine Videos. Starte oben das erste.</div>
+</div>
+
+<dialog id="dlg">
+  <button class="close" id="close" aria-label="Schliessen">×</button>
+  <div class="modal">
+    <video id="player" controls playsinline></video>
+    <div class="info" id="info"></div>
+  </div>
+</dialog>
+
+<script>
+const STATUS = { producing: "In Produktion", ready: "Wartet auf Freigabe", approved: "Freigegeben",
+  publishing: "Wird veröffentlicht", published: "Veröffentlicht", qc_failed: "Qualität nicht bestanden",
+  failed: "Fehler", rejected: "Abgelehnt" };
+const PUB = { uploading: "Upload läuft", processing: "TikTok verarbeitet", in_inbox: "Als Entwurf in der TikTok-Inbox",
+  published: "Auf TikTok veröffentlicht", failed: "Veröffentlichung fehlgeschlagen" };
+const $ = (id) => document.getElementById(id);
+let state = {}, timer = null;
+
+async function api(path, opts = {}) {
+  const res = await fetch(path, { ...opts, headers: { "Content-Type": "application/json", "X-BBob": "1", ...(opts.headers || {}) } });
+  const data = res.status === 204 ? null : await res.json().catch(() => null);
+  if (!res.ok) throw new Error((data && data.detail) || `Fehler ${res.status}`);
+  return data;
+}
+function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+function fmtDur(s) { if (!s) return ""; const m = Math.floor(s / 60), r = Math.round(s % 60); return `${m}:${String(r).padStart(2, "0")}`; }
+function fmtDate(iso) { return iso ? new Date(iso).toLocaleString("de-DE", { dateStyle: "medium", timeStyle: "short" }) : ""; }
+function notice(msg, err = false) { const n = $("notice"); n.textContent = msg || ""; n.classList.toggle("err", err); }
+
+function button(label, cls, onClick, title) {
+  const b = el("button", cls, label); b.type = "button"; if (title) b.title = title;
+  b.addEventListener("click", async (ev) => { ev.stopPropagation(); b.disabled = true;
+    try { await onClick(); } catch (e) { notice(e.message, true); } finally { b.disabled = false; refresh(); } });
+  return b;
+}
+
+function card(v) {
+  const c = el("div", "card");
+  const th = el("div", "thumb");
+  if (v.has_video) {
+    const img = el("img"); img.loading = "lazy"; img.alt = ""; img.src = `/api/videos/${v.id}/thumbnail?t=${encodeURIComponent(v.created_at)}`;
+    th.append(img, el("div", "play", "▶"));
+    th.addEventListener("click", () => openVideo(v.id));
+  } else {
+    th.append(el("div", "placeholder", v.status === "producing" ? "Wird produziert …" : (v.error || "Kein Video")));
+  }
+  th.append(el("div", `pill s-${v.status}`, STATUS[v.status] || v.status));
+  if (v.duration_s) th.append(el("div", "dur", fmtDur(v.duration_s)));
+  const body = el("div", "body");
+  body.append(el("div", "title", v.title || v.topic), el("div", "meta", fmtDate(v.created_at)));
+  if (v.publication) body.append(el("div", "pubinfo", (PUB[v.publication.status] || v.publication.status) + (v.publication.message && v.publication.status !== "published" ? ` – ${v.publication.message}` : "")));
+  if (["qc_failed", "failed"].includes(v.status) && (v.qc_issues?.length || v.error))
+    body.append(el("div", "issue", (v.qc_issues?.[0] || v.error || "").slice(0, 140)));
+  const a = el("div", "actions");
+  if (v.has_video) {
+    a.append(button("Ansehen", "", () => openVideo(v.id)));
+    const dl = el("a", "btn", "Download"); dl.href = `/api/videos/${v.id}/file?download=true`; dl.style.padding = "7px 10px"; a.append(dl);
+  }
+  if (v.status === "ready") {
+    a.append(button("Freigeben", "good", () => api(`/api/videos/${v.id}/approve`, { method: "POST" })));
+    a.append(button("Ablehnen", "bad", () => api(`/api/videos/${v.id}/reject`, { method: "POST", body: JSON.stringify({ reason: "" }) })));
+  }
+  if (v.status === "approved") {
+    const blockers = v.publish_blockers || [];
+    const b = button("Auf TikTok veröffentlichen", "primary", async () => {
+      const r = await api(`/api/videos/${v.id}/publish`, { method: "POST" }); notice(r.message); }, blockers.join("\n"));
+    b.disabled = blockers.length > 0; a.append(b);
+    if (blockers.length) body.append(el("div", "pubinfo", "Noch nicht veröffentlichbar: " + blockers[0]));
+  }
+  body.append(a); c.append(th, body); return c;
+}
+
+async function openVideo(id) {
+  const v = await api(`/api/videos/${id}`);
+  $("player").src = `/api/videos/${id}/file`;
+  const info = $("info"); info.replaceChildren();
+  info.append(el("h2", "", v.title || v.topic), el("div", "meta",
+    `${fmtDur(v.duration_s)} · ${v.words || "?"} Wörter · ${Math.round(v.wpm || 0)} Wörter/min · Stimme: ${v.voice_provider || "?"}`));
+  if (v.hook) info.append(el("div", "pubinfo", `Hook: „${v.hook}“`));
+  const ul = el("ul", "checks");
+  for (const c of (v.qc?.checks || [])) {
+    const li = el("li", c.passed ? "" : (c.severity === "error" ? "fail" : "warn"), `${c.passed ? "✓" : (c.severity === "error" ? "✗" : "!")} ${c.name.replaceAll("_", " ")}: ${c.detail}`);
+    ul.append(li);
+  }
+  info.append(ul);
+  if (v.script) {
+    info.append(el("div", "script", v.script.segments.map(s => s.text).join("\n\n")));
+    if (v.script.sources?.length) info.append(el("div", "meta", "Quellen: " + v.script.sources.join(" · ")));
+  }
+  $("dlg").showModal(); $("player").play().catch(() => {});
+}
+$("close").addEventListener("click", () => $("dlg").close());
+$("dlg").addEventListener("close", () => { $("player").pause(); $("player").removeAttribute("src"); $("player").load(); });
+
+async function refresh() {
+  try {
+    const [s, videos] = await Promise.all([api("/api/state"), api("/api/videos")]);
+    state = s;
+    const t = $("auto"); t.classList.toggle("on", s.automation_enabled); t.setAttribute("aria-checked", s.automation_enabled);
+    $("go").disabled = s.producing;
+    if (s.producing) { const n = $("notice"); n.classList.remove("err"); n.replaceChildren(); const b = el("span", "busy"); b.append(el("span", "spinner"), document.createTextNode("Bob produziert gerade ein Video – das dauert etwa 1–2 Minuten.")); n.append(b); }
+    else if (s.last_production_error) notice("Letzte Produktion fehlgeschlagen: " + s.last_production_error, true);
+    else if (!$("notice").classList.contains("err")) notice(`Heute produziert: ${s.videos_today}/${s.max_videos_per_day} automatisch · Veröffentlichung ${s.publishing_allowed ? "erlaubt" : "gesperrt"}`);
+    const grid = $("grid"); grid.replaceChildren(...videos.map(card));
+    $("empty").hidden = videos.length > 0;
+    clearTimeout(timer); timer = setTimeout(refresh, s.producing || videos.some(v => ["producing", "publishing"].includes(v.status)) ? 3000 : 15000);
+  } catch (e) { notice(e.message, true); clearTimeout(timer); timer = setTimeout(refresh, 10000); }
+}
+
+$("create").addEventListener("submit", async (ev) => {
+  ev.preventDefault(); $("go").disabled = true;
+  try { await api("/api/videos", { method: "POST", body: JSON.stringify({ topic: $("topic").value.trim() || null }) }); $("topic").value = ""; }
+  catch (e) { notice(e.message, true); }
+  setTimeout(refresh, 400);
+});
+async function toggleAuto() {
+  try { await api("/api/automation", { method: "PUT", body: JSON.stringify({ enabled: !state.automation_enabled }) }); }
+  catch (e) { notice(e.message, true); }
+  refresh();
+}
+$("auto").addEventListener("click", toggleAuto);
+$("auto").addEventListener("keydown", (e) => { if (e.key === " " || e.key === "Enter") { e.preventDefault(); toggleAuto(); } });
+refresh();
+</script>
+</body>
+</html>
