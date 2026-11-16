@@ -1,0 +1,453 @@
+{
+  "id": "s01e01",
+  "title": "THE MAYOR BANS MONDAYS!",
+  "logline": "Mayor Winston Boggle abolishes Mondays by decree – until he learns what else happens on a Monday.",
+  "structure": {
+    "beginning": "Winston announces the ban (cold open).",
+    "conflict": "Margaret objects; Winston overrules her with himself.",
+    "escalation": "Bins stop, the pub runs dry, Nigel tries to arrest a calendar.",
+    "twist": "Council salaries – including the Mayor's – are paid on Mondays.",
+    "punchline": "Winston triumphantly 'invents' a brand-new day called Monday."
+  },
+  "running_gags": [
+    "form_27b",
+    "for_the_record",
+    "plaque",
+    "brenda_knew_first",
+    "nigel_arrests_object",
+    "pub_chalkboard"
+  ],
+  "sim_effects": [
+    {
+      "type": "complaint",
+      "department": "Waste & Recycling",
+      "text": "Bins not collected – collection day abolished"
+    },
+    {
+      "type": "complaint",
+      "department": "Licensing",
+      "text": "Brewery delivery cancelled at The Leaning Pickle"
+    },
+    {
+      "type": "expense",
+      "department": "Mayor's Office",
+      "amount": 1200,
+      "description": "Commemorative plaque: 'Mondays were briefly abolished here'"
+    },
+    {
+      "type": "expense",
+      "department": "Town Clerk's Office",
+      "amount": 85,
+      "description": "Form 27B printing (triplicate)"
+    }
+  ],
+  "shots": [
+    {
+      "id": "cold_open",
+      "set": "mayors_office",
+      "cast": {
+        "winston": "desk"
+      },
+      "camera": {
+        "type": "push_in",
+        "target": "winston",
+        "from": 2.4,
+        "to": 1.3
+      },
+      "sfx": [
+        {
+          "name": "clock_tick",
+          "at": 0.0,
+          "volume": 0.35
+        }
+      ],
+      "lines": [
+        {
+          "speaker": "winston",
+          "text": "As of midnight, Mondays are illegal.",
+          "action": "slam_desk",
+          "emotion": "proud"
+        }
+      ]
+    },
+    {
+      "id": "title",
+      "set": "title_card",
+      "cast": {},
+      "duration": 2.6,
+      "camera": {
+        "type": "static"
+      },
+      "music": {
+        "name": "theme",
+        "at": 0.0,
+        "volume": 0.9
+      },
+      "on_screen": {
+        "title": "BOBBINGTON",
+        "subtitle": "The Mayor Bans Mondays!"
+      }
+    },
+    {
+      "id": "announcement",
+      "set": "council_chamber",
+      "cast": {
+        "winston": "dais",
+        "margaret": "clerk_desk",
+        "reginald": "bench_left"
+      },
+      "camera": {
+        "type": "wide",
+        "target": "winston"
+      },
+      "sfx": [
+        {
+          "name": "gavel",
+          "at": 0.1,
+          "volume": 0.9
+        },
+        {
+          "name": "murmur",
+          "at": 0.0,
+          "volume": 0.25,
+          "duration": 4.0
+        }
+      ],
+      "lines": [
+        {
+          "speaker": "winston",
+          "text": "Citizens of Bobbington! Mondays have caused misery since records began. Today, I end them.",
+          "action": "raise_arms",
+          "emotion": "grand"
+        },
+        {
+          "speaker": "winston",
+          "text": "Historic.",
+          "action": "nod",
+          "emotion": "proud"
+        }
+      ]
+    },
+    {
+      "id": "objection",
+      "set": "council_chamber",
+      "cast": {
+        "winston": "dais",
+        "margaret": "clerk_desk"
+      },
+      "camera": {
+        "type": "two_shot",
+        "targets": [
+          "margaret",
+          "winston"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "margaret",
+          "text": "Mayor. You cannot ban a day.",
+          "action": "fold_arms",
+          "emotion": "deadpan"
+        },
+        {
+          "speaker": "winston",
+          "text": "I have consulted myself, Margaret, and I agree with me.",
+          "action": "point_self",
+          "emotion": "smug"
+        }
+      ]
+    },
+    {
+      "id": "reginald",
+      "set": "council_chamber",
+      "cast": {
+        "reginald": "bench_left"
+      },
+      "camera": {
+        "type": "close",
+        "target": "reginald"
+      },
+      "lines": [
+        {
+          "speaker": "reginald",
+          "text": "A bold vision, Mayor. Bold. Purely in the public interest.",
+          "action": "thumbs_up",
+          "emotion": "smarmy"
+        }
+      ]
+    },
+    {
+      "id": "form",
+      "set": "council_chamber",
+      "cast": {
+        "margaret": "clerk_desk"
+      },
+      "camera": {
+        "type": "close",
+        "target": "margaret"
+      },
+      "sfx": [
+        {
+          "name": "stamp",
+          "at_line_end": 0,
+          "repeat": 3,
+          "gap": 0.28,
+          "volume": 0.9
+        }
+      ],
+      "lines": [
+        {
+          "speaker": "margaret",
+          "text": "Very well. Form twenty-seven B. Abolition of a Weekday. In triplicate.",
+          "action": "stamp",
+          "emotion": "deadpan"
+        }
+      ]
+    },
+    {
+      "id": "street",
+      "set": "main_street",
+      "cast": {
+        "brenda": "pavement_left",
+        "nigel": "pavement_right"
+      },
+      "camera": {
+        "type": "two_shot",
+        "targets": [
+          "brenda",
+          "nigel"
+        ]
+      },
+      "sfx": [
+        {
+          "name": "birds",
+          "at": 0.0,
+          "volume": 0.25,
+          "duration": 9.0
+        }
+      ],
+      "lines": [
+        {
+          "speaker": "brenda",
+          "text": "Well, I heard the bins only come on a Monday. So now they never come.",
+          "action": "gossip_lean",
+          "emotion": "thrilled"
+        },
+        {
+          "speaker": "nigel",
+          "text": "Right. So if I see a Monday, do I arrest it?",
+          "action": "scratch_head",
+          "emotion": "confused"
+        },
+        {
+          "speaker": "brenda",
+          "text": "Arrest the calendar, Nigel.",
+          "action": "point",
+          "emotion": "certain",
+          "optional": true
+        }
+      ]
+    },
+    {
+      "id": "pub",
+      "set": "pub",
+      "cast": {
+        "arthur": "behind_bar"
+      },
+      "camera": {
+        "type": "push_in",
+        "target": "arthur",
+        "from": 2.6,
+        "to": 1.6
+      },
+      "sfx": [
+        {
+          "name": "glass_clink",
+          "at": 0.2,
+          "volume": 0.6
+        }
+      ],
+      "on_screen": {
+        "chalkboard": "NO MONDAYS.\nSTILL NO BEER."
+      },
+      "lines": [
+        {
+          "speaker": "arthur",
+          "text": "No Monday means no delivery. No delivery means no beer.",
+          "action": "polish_glass",
+          "emotion": "grumpy"
+        },
+        {
+          "speaker": "arthur",
+          "text": "Congratulations. You've invented Tuesday, only worse.",
+          "action": "shake_head",
+          "emotion": "grumpy"
+        }
+      ]
+    },
+    {
+      "id": "chaos",
+      "set": "council_chamber",
+      "cast": {
+        "winston": "dais",
+        "reginald": "bench_left",
+        "margaret": "clerk_desk"
+      },
+      "camera": {
+        "type": "two_shot",
+        "targets": [
+          "reginald",
+          "winston"
+        ]
+      },
+      "lines": [
+        {
+          "speaker": "reginald",
+          "text": "Mayor, the town is in chaos. The bins, the beer, the pigeons have unionised.",
+          "action": "wring_hands",
+          "emotion": "panicked"
+        },
+        {
+          "speaker": "winston",
+          "text": "Nonsense. Morale has never been higher.",
+          "action": "raise_arms",
+          "emotion": "proud"
+        }
+      ]
+    },
+    {
+      "id": "twist",
+      "set": "council_chamber",
+      "cast": {
+        "margaret": "clerk_desk",
+        "winston": "dais"
+      },
+      "camera": {
+        "type": "close",
+        "target": "margaret"
+      },
+      "sfx": [
+        {
+          "name": "record_scratch",
+          "at_line_end": 0,
+          "volume": 0.7
+        }
+      ],
+      "lines": [
+        {
+          "speaker": "margaret",
+          "text": "One small detail, Mayor. Council salaries are paid on a Monday. Including yours.",
+          "action": "lift_clipboard",
+          "emotion": "deadpan"
+        }
+      ]
+    },
+    {
+      "id": "reaction",
+      "set": "council_chamber",
+      "cast": {
+        "winston": "dais"
+      },
+      "camera": {
+        "type": "push_in",
+        "target": "winston",
+        "from": 2.0,
+        "to": 0.95
+      },
+      "lines": [
+        {
+          "speaker": "winston",
+          "text": "I see.",
+          "action": "freeze",
+          "emotion": "shocked",
+          "pause_before": 0.5
+        }
+      ]
+    },
+    {
+      "id": "punchline",
+      "set": "mayors_office",
+      "cast": {
+        "winston": "desk"
+      },
+      "camera": {
+        "type": "push_in",
+        "target": "winston",
+        "from": 2.3,
+        "to": 1.4
+      },
+      "music": {
+        "name": "fanfare_short",
+        "at_line_end": 0,
+        "volume": 0.8
+      },
+      "lines": [
+        {
+          "speaker": "winston",
+          "text": "Citizens! I am proud to announce a bold new day of the week. I shall call it... Monday.",
+          "action": "raise_arms",
+          "emotion": "grand"
+        },
+        {
+          "speaker": "winston",
+          "text": "Historic.",
+          "action": "nod",
+          "emotion": "proud"
+        }
+      ],
+      "on_screen": {
+        "prop": "plaque"
+      }
+    },
+    {
+      "id": "button",
+      "set": "council_chamber",
+      "cast": {
+        "reginald": "bench_left",
+        "margaret": "clerk_desk"
+      },
+      "camera": {
+        "type": "two_shot",
+        "targets": [
+          "reginald",
+          "margaret"
+        ]
+      },
+      "music": {
+        "name": "sting",
+        "at_line_end": 1,
+        "volume": 0.9
+      },
+      "lines": [
+        {
+          "speaker": "reginald",
+          "text": "For the record, I was against it.",
+          "action": "fold_arms",
+          "emotion": "smug"
+        },
+        {
+          "speaker": "margaret",
+          "text": "Noted.",
+          "action": "stamp",
+          "emotion": "deadpan"
+        }
+      ]
+    }
+  ],
+  "extensions": [
+    {
+      "after_shot": "street",
+      "speaker": "nigel",
+      "text": "Case closed. Which case?",
+      "action": "scratch_head",
+      "emotion": "confused"
+    },
+    {
+      "after_shot": "objection",
+      "speaker": "margaret",
+      "text": "I shall need that in writing. From someone qualified.",
+      "action": "fold_arms",
+      "emotion": "deadpan"
+    }
+  ]
+}
