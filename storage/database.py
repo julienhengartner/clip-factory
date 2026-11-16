@@ -198,6 +198,49 @@ MIGRATIONS: list[str] = [
         UNIQUE(kind, value)
     );
     """,
+    # --- Version 3: Bobbington city simulation (fictional; never linked to real followers) ---------------
+    """
+    CREATE TABLE sim_state (key TEXT PRIMARY KEY, value_json TEXT NOT NULL);
+    CREATE TABLE sim_departments (
+        name TEXT PRIMARY KEY, head TEXT, annual_budget_pence INTEGER NOT NULL DEFAULT 0
+    );
+    CREATE TABLE sim_ledger (                -- append-only; every pound is traceable
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        sim_day INTEGER NOT NULL,
+        department TEXT NOT NULL REFERENCES sim_departments(name),
+        kind TEXT NOT NULL CHECK (kind IN ('opening', 'revenue', 'expense')),
+        amount_pence INTEGER NOT NULL CHECK (amount_pence > 0),
+        balance_after_pence INTEGER NOT NULL,
+        description TEXT NOT NULL,
+        reference TEXT,                       -- e.g. episode:s01e01, project:3
+        created_at TEXT NOT NULL
+    );
+    CREATE INDEX idx_ledger_ref ON sim_ledger(reference);
+    CREATE TABLE sim_projects (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL, department TEXT NOT NULL, budget_pence INTEGER NOT NULL,
+        spent_pence INTEGER NOT NULL DEFAULT 0, status TEXT NOT NULL, note TEXT,
+        started_day INTEGER, completed_day INTEGER, episode_id TEXT
+    );
+    CREATE TABLE sim_businesses (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL UNIQUE, owner TEXT, kind TEXT, weekly_rates_pence INTEGER NOT NULL, status TEXT NOT NULL
+    );
+    CREATE TABLE sim_events (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        sim_day INTEGER NOT NULL, name TEXT NOT NULL, kind TEXT NOT NULL, description TEXT, episode_id TEXT
+    );
+    CREATE TABLE sim_complaints (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        sim_day INTEGER NOT NULL, department TEXT NOT NULL, citizen TEXT NOT NULL, text TEXT NOT NULL,
+        status TEXT NOT NULL DEFAULT 'open', episode_id TEXT
+    );
+    CREATE TABLE sim_votes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        sim_day INTEGER NOT NULL, question TEXT NOT NULL, method TEXT NOT NULL,
+        options_json TEXT NOT NULL, results_json TEXT, status TEXT NOT NULL DEFAULT 'open'
+    );
+    """,
 ]
 
 
