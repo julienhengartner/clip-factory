@@ -1,9 +1,10 @@
-"""Renders a Bobbington episode from a timeline JSON in ONE Blender pass.
+"""Renders a Bobbington episode from a timeline JSON.
 
     blender -b --factory-startup -P blender/render_episode.py -- <timeline.json> <out.mp4> [draft|final] [first last]
 
-All sets live in one scene at different X offsets; characters are moved to their marks at each cut
-(constant interpolation) and animated through their rigs. Camera instructions come from the episode.
+City continuity: the town is NOT built here. The renderer opens the scene file of the latest approved city
+version (timeline["city"]["base_blend"]) and applies only the episode's declared story events, each from its
+shot onwards. Character marks come from the city state. Characters are animated through their rigs.
 """
 from __future__ import annotations
 
@@ -22,16 +23,16 @@ sys.path[:0] = [str(ROOT), str(ROOT / "blender")]
 from bobbington.bible import CAST, PALETTE  # noqa: E402
 import animate  # noqa: E402
 import characters  # noqa: E402
+import city_scene  # noqa: E402
 import scene_kit  # noqa: E402
-from sets import SetBuilder  # noqa: E402
 
 QUALITY = {"draft": (540, 960, 4), "final": (1080, 1920, 8)}
 OFFSTAGE = Vector((-300.0, 0.0, 0.0))
 PORTRAIT_HFOV = 2 * math.atan((36 * 9 / 16) / 2 / 35)   # 35 mm lens, sensor fitted to the height
 
 
-def mark_of(builder: SetBuilder, set_name: str, mark: str):
-    m = builder.marks[set_name].get(mark) or next(iter(builder.marks[set_name].values()))
+def mark_of(marks: dict, set_name: str, mark: str):
+    m = marks[set_name].get(mark) or next(iter(marks[set_name].values()))
     x, y, facing = m[0], m[1], m[2]
     z = m[3] if len(m) > 3 else 0.0
     return Vector((x, y, z)), math.radians(facing)
@@ -56,13 +57,12 @@ def key_camera(cam, frame: int, location: Vector, target: Vector) -> None:
     cam.keyframe_insert("rotation_euler", frame=frame)
 
 
-def camera_for_shot(cam, shot: dict, positions: dict, chars: dict, builder: SetBuilder) -> None:
+def camera_for_shot(cam, shot: dict, positions: dict, chars: dict, state: dict) -> None:
     f0, f1 = shot["start_frame"], max(shot["start_frame"], shot["end_frame"] - 1)
     c = shot["camera"]
     kind = c.get("type", "wide")
     if shot["set"] == "title_card":
-        from sets import OFFSETS
-        ox = OFFSETS["title_card"]
+        ox = state["marks"]["title_card"]["centre"][0]
         key_camera(cam, f0, Vector((ox, -3.0, 2.1)), Vector((ox, 2.7, 2.15)))
         key_camera(cam, f1, Vector((ox, -2.5, 2.1)), Vector((ox, 2.7, 2.15)))
         return
@@ -102,17 +102,21 @@ def main(argv: list[str]) -> None:
     fps = tl["fps"]
     t0 = time.time()
 
-    scene_kit.reset_scene()
-    builder = SetBuilder(PALETTE)
-    builder.mayors_office()
-    builder.council_chamber()
-    builder.main_street()
-    pub_text = next((s["on_screen"].get("chalkboard", "") for s in tl["shots"] if s["set"] == "pub"), "")
-    builder.pub(pub_text)
+    city = tl["city"]
+    bpy.ops.wm.open_mainfile(filepath=city["base_blend"])          # the approved town, reused as is
+    state = json.loads(Path(city["draft_state"]).read_text(encoding="utf-8"))
+    shot_frames = {s["id"]: s["start_frame"] for s in tl["shots"]}
+    city_scene.apply_changes(city["records"], state, frames=shot_frames)   # story events appear at their shot
+    marks = state["marks"]
     title_shot = next((s for s in tl["shots"] if s["set"] == "title_card"), None)
-    builder.title_card((title_shot or {}).get("on_screen", {}).get("title", "BOBBINGTON"),
-                       (title_shot or {}).get("on_screen", {}).get("subtitle", tl["title"]))
-    scene_kit.sun(energy=2.2)
+    title_props = {}
+    if title_shot:  # episode title = overlay, not part of the town
+        ox = marks["title_card"]["centre"][0]
+        osd = title_shot.get("on_screen", {})
+        title_props["title_main"] = scene_kit.label(osd.get("title", "BOBBINGTON"), (ox, 2.7, 2.0), size=0.42,
+                                                    colour_name="gold", extrude=0.03)
+        title_props["title_sub"] = scene_kit.label(osd.get("subtitle", tl["title"]), (ox, 2.7, 1.45), size=0.17,
+                                                   colour_name="cream")
 
     cast_ids = sorted({cid for s in tl["shots"] for cid in s["cast"]})
     chars = {cid: characters.build_character(cid, CAST[cid], PALETTE, location=OFFSTAGE) for cid in cast_ids}
@@ -120,23 +124,13 @@ def main(argv: list[str]) -> None:
     cam.data.dof.use_dof = True
     cam.data.dof.aperture_fstop = 2.8
 
-    # props that appear only from a given shot on (e.g. the commemorative plaque)
-    reveal = {s["on_screen"]["prop"]: s["start_frame"] for s in tl["shots"] if s.get("on_screen", {}).get("prop")}
-    for name, obj in builder.props.items():
-        base = name.replace("_text", "")
-        if base in reveal:
-            obj.hide_render = True
-            obj.keyframe_insert("hide_render", frame=0)
-            obj.hide_render = False
-            obj.keyframe_insert("hide_render", frame=reveal[base])
-
     for shot in tl["shots"]:
         f0, f1 = shot["start_frame"], max(shot["start_frame"] + 1, shot["end_frame"])
         positions = {}
         for cid, ch in chars.items():
             rig = ch["rig"]
             if cid in shot["cast"]:
-                loc, face = mark_of(builder, shot["set"], shot["cast"][cid])
+                loc, face = mark_of(marks, shot["set"], shot["cast"][cid])
                 positions[cid] = (loc, face)
                 key_transform(rig, f0, loc, face)
                 key_transform(rig, f1 - 1, loc, face)
@@ -147,7 +141,7 @@ def main(argv: list[str]) -> None:
             else:
                 key_transform(rig, f0, OFFSTAGE, 0.0)
         # where the conversation is: the camera picks up the dofs focus on the first target
-        camera_for_shot(cam, shot, positions, chars, builder)
+        camera_for_shot(cam, shot, positions, chars, state)
         focus = shot["camera"].get("target") or (shot["camera"].get("targets") or [None])[0]
         if focus in positions:
             cam.data.dof.focus_distance = max(0.5, (cam.location - head_point(chars[focus], positions[focus][0])).length)
@@ -186,8 +180,8 @@ def main(argv: list[str]) -> None:
     # title animation: pop-in of the title texts
     if title_shot:
         tf = title_shot["start_frame"]
-        for name, delay in (("title_main", 0), ("title_sub", 6), ("title_tag", 12)):
-            o = builder.props.get(name)
+        for name, delay in (("title_main", 0), ("title_sub", 6)):
+            o = title_props.get(name)
             if not o:
                 continue
             o.scale = (0.01, 0.01, 0.01)
@@ -198,7 +192,7 @@ def main(argv: list[str]) -> None:
             o.keyframe_insert("scale", frame=tf + delay + 10)
 
     sc = bpy.context.scene
-    scene_kit.render_settings(w, h, fps=fps, samples=samples)
+    scene_kit.render_settings(w, h, fps=fps, samples=samples, keep_world=True)
     if stills:  # one PNG per requested frame (visual checks)
         for f in stills:
             sc.frame_set(f)

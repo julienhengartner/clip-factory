@@ -16,7 +16,8 @@ def reset_scene() -> None:
         bpy.context.scene.world = bpy.data.worlds.new("World")
 
 
-def render_settings(width: int, height: int, fps: int = 24, samples: int = 16, engine: str = "BLENDER_EEVEE_NEXT") -> None:
+def render_settings(width: int, height: int, fps: int = 24, samples: int = 16, engine: str = "BLENDER_EEVEE_NEXT",
+                    keep_world: bool = False) -> None:
     sc = bpy.context.scene
     sc.render.engine = engine
     sc.render.resolution_x, sc.render.resolution_y = width, height
@@ -31,6 +32,8 @@ def render_settings(width: int, height: int, fps: int = 24, samples: int = 16, e
             sc.eevee.use_shadows = True
         if hasattr(sc.eevee, "use_raytracing"):
             sc.eevee.use_raytracing = False
+    if keep_world and sc.world:   # environment comes from the city state
+        return
     world = sc.world
     world.use_nodes = True
     bg = world.node_tree.nodes.get("Background")
