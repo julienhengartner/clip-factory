@@ -27,6 +27,32 @@ Docker), mit SQLite als Gedächtnis. Alle verwendeten Werkzeuge sind kostenlos.
 | Episodengenerator | ✅ 3 weitere Prämissen; wählt passend zur Simulation, keine Wiederholung |
 | Stadtsimulation | ✅ 2.450 Einwohner, £1.000.000 (fiktiv), Abteilungen, Hauptbuch mit Prüfung, Projekte, Betriebe, Beschwerden, Abstimmungen |
 
+## Bobbington als dauerhafte Stadt (Kontinuität)
+
+Bobbington ist **ein** fortbestehender Ort. Die Stadt wird nie pro Video neu erzeugt.
+
+| Baustein | Umsetzung |
+|---|---|
+| Stadtzustand | `state.json`: jedes Objekt (Gebäude, Schilder, Möbel, Straßenmobiliar, Lichter …) mit stabiler ID, Gruppe, Kategorie, Position/Maßen/Rotation, Material und Farbe, Text und Zustand; dazu Umgebung (Jahreszeit, Wetter, Licht), Marken für die Figuren, feste Referenzkameras, Figuren-Design-Hashes und letzte Positionen |
+| Versionen | `Bobbington_City_v001`, `v002` … mit `state.json`, `scene.blend`, `inventory.json`, `refs/*.png`, `changes.json`, `manifest.json` und den Schlüsselbildern der Folge (`episode_frames/`) |
+| Startbestand | `v001` aus `bobbington/city_seed.py` (237 Objekte), in Blender gebaut, geprüft und freigegeben |
+| Änderungen | nur als Story-Ereignisse im Drehbuch (`city_changes`): `add` (Vorlagen: Tafel, Statue, Baustelle, Straßensperre, Bank, Baum), `remove`, `set_text`, `set_condition` (beschädigt, im Bau, gesperrt), `move`, `set_environment`, `redesign_character`; jedes mit Begründung und Einstellung, ab der es zu sehen ist |
+| Wiederverwendung | Eine Folge öffnet die `scene.blend` der letzten **freigegebenen** Version und wendet nur ihre Ereignisse an. Vor dem Ereignis zeigt sie die alte Stadt, ab der Einstellung die neue. Die nächste Version entsteht genauso: alte Szene öffnen und Ereignisse anwenden |
+| Kontinuitätsprüfung | (1) jede Abweichung zur Vorversion ist durch ein erklärtes Ereignis gedeckt; Marken, Referenzkameras und Figuren-Designs sind unverändert; (2) die gespeicherte Szene enthält exakt die Objekte des Zustands (Position, Material, Text); (3) Referenzbilder unveränderter Orte sind pixelgleich (Toleranz 0,05) |
+| Freigabe | Wird das Video freigegeben, wird seine Stadtversion zur neuen Basis. Das geht nur, wenn sie auf der aktuellen Basis aufbaut; sonst muss die Folge neu gerendert werden. Wird das Video abgelehnt, wird die Version verworfen und die Stadt bleibt, wie sie war |
+| Unveränderlichkeit | Freigegebene oder abgelehnte Versionen sind per Datenbank-Trigger unveränderlich und nie löschbar; Ordner werden nie überschrieben |
+| Wiederherstellen | `python -m bobbington.continuity restore 1 "<Grund>"` legt eine **neue** Version mit dem alten Stand an (Geschichte bleibt erhalten); `approve-restore <Nr>` macht sie zur Basis |
+| Sicherung | Freigegebene Versionen werden zusätzlich nach `city/` im Repository kopiert und mit GitHub gesichert |
+
+Nachgewiesen (Test und Live-Lauf): Aus v001 wurde v002 mit der Pilot-Tafel und neuem Kreidetafel-Text abgeleitet.
+Ratssaal, Main Street und Titelkarte sind dabei pixelgleich (Abweichung 0,000). In der Folgeepisode, die die Tafel
+nicht erwähnt, ist sie weiterhin da. Eine Folge, die der Stadt widerspricht (die Pfütze ein zweites Mal entfernen),
+wird abgewiesen.
+
+```powershell
+python -m bobbington.continuity status          # Versionen und Prüfergebnisse
+```
+
 **Produktion einer Folge:**
 
 ```powershell

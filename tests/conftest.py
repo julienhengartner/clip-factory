@@ -30,6 +30,7 @@ def make_settings(tmp_path: Path, **overrides) -> Settings:
         meta_access_token=None, instagram_user_id=None, app_token=None,
         research_rss_feeds=[],
         content_mode="bobstadt",
+        city_archive_dir=tmp_path / "city_archive",
     )
     base.update(overrides)
     s = Settings(**base)

@@ -252,11 +252,28 @@ def test_brain_produces_pilot_first_then_generated_episodes(tmp_path, monkeypatc
     produced = []
 
     def fake_produce(self, path, quality="final", **kw):
+        """Real city versioning, but without Blender: scene files are stand-ins."""
+        from bobbington.citystate import CityChange, CityStore, version_name
+        from storage.database import Database
         produced.append(Path(path).name)
+        ep = load_episode(path)
+        store = CityStore(Database(self.s.db_path), self.s.data_dir / "city")
+        if not store.versions():
+            store.create_baseline()
+            for f in ("scene.blend", "inventory.json"):
+                (store.folder(1) / f).write_text("{}", encoding="utf-8")
+            store.record_continuity(1, [])
+            store.approve(1)
+        base = store.latest_approved()
+        n, _, _ = store.create_draft(base, [CityChange(**c) for c in ep.city_changes], ep.id)
+        for f in ("scene.blend", "inventory.json"):
+            (store.folder(n) / f).write_text("{}", encoding="utf-8")
+        store.record_continuity(n, [])
         video = tmp_path / f"{len(produced)}.mp4"
         video.write_bytes(b"x")
         report = QCReport(checks=[QCCheck(name="length_minimum", passed=True, detail="ok", value=70.0)])
-        return {"episode": load_episode(path), "qc": report, "video": video, "thumbnail": video, "quality": quality}
+        return {"episode": ep, "qc": report, "video": video, "thumbnail": video, "quality": quality,
+                "city": {"base_version": version_name(base), "draft_version": version_name(n), "draft_number": n}}
 
     monkeypatch.setattr(EpisodeProducer, "produce", fake_produce)
     brain = BrainAgent(make_settings(tmp_path, content_mode="bobbington"), http_transport=wiki_transport({}))
@@ -269,6 +286,15 @@ def test_brain_produces_pilot_first_then_generated_episodes(tmp_path, monkeypatc
     brain.approve(v1["id"])                                             # approval writes the story into the town
     from bobbington.simulation import CitySimulation
     assert len(CitySimulation(brain.db).ledger("episode:s01e01")) == 2
+    from bobbington.citystate import CityStore
+    store = CityStore(brain.db, brain.s.data_dir / "city")
+    assert store.latest_approved() == 2                                 # the pilot's town is the new baseline
+    import pytest as _pytest
+    from core.errors import FactoryError
+    with _pytest.raises(FactoryError, match="re-render"):
+        brain.approve(v2["id"])                                         # built on v001 -> must be re-rendered
+    brain.reject(v3["id"], "not funny")
+    assert store.row(v3["episode"]["city_version"]["draft_number"])["status"] == "rejected"
 
 
 def test_chunked_render_resumes_after_interruption(tmp_path, monkeypatch):
