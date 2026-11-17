@@ -107,6 +107,7 @@ class Episode(BaseModel):
     sim_effects: list[dict] = Field(default_factory=list)
     shots: list[Shot]
     extensions: list[Extension] = Field(default_factory=list)
+    city_changes: list[dict] = Field(default_factory=list)   # explicit, persistent story events (citystate.CityChange)
 
     @model_validator(mode="after")
     def _check(self) -> "Episode":
@@ -124,6 +125,18 @@ class Episode(BaseModel):
         for ext in self.extensions:
             if ext.after_shot not in ids:
                 raise ValueError(f"extension refers to unknown shot {ext.after_shot}")
+        from bobbington.citystate import CityChange
+        for ch in self.city_changes:
+            c = CityChange(**ch)
+            if c.from_shot and c.from_shot not in ids:
+                raise ValueError(f"city change refers to unknown shot {c.from_shot}")
+            if not c.reason:
+                raise ValueError("every city change needs a story reason")
+        from bobbington.simulation import DEPARTMENTS
+        known = {d[0] for d in DEPARTMENTS}
+        for fx in self.sim_effects:
+            if fx.get("department") and fx["department"] not in known:
+                raise ValueError(f"sim effect refers to unknown department '{fx['department']}'")
         return self
 
     @property

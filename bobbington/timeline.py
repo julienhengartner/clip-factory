@@ -69,6 +69,7 @@ class Timeline(BaseModel):
     shots: list[TimedShot]
     subtitles: list[SubtitleCue]
     adjustments: list[str] = Field(default_factory=list)
+    city: dict = Field(default_factory=dict)   # base scene + draft city version + story events
 
 
 def chunk_text(text: str, max_words: int = 5, max_chars: int = 30) -> list[str]:

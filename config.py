@@ -71,6 +71,7 @@ class Settings(BaseSettings):
     blender_bin: Path = Path("C:/Tools/blender-4.5.16-windows-x64/blender.exe")
     piper_voices_dir: Path = Path("C:/Tools/piper-voices")
     animation_fps: int = 24
+    city_archive_dir: Path = PROJECT_ROOT / "city"   # approved city versions (committed to Git)
 
     # --- Anbieter -------------------------------------------------------
     voice_provider: Literal["windows", "elevenlabs"] = "windows"

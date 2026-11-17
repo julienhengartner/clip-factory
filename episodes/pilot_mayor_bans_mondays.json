@@ -267,9 +267,6 @@
           "volume": 0.6
         }
       ],
-      "on_screen": {
-        "chalkboard": "NO MONDAYS.\nSTILL NO BEER."
-      },
       "lines": [
         {
           "speaker": "arthur",
@@ -394,10 +391,7 @@
           "action": "nod",
           "emotion": "proud"
         }
-      ],
-      "on_screen": {
-        "prop": "plaque"
-      }
+      ]
     },
     {
       "id": "button",
@@ -448,6 +442,30 @@
       "text": "I shall need that in writing. From someone qualified.",
       "action": "fold_arms",
       "emotion": "deadpan"
+    }
+  ],
+  "city_changes": [
+    {
+      "op": "add",
+      "group": "mayors_office/mondays_plaque",
+      "template": "plaque",
+      "params": {
+        "at": [
+          0.75,
+          0.15,
+          1.05
+        ],
+        "text": "MONDAYS WERE BRIEFLY\nABOLISHED HERE"
+      },
+      "reason": "Winston commemorates his historic ban with a plaque",
+      "from_shot": "punchline"
+    },
+    {
+      "op": "set_text",
+      "object_id": "pub/chalkboard/chalk_text#0",
+      "text": "NO MONDAYS.\nSTILL NO BEER.",
+      "reason": "Arthur's chalkboard reacts to the ban",
+      "from_shot": "pub"
     }
   ]
 }

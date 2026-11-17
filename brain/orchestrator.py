@@ -424,7 +424,16 @@ class BrainAgent:
 
     def _apply_bobbington(self, video_id: str, episode: dict) -> None:
         """Approved Bobbington episodes become town history: costs/complaints go into the simulation ledger."""
+        from bobbington.continuity import CityManager
         from bobbington.simulation import CitySimulation
+        city = (self.memory.get_video(video_id).get("episode") or {}).get("city_version")
+        if city:  # the episode's city version becomes the new baseline (raises if continuity is not valid)
+            try:
+                CityManager(self.s, self.db).approve(city["draft_number"])
+            except (ValueError, KeyError) as exc:
+                raise FactoryError(f"Stadtkontinuität: {exc}") from exc
+            self.memory.log("info", "city", f"{city['draft_version']} approved as the new Bobbington baseline",
+                            video_id=video_id)
         result = CitySimulation(self.db).apply_episode(episode["id"], episode.get("sim_effects", []))
         self.memory.log("info", "simulation", f"Episode {episode['id']} angewendet: {result}", video_id=video_id)
 
@@ -450,6 +459,10 @@ class BrainAgent:
         if v["status"] not in (VideoStatus.READY.value, VideoStatus.APPROVED.value, VideoStatus.QC_FAILED.value):
             raise FactoryError(f"Video im Status '{v['status']}' kann nicht abgelehnt werden")
         self.memory.log("info", self.name, f"Video abgelehnt: {reason or 'ohne Begründung'}", video_id=video_id)
+        city = (v.get("episode") or {}).get("city_version")
+        if city:  # the town stays exactly as it was
+            from bobbington.continuity import CityManager
+            CityManager(self.s, self.db).reject(city["draft_number"], reason or "video rejected")
         return self.memory.update_video(video_id, status=VideoStatus.REJECTED, error=reason or None)
 
     def publish(self, video_id: str) -> PublishOutcome:

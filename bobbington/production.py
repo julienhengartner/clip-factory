@@ -142,6 +142,10 @@ class EpisodeProducer:
         work.mkdir(parents=True, exist_ok=True)
         builder = TimelineBuilder(self.voices, fps=self.s.animation_fps)
         ep_final, tl = builder.fit(ep, self.s.min_duration_s, self.s.ideal_max_duration_s, self.s.hard_max_duration_s)
+        from bobbington.continuity import CityManager
+        from storage.database import Database
+        city = CityManager(self.s, Database(self.s.db_path)).prepare(ep_final)   # raises on continuity failure
+        tl.city = city
         tl_path = write_timeline(tl, work / "timeline.json")
         mix = mix_audio(ep_final, tl, work / "mix.wav")
         raw = reuse_render or self.render(tl_path, work / f"render_{quality}.mp4", quality)
@@ -160,13 +164,24 @@ class EpisodeProducer:
         run_ffmpeg(["-ss", "6", "-i", str(final), "-frames:v", "1", "-vf", "scale=540:-2", "-q:v", "3",
                     str(out_dir / "thumbnail.jpg")], self.s.ffmpeg_bin)
         report = quality_control(final, tl, self.s)
+        self._store_episode_frames(final, tl, Path(city["draft_state"]).parent / "episode_frames")
         srt_subtitles(tl, out_dir / "subtitles.srt")
         shutil.copy(tl_path, out_dir / "timeline.json")
         (out_dir / "episode.json").write_text(ep_final.model_dump_json(indent=2), encoding="utf-8")
         (out_dir / "credits.txt").write_text(credits_text(ep_final), encoding="utf-8")
         (out_dir / "qc.json").write_text(json.dumps(report.model_dump(), indent=2), encoding="utf-8")
         return {"episode": ep_final, "timeline": tl, "video": final, "thumbnail": out_dir / "thumbnail.jpg",
-                "qc": report, "quality": quality, "out_dir": out_dir}
+                "qc": report, "quality": quality, "out_dir": out_dir, "city": city}
+
+    def _store_episode_frames(self, video: Path, tl: Timeline, folder: Path) -> None:
+        """Reference frames of the rendered episode (first frame of every shot + the final frame)."""
+        folder.mkdir(parents=True, exist_ok=True)
+        for s in tl.shots:
+            t = (s.start_frame + 2) / tl.fps
+            run_ffmpeg(["-ss", f"{t:.3f}", "-i", str(video), "-frames:v", "1", "-vf", "scale=360:-2",
+                        str(folder / f"{s.start_frame:05d}_{s.id}.jpg")], self.s.ffmpeg_bin)
+        run_ffmpeg(["-sseof", "-0.2", "-i", str(video), "-frames:v", "1", "-vf", "scale=360:-2",
+                    str(folder / "final_frame.jpg")], self.s.ffmpeg_bin)
 
     def register(self, result: dict, memory) -> dict:
         """Adds the episode to the video library (status 'ready' only if QC passed)."""
@@ -182,7 +197,8 @@ class EpisodeProducer:
             title=ep.title, hook=ep.shots[0].lines[0].text if ep.shots[0].lines else ep.title,
             video_path=str(result["video"]), thumbnail_path=str(result["thumbnail"]),
             duration_s=report.get("length_minimum").value, words=ep.word_count,
-            script_json=script, episode_json={"bobbington": ep.model_dump()},
+            script_json=script, episode_json={"bobbington": ep.model_dump(), "city_version": {
+                k: result["city"][k] for k in ("base_version", "draft_version", "draft_number")}},
             qc_json={"passed": report.passed, "checks": [c.model_dump() for c in report.checks]},
             voice_provider="piper", image_provider="blender", script_provider="authored",
             error=None if report.passed and not draft else
