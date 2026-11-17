@@ -12,8 +12,9 @@ class VideoStatus(str, Enum):
     PRODUCING = "producing"     # Pipeline läuft
     READY = "ready"             # Qualitätskontrolle bestanden, wartet auf Freigabe
     APPROVED = "approved"       # vom Menschen freigegeben
-    PUBLISHING = "publishing"   # Upload läuft / wird von TikTok verarbeitet
-    PUBLISHED = "published"     # von der TikTok-API bestätigt
+    PUBLISHING = "publishing"   # Upload gesendet – Bestätigung von TikTok ausstehend
+    UPLOADED = "uploaded"       # TikTok hat den Upload bestätigt (Entwurf/privat) – noch nicht öffentlich
+    PUBLISHED = "published"     # TikTok bestätigt PUBLISH_COMPLETE bei öffentlicher Sichtbarkeit
     QC_FAILED = "qc_failed"     # Qualitätskontrolle nicht bestanden – wird nie veröffentlicht
     FAILED = "failed"           # technischer Fehler
     REJECTED = "rejected"       # vom Menschen abgelehnt

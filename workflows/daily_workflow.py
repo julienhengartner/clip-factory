@@ -97,8 +97,9 @@ class DailyWorkflow:
 
     def _publish(self) -> dict:
         b = self.brain
-        if not b.s.allow_publishing:
-            return {"status": "disabled"}
+        ok, why = b.auto_publish_allowed()
+        if not ok:
+            return {"status": "disabled", "reason": why}
         return {"published": b.publish_due()}
 
     def _research(self) -> dict:

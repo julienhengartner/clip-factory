@@ -97,7 +97,8 @@ class Memory:
     _VIDEO_FIELDS = {"status", "title", "hook", "hook_pattern", "script_json", "scenes_json", "qc_json", "video_path",
                      "thumbnail_path", "duration_s", "words", "wpm", "voice_provider", "image_provider",
                      "script_provider", "revisions", "render_attempts", "error", "approved_at", "published_at",
-                     "category", "topic", "episode_json", "scheduled_for"}
+                     "category", "topic", "episode_json", "scheduled_for", "caption", "hashtags",
+                     "privacy_level", "caption_confirmed_at"}
 
     def create_video(self, topic: str, idea_id: int | None = None, category: str = "allgemein") -> dict:
         vid = uuid.uuid4().hex[:12]
@@ -211,7 +212,8 @@ class Memory:
             (video_id, platform, mode, publish_id, status, caption, privacy_level, message, ts, ts))
 
     def update_publication(self, pub_id: int, **fields: Any) -> None:
-        allowed = {"status", "message", "external_id", "publish_id"}
+        allowed = {"status", "message", "external_id", "publish_id", "platform_status", "confirmed_at",
+                   "public_confirmed_at"}
         if set(fields) - allowed:
             raise ValueError(f"Unbekannte Felder: {set(fields) - allowed}")
         cols = ", ".join(f"{k} = ?" for k in fields)

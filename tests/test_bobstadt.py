@@ -222,7 +222,9 @@ def test_bobstadt_episode_end_to_end(tmp_path):
     text = caption(brain.memory.get_video(v["id"]))
     assert "#bobstadt" in text and "Stadtzustand" not in text
     brain.publisher.client = FakeTikTok()
-    assert brain.publish_due()[0]["status"] == "processing"
+    assert brain.publish_due() == []                     # automation never uploads on its own
+    brain.set_publishing_details(v["id"], "Bobstadt baut ein Freibad", "#bobstadt", None)
+    assert brain.publish(v["id"]).status == "processing"
     assert Path(v["video_path"]).is_file()
 
 

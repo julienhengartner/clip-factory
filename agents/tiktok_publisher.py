@@ -28,6 +28,7 @@ BASE_TAGS = ["#bürgermeisterbob", "#wusstestdu", "#lernenmittiktok"]
 BOBSTADT_TAGS = ["#bürgermeisterbob", "#bobstadt", "#citybuilder", "#isometric"]
 CATEGORY_TAGS = {"technik": "#erfindungen", "wissenschaft": "#wissenschaft", "geschichte": "#geschichte",
                  "politik": "#gemeinde", "kultur": "#kultur", "sport": "#sport", "natur": "#natur"}
+PRIVACY_LEVELS = ["SELF_ONLY", "MUTUAL_FOLLOW_FRIENDS", "FOLLOWER_OF_CREATOR", "PUBLIC_TO_EVERYONE"]
 FINAL_OK = {"PUBLISH_COMPLETE"}
 INBOX_OK = {"SEND_TO_USER_INBOX"}
 FAILED = {"FAILED"}
@@ -74,6 +75,13 @@ def caption(video: dict) -> str:
     return "\n\n".join(p for p in parts if p)[:2200]
 
 
+def final_caption(video: dict) -> str:
+    """Caption + hashtags exactly as confirmed by the user (never auto-generated at upload time)."""
+    text = (video.get("caption") or "").strip()
+    tags = " ".join(t if t.startswith("#") else f"#{t}" for t in (video.get("hashtags") or "").split() if t.strip("#"))
+    return (text + ("\n\n" + tags if tags else ""))[:2200]
+
+
 class TikTokPublisherAgent(Agent):
     name = "tiktok_publisher"
 
@@ -87,6 +95,12 @@ class TikTokPublisherAgent(Agent):
             reasons.append(f"Video ist nicht freigegeben (Status: {video['status']})")
         if not self.s.allow_publishing:
             reasons.append("Veröffentlichung deaktiviert (BBOB_ALLOW_PUBLISHING=false)")
+        if not video.get("caption_confirmed_at"):
+            reasons.append("Beschreibung, Hashtags und Sichtbarkeit noch nicht von dir bestätigt")
+        elif self.s.tiktok_publish_mode == "direct" and not video.get("privacy_level"):
+            reasons.append("Sichtbarkeit nicht festgelegt")
+        if (video.get("qc") or {}).get("passed") is not True:
+            reasons.append("Technische Prüfung nicht bestanden")
         reasons += [f"TikTok: {m}" for m in self.client.missing_requirements()]
         if video.get("video_path") and Path(video["video_path"]).is_file():
             length = evaluate_length(probe_duration(video["video_path"], self.s.ffprobe_bin), self.s)
@@ -101,47 +115,71 @@ class TikTokPublisherAgent(Agent):
         if blockers:
             raise FactoryError("Veröffentlichung nicht möglich: " + "; ".join(blockers))
         mode = self.s.tiktok_publish_mode
-        text = caption(video)
-        privacy = None
+        text = final_caption(video)                      # exactly what the user confirmed
+        privacy = video.get("privacy_level") if mode == "direct" else None
         if mode == "direct":
             info = self.client.creator_info()
             options = info.get("privacy_level_options", [])
-            privacy = self.s.tiktok_privacy_level
             if options and privacy not in options:
-                raise FactoryError(f"Privatsphäre-Stufe {privacy} nicht erlaubt (erlaubt: {options})")
+                raise FactoryError(f"Sichtbarkeit {privacy} ist für dieses Konto/diese App nicht erlaubt "
+                                   f"(erlaubt laut TikTok: {options})")
         init = self.client.init_upload(Path(video["video_path"]), mode, title=text, privacy_level=privacy or "SELF_ONLY")
         publish_id, upload_url = init.get("publish_id"), init.get("upload_url")
         if not publish_id or not upload_url:
             raise FactoryError("TikTok-Antwort ohne publish_id/upload_url")
         pub_id = self.memory.add_publication(video["id"], "tiktok", mode, "uploading", publish_id, text, privacy)
+        self.memory.update_publication(pub_id, message="Upload gestartet")
         try:
             self.client.upload_file(upload_url, Path(video["video_path"]))
         except Exception as exc:
             self.memory.update_publication(pub_id, status="failed", message=str(exc)[:500])
             self.event("error", f"Upload fehlgeschlagen: {exc}", video["id"])
             raise
-        self.memory.update_publication(pub_id, status="processing")
+        self.memory.update_publication(pub_id, status="processing",
+                                       message="Upload gesendet – Bestätigung von TikTok ausstehend")
         self.memory.update_video(video["id"], status=VideoStatus.PUBLISHING)
-        self.event("info", f"Upload an TikTok abgeschlossen ({mode}), publish_id={publish_id}", video["id"])
+        self.event("info", f"Upload an TikTok gesendet ({mode}), publish_id={publish_id} – noch NICHT bestätigt",
+                   video["id"])
         return PublishOutcome(mode=mode, status="processing", publish_id=publish_id,
-                              message="Hochgeladen – TikTok verarbeitet das Video.")
+                              message="Upload gesendet. Erst TikToks Statusmeldung bestätigt den Upload.")
 
     def refresh(self) -> list[dict]:
         """Fragt den Status offener Uploads ab und aktualisiert Videos nur anhand echter API-Antworten."""
         updates = []
-        for pub in self.memory.publications(status=["processing", "uploading"]):
+        for pub in self.memory.publications(status=["processing", "uploading", "in_inbox", "uploaded"]):
             data = self.client.fetch_status(pub["publish_id"])
             status = data.get("status", "")
+            self.memory.update_publication(pub["id"], platform_status=status)
             if status in FINAL_OK:
                 ids = data.get("publicaly_available_post_id") or data.get("publicly_available_post_id") or []
-                self.memory.update_publication(pub["id"], status="published", external_id=str(ids[0]) if ids else None,
-                                               message=status)
-                self.memory.update_video(pub["video_id"], status=VideoStatus.PUBLISHED, published_at=utcnow())
+                post_id = str(ids[0]) if ids else None
+                if not pub.get("confirmed_at"):
+                    self.memory.update_publication(pub["id"], confirmed_at=utcnow())
+                public = bool(post_id) and (pub.get("privacy_level") == "PUBLIC_TO_EVERYONE" or
+                                            (pub.get("privacy_level") is None and self._is_public(post_id)))
+                if public:
+                    self.memory.update_publication(pub["id"], status="published", external_id=post_id,
+                                                   public_confirmed_at=utcnow(), message=status)
+                    self.memory.update_video(pub["video_id"], status=VideoStatus.PUBLISHED, published_at=utcnow())
+                else:
+                    self.memory.update_publication(pub["id"], status="uploaded", external_id=post_id,
+                                                   message="Von TikTok bestätigt – nicht öffentlich")
+                    self.memory.update_video(pub["video_id"], status=VideoStatus.UPLOADED)
             elif status in INBOX_OK:
-                self.memory.update_publication(pub["id"], status="in_inbox", message="Entwurf in der TikTok-Inbox – "
-                                               "bitte in der App veröffentlichen")
+                if not pub.get("confirmed_at"):
+                    self.memory.update_publication(pub["id"], confirmed_at=utcnow())
+                self.memory.update_publication(pub["id"], status="in_inbox", message="Von TikTok bestätigt: Entwurf in "
+                                               "deiner TikTok-Inbox – Veröffentlichung erfolgt durch dich in der App")
+                self.memory.update_video(pub["video_id"], status=VideoStatus.UPLOADED)
             elif status in FAILED:
                 self.memory.update_publication(pub["id"], status="failed", message=str(data.get("fail_reason")))
                 self.memory.update_video(pub["video_id"], status=VideoStatus.APPROVED, error=f"TikTok: {data.get('fail_reason')}")
             updates.append({"publication": pub["id"], "status": status})
         return updates
+
+    def _is_public(self, post_id: str) -> bool:
+        """Inbox mode: visibility is chosen in the app. Public only if the post appears in the public video list."""
+        try:
+            return any(str(v.get("id")) == post_id for v in self.client.list_videos())
+        except Exception:  # no confirmation -> not public
+            return False

@@ -65,7 +65,16 @@
          font-size: 12px; font-variant-numeric: tabular-nums; }
   .pill { position: absolute; left: 8px; top: 8px; padding: 3px 10px; border-radius: 999px; font-size: 12px;
           font-weight: 700; background: rgba(0,0,0,.65); }
-  .s-ready { color: var(--info); } .s-approved { color: var(--ok); } .s-published { color: var(--accent); }
+  .s-ready { color: var(--info); } .s-uploaded { color: var(--warn); }
+  .stages { display: flex; gap: 4px; margin: 2px 0; }
+  .stage { flex: 1; height: 5px; border-radius: 3px; background: var(--line); }
+  .stage.done { background: var(--ok); }
+  .stagelist { list-style: none; padding: 0; margin: 10px 0; font-size: 13px; }
+  .stagelist li { padding: 2px 0; color: var(--muted); } .stagelist li.done { color: var(--ok); }
+  .pubform { display: grid; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); }
+  .pubform textarea, .pubform input, .pubform select { background: var(--panel-2); color: var(--text);
+    border: 1px solid var(--line); border-radius: 10px; padding: 8px; font: inherit; font-size: 13px; color-scheme: dark; }
+  .pubform textarea { min-height: 110px; resize: vertical; } .s-approved { color: var(--ok); } .s-published { color: var(--accent); }
   .s-publishing { color: var(--warn); } .s-producing { color: var(--warn); } .s-qc_failed, .s-failed { color: var(--bad); }
   .s-rejected { color: var(--muted); }
   .placeholder { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); padding: 16px;
@@ -126,9 +135,9 @@
 </dialog>
 
 <script>
-const STATUS = { producing: "In Produktion", ready: "Wartet auf Freigabe", approved: "Freigegeben",
-  publishing: "Wird veröffentlicht", published: "Veröffentlicht", qc_failed: "Qualität nicht bestanden",
-  failed: "Fehler", rejected: "Abgelehnt" };
+const STATUS = { producing: "In Produktion", ready: "Geprüft – wartet auf deine Freigabe", approved: "Von dir freigegeben",
+  publishing: "Upload gesendet – TikTok-Bestätigung ausstehend", uploaded: "Bei TikTok hochgeladen (nicht öffentlich)",
+  published: "Öffentlich veröffentlicht", qc_failed: "Prüfung nicht bestanden", failed: "Fehler", rejected: "Abgelehnt" };
 const PUB = { uploading: "Upload läuft", processing: "TikTok verarbeitet", in_inbox: "Als Entwurf in der TikTok-Inbox",
   published: "Auf TikTok veröffentlicht", failed: "Veröffentlichung fehlgeschlagen" };
 const $ = (id) => document.getElementById(id);
@@ -166,6 +175,11 @@ function card(v) {
   if (v.duration_s) th.append(el("div", "dur", fmtDur(v.duration_s)));
   const body = el("div", "body");
   body.append(el("div", "title", v.title || v.topic), el("div", "meta", fmtDate(v.created_at)));
+  if (v.stages) {
+    const bar = el("div", "stages"); bar.title = v.stages.map(s => (s.done ? "✓ " : "○ ") + s.label).join("\n");
+    v.stages.forEach(s => bar.append(el("span", "stage" + (s.done ? " done" : ""))));
+    body.append(bar);
+  }
   if (v.scheduled_for && !["published", "publishing"].includes(v.status)) body.append(el("div", "pubinfo", "Geplant: " + fmtDate(v.scheduled_for)));
   if (v.publication) body.append(el("div", "pubinfo", (PUB[v.publication.status] || v.publication.status) + (v.publication.message && v.publication.status !== "published" ? ` – ${v.publication.message}` : "")));
   if (["qc_failed", "failed"].includes(v.status) && (v.qc_issues?.length || v.error))
@@ -181,7 +195,7 @@ function card(v) {
   }
   if (v.status === "approved") {
     const blockers = v.publish_blockers || [];
-    const b = button("Auf TikTok veröffentlichen", "primary", async () => {
+    const b = button("Zu TikTok hochladen", "primary", async () => {
       const r = await api(`/api/videos/${v.id}/publish`, { method: "POST" }); notice(r.message); }, blockers.join("\n"));
     b.disabled = blockers.length > 0; a.append(b);
     if (blockers.length) body.append(el("div", "pubinfo", "Noch nicht veröffentlichbar: " + blockers[0]));
@@ -210,6 +224,27 @@ async function openVideo(id) {
     ul.append(li);
   }
   info.append(ul);
+  const sl = el("ul", "stagelist");
+  for (const s of (v.stages || [])) sl.append(el("li", s.done ? "done" : "", `${s.done ? "✓" : "○"} ${s.label}${s.detail ? " – " + s.detail : ""}`));
+  info.prepend(sl);
+  if (["ready", "approved"].includes(v.status)) {
+    const f = el("div", "pubform");
+    f.append(el("div", "meta", "Beschreibung, Hashtags und Sichtbarkeit legst du fest. Ohne deine Bestätigung wird nichts hochgeladen."));
+    const ta = el("textarea"); ta.value = v.caption || v.caption_suggestion || "";
+    const tags = el("input"); tags.value = v.hashtags || v.hashtags_suggestion || ""; tags.placeholder = "#hashtags";
+    const sel = el("select");
+    const opts = v.publish_mode === "inbox" ? [["", "Wähle ich in der TikTok-App"]] : [];
+    for (const o of (v.privacy_options || [])) opts.push([o, o]);
+    for (const [val, lab] of opts) { const op = el("option", "", lab); op.value = val; sel.append(op); }
+    sel.value = v.privacy_level || (v.publish_mode === "inbox" ? "" : "SELF_ONLY");
+    const save = button(v.caption_confirmed_at ? "Erneut bestätigen" : "Beschreibung bestätigen", "good", async () => {
+      await api(`/api/videos/${v.id}/publishing`, { method: "PUT", body: JSON.stringify({ caption: ta.value, hashtags: tags.value, privacy_level: sel.value || null }) });
+      notice("Beschreibung, Hashtags und Sichtbarkeit gespeichert.");
+    });
+    f.append(ta, tags, sel, save);
+    if (v.caption_confirmed_at) f.append(el("div", "meta", "Bestätigt am " + fmtDate(v.caption_confirmed_at)));
+    info.append(f);
+  }
   if (v.script) {
     info.append(el("div", "script", v.script.segments.map(s => s.text).join("\n\n")));
     if (v.script.sources?.length) info.append(el("div", "meta", "Quellen: " + v.script.sources.join(" · ")));

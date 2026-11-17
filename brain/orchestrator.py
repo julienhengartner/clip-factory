@@ -499,8 +499,43 @@ class BrainAgent:
         return [v for v in self.memory.list_videos(status="approved")
                 if not v.get("scheduled_for") or v["scheduled_for"] <= now]
 
-    def publish_due(self) -> list[dict]:
+    def auto_publish_allowed(self) -> tuple[bool, str]:
+        """Automatic publishing needs: platform permission, the user's explicit switch, and at least one earlier
+        upload that the user triggered manually and TikTok confirmed (the first video is never automatic)."""
         if not self.s.allow_publishing:
+            return False, "BBOB_ALLOW_PUBLISHING ist nicht aktiviert"
+        if not any(p.get("confirmed_at") for p in self.memory.publications()):
+            return False, "Der erste Upload muss manuell erfolgen und von TikTok bestätigt sein"
+        if not self.memory.get_setting("auto_publish_enabled", False):
+            return False, "Automatisches Veröffentlichen ist ausgeschaltet"
+        return True, "ok"
+
+    def set_auto_publish(self, enabled: bool) -> None:
+        if enabled:
+            if not self.s.allow_publishing or not any(p.get("confirmed_at") for p in self.memory.publications()):
+                raise FactoryError("Automatisches Veröffentlichen ist erst möglich, wenn BBOB_ALLOW_PUBLISHING aktiv "
+                                   "ist und ein manueller Upload von TikTok bestätigt wurde")
+        self.memory.set_setting("auto_publish_enabled", bool(enabled))
+        self.memory.log("info", self.name, f"Automatisches Veröffentlichen {'aktiviert' if enabled else 'deaktiviert'}")
+
+    def set_publishing_details(self, video_id: str, caption: str, hashtags: str, privacy_level: str | None) -> dict:
+        from agents.tiktok_publisher import PRIVACY_LEVELS
+        v = self.memory.get_video(video_id)
+        if not v:
+            raise KeyError(video_id)
+        if privacy_level is not None and privacy_level not in PRIVACY_LEVELS:
+            raise FactoryError(f"Unbekannte Sichtbarkeit {privacy_level}")
+        if not caption.strip():
+            raise FactoryError("Die Beschreibung darf nicht leer sein")
+        if len(caption) + len(hashtags) > 2100:
+            raise FactoryError("Beschreibung und Hashtags sind zusammen zu lang (max. ca. 2.100 Zeichen)")
+        self.memory.log("info", self.name, f"Beschreibung/Hashtags/Sichtbarkeit bestätigt ({privacy_level or 'in der App'})",
+                        video_id=video_id)
+        return self.memory.update_video(video_id, caption=caption.strip(), hashtags=hashtags.strip(),
+                                        privacy_level=privacy_level, caption_confirmed_at=utcnow())
+
+    def publish_due(self) -> list[dict]:
+        if not self.auto_publish_allowed()[0]:
             return []
         results = []
         for v in self.due_for_publishing():

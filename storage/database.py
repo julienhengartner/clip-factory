@@ -263,6 +263,16 @@ MIGRATIONS: list[str] = [
     CREATE TRIGGER city_versions_no_delete BEFORE DELETE ON city_versions
     BEGIN SELECT RAISE(ABORT, 'city versions are never deleted'); END;
     """,
+    # --- Version 5: user-controlled publishing (caption, hashtags, visibility) and confirmed platform states ---
+    """
+    ALTER TABLE videos ADD COLUMN caption TEXT;              -- confirmed by the user before any upload
+    ALTER TABLE videos ADD COLUMN hashtags TEXT;
+    ALTER TABLE videos ADD COLUMN privacy_level TEXT;
+    ALTER TABLE videos ADD COLUMN caption_confirmed_at TEXT;
+    ALTER TABLE publications ADD COLUMN platform_status TEXT;  -- last status reported by TikTok
+    ALTER TABLE publications ADD COLUMN confirmed_at TEXT;     -- when TikTok confirmed the upload
+    ALTER TABLE publications ADD COLUMN public_confirmed_at TEXT;
+    """,
 ]
 
 

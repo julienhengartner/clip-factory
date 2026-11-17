@@ -285,6 +285,9 @@ class FakeTikTok:
     def fetch_status(self, publish_id):
         return {"status": self.final_status, "publicaly_available_post_id": [123]}
 
+    def list_videos(self):  # the post is visible publicly
+        return [{"id": 123}]
+
 
 def ready_video(memory, tmp_path, duration_file=None):
     v = memory.create_video("Laufmaschine")

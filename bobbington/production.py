@@ -88,8 +88,42 @@ def quality_control(video: Path, tl: Timeline, settings: Settings) -> QCReport:
         QCCheck(name="hook_in_3_seconds", passed=first_speech <= 1.0 and hook_end <= 3.0,
                 detail=f"hook spoken {first_speech:.2f}–{hook_end:.2f}s"),
         QCCheck(name="subtitles_complete", passed=covered == spoken, detail=f"{covered}/{spoken} words"),
+        QCCheck(name="subtitles_within_video", passed=all(c.end <= a.duration_s + 0.05 for c in tl.subtitles),
+                detail="all cues end before the video ends"),
+        playback_check(video, settings),
     ]
+    checks += continuity_checks(tl, settings)
     return QCReport(checks=checks)
+
+
+def playback_check(video: Path, settings: Settings) -> QCCheck:
+    """Decodes the whole file – any decoder error means the file would not play cleanly."""
+    proc = subprocess.run([settings.ffmpeg_bin, "-v", "error", "-i", str(video), "-f", "null", "-"],
+                          capture_output=True, text=True, encoding="utf-8", errors="replace")
+    errors = [l for l in proc.stderr.splitlines() if l.strip()]
+    return QCCheck(name="playback_decode", passed=proc.returncode == 0 and not errors,
+                   detail="decoded completely without errors" if not errors else errors[0][:200])
+
+
+def continuity_checks(tl: Timeline, settings: Settings) -> list[QCCheck]:
+    """City + character continuity against the latest approved Bobbington state (recorded at preparation)."""
+    city = tl.city or {}
+    if not city:
+        return [QCCheck(name="city_continuity", passed=False, detail="no city version attached to this episode")]
+    from bobbington.citystate import character_designs
+    from bobbington.continuity import CityManager
+    from storage.database import Database
+    store = CityManager(settings, Database(settings.db_path)).store
+    row = store.row(city["draft_number"])
+    issues = json.loads(row["continuity_json"]) if row and row["continuity_json"] is not None else None
+    designs_ok = store.load_state(city["draft_number"])["characters"]["designs"] == character_designs()
+    return [
+        QCCheck(name="city_continuity", passed=issues == [],
+                detail=f"{city['draft_version']} built on {city['base_version']}: "
+                       + ("all checks passed" if issues == [] else f"{len(issues or [])} issue(s)")),
+        QCCheck(name="character_design_continuity", passed=designs_ok,
+                detail="cast matches the series bible" if designs_ok else "character design differs from the bible"),
+    ]
 
 
 class EpisodeProducer:

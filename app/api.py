@@ -13,7 +13,7 @@ from storage.models import VideoStatus
 
 PUBLIC_FIELDS = ("id", "topic", "title", "hook", "category", "status", "duration_s", "words", "wpm", "revisions",
                  "voice_provider", "image_provider", "script_provider", "error", "created_at", "approved_at",
-                 "published_at", "scheduled_for")
+                 "published_at", "scheduled_for", "caption", "hashtags", "privacy_level", "caption_confirmed_at")
 
 
 class CreateVideo(BaseModel):
@@ -26,6 +26,12 @@ class Automation(BaseModel):
 
 class Schedule(BaseModel):
     at: str | None = Field(default=None, max_length=40)
+
+
+class Publishing(BaseModel):
+    caption: str = Field(min_length=1, max_length=2100)
+    hashtags: str = Field(default="", max_length=400)
+    privacy_level: str | None = None
 
 
 class Reject(BaseModel):
@@ -48,10 +54,19 @@ def build_router(brain: BrainAgent) -> APIRouter:
         out["publication"] = ({k: pubs[-1][k] for k in ("status", "mode", "message", "updated_at")} if pubs else None)
         if v["status"] == VideoStatus.APPROVED.value:
             out["publish_blockers"] = brain.publish_blockers(v)
+        from agents.publishing_stages import stages
+        out["stages"] = stages(v, pubs)
         qc = v.get("qc") or {}
         out["qc_passed"] = qc.get("passed")
         out["qc_issues"] = [c["detail"] for c in qc.get("checks", []) if not c["passed"]]
         if detail:
+            from agents.tiktok_publisher import PRIVACY_LEVELS, caption
+            suggestion = caption(v).split("\n\n")
+            tags = [p for p in suggestion if p.startswith("#")]
+            out["caption_suggestion"] = "\n\n".join(p for p in suggestion if not p.startswith("#"))
+            out["hashtags_suggestion"] = tags[0] if tags else ""
+            out["privacy_options"] = PRIVACY_LEVELS
+            out["publish_mode"] = brain.s.tiktok_publish_mode
             out["script"] = v.get("script")
             out["qc"] = qc
             out["events"] = brain.memory.events(video_id=v["id"], limit=100)
@@ -67,7 +82,19 @@ def build_router(brain: BrainAgent) -> APIRouter:
 
     @r.get("/api/state")
     def state() -> dict:
-        return {**brain.status(), "last_production_error": brain.memory.get_setting("last_production_error")}
+        allowed, why = brain.auto_publish_allowed()
+        return {**brain.status(), "last_production_error": brain.memory.get_setting("last_production_error"),
+                "auto_publish": {"enabled": bool(brain.memory.get_setting("auto_publish_enabled", False)),
+                                 "effective": allowed, "reason": why}}
+
+    @r.put("/api/auto-publish")
+    def auto_publish(body: Automation) -> dict:
+        try:
+            brain.set_auto_publish(body.enabled)
+        except FactoryError as exc:
+            raise HTTPException(409, str(exc))
+        allowed, why = brain.auto_publish_allowed()
+        return {"enabled": body.enabled, "effective": allowed, "reason": why}
 
     @r.put("/api/automation")
     def automation(body: Automation) -> dict:
@@ -120,6 +147,14 @@ def build_router(brain: BrainAgent) -> APIRouter:
             return public(brain.reject(video_id, body.reason if body else ""))
         except FactoryError as exc:
             raise HTTPException(409, str(exc))
+
+    @r.put("/api/videos/{video_id}/publishing")
+    def publishing(video_id: str, body: Publishing) -> dict:
+        video_or_404(video_id)
+        try:
+            return public(brain.set_publishing_details(video_id, body.caption, body.hashtags, body.privacy_level))
+        except FactoryError as exc:
+            raise HTTPException(422, str(exc))
 
     @r.post("/api/videos/{video_id}/schedule")
     def schedule(video_id: str, body: Schedule) -> dict:

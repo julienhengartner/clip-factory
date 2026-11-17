@@ -53,6 +53,27 @@ wird abgewiesen.
 python -m bobbington.continuity status          # Versionen und Prüfergebnisse
 ```
 
+## Veröffentlichung: erst testen, nur mit deiner Freigabe
+
+Jedes Video durchläuft fünf getrennte Stufen. Eine Stufe gilt nur, wenn sie nachgewiesen ist:
+
+| Stufe | Nachweis |
+|---|---|
+| 1. Video erzeugt | gerenderte MP4 liegt lokal vor |
+| 2. Technisch geprüft | alle Prüfungen bestanden: Länge ≥ 60 s (ffprobe), 1080×1920, H.264/AAC, 24 fps, Lautheit, keine Pausen/Standbilder/Schwarzbilder, vollständige Untertitel, Hook ≤ 3 s, vollständiges Decodieren, Stadt- und Figuren-Kontinuität |
+| 3. Von dir freigegeben | du klickst „Freigeben“ |
+| 4. Bei TikTok hochgeladen | **TikTok bestätigt** den Upload (Status `SEND_TO_USER_INBOX` oder `PUBLISH_COMPLETE`). Ein erfolgreicher eigener Upload-Request allein zählt nicht |
+| 5. Öffentlich veröffentlicht | TikTok bestätigt `PUBLISH_COMPLETE` **und** der Beitrag ist öffentlich (Sichtbarkeit `PUBLIC_TO_EVERYONE`, im Entwurfsmodus: Beitrag erscheint in der öffentlichen Videoliste) |
+
+- **Deine Kontrolle:** Beschreibung, Hashtags und Sichtbarkeit legst du im Ansehen-Fenster fest und bestätigst sie. Ohne diese
+  Bestätigung ist kein Upload möglich. Hochgeladen wird genau dein Text.
+- **Kein automatischer erster Upload:** Automatisches Veröffentlichen ist erst schaltbar, wenn `BBOB_ALLOW_PUBLISHING=true`
+  gesetzt ist **und** ein von dir manuell ausgelöster Upload von TikTok bestätigt wurde. Danach braucht es deinen
+  ausdrücklichen Schalter (`PUT /api/auto-publish`). Standard: aus.
+- **TikTok-Regeln:** Es wird nur die offizielle Content Posting API mit den tatsächlich erteilten Berechtigungen genutzt.
+  Erlaubte Sichtbarkeiten fragt die Fabrik bei TikTok ab (`creator_info`). Ungeprüfte Apps dürfen nur privat posten,
+  das wird nicht umgangen.
+
 **Produktion einer Folge:**
 
 ```powershell

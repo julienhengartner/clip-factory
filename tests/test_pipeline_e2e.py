@@ -52,6 +52,9 @@ def test_full_production_publish_cycle(brain_factory):
     with pytest.raises(FactoryError):
         brain.publish(video["id"])
     brain.approve(video["id"])
+    with pytest.raises(FactoryError):
+        brain.publish(video["id"])                      # caption/visibility not confirmed by the user yet
+    brain.set_publishing_details(video["id"], "Die Laufmaschine", "#test", None)
     outcome = brain.publish(video["id"])
     assert outcome.status == "processing" and brain.publisher.client.uploaded
     assert brain.memory.get_video(video["id"])["status"] == VideoStatus.PUBLISHING.value

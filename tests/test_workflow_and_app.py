@@ -32,7 +32,7 @@ def test_daily_runs_all_steps_and_respects_quota(brain, monkeypatch):
     result = DailyWorkflow(brain, sleep=lambda s: None).run()
     s = result["summary"]
     assert s["instagram"]["status"] == "not_configured" and s["tiktok_status"]["status"] == "not_configured"
-    assert s["produce"]["videos"][0]["status"] == "ready" and s["publish"] == {"status": "disabled"}
+    assert s["produce"]["videos"][0]["status"] == "ready" and s["publish"]["status"] == "disabled"
     assert s["backup"]["file"].startswith("brain-")
     # zweiter Lauf am selben Tag: Kontingent (1) erschöpft -> keine weitere Produktion
     again = DailyWorkflow(brain, sleep=lambda s: None).run()
