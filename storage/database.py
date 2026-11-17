@@ -241,6 +241,28 @@ MIGRATIONS: list[str] = [
         options_json TEXT NOT NULL, results_json TEXT, status TEXT NOT NULL DEFAULT 'open'
     );
     """,
+    # --- Version 4: persistent, versioned city state (Bobbington_City_vNNN) ---------------------------
+    """
+    CREATE TABLE city_versions (
+        number INTEGER PRIMARY KEY,           -- 1 -> Bobbington_City_v001
+        parent INTEGER REFERENCES city_versions(number),
+        status TEXT NOT NULL,                 -- draft | approved | rejected
+        episode_id TEXT,
+        video_id TEXT,
+        state_hash TEXT NOT NULL,
+        changes_json TEXT NOT NULL,
+        continuity_json TEXT,
+        folder TEXT NOT NULL,
+        note TEXT,
+        created_at TEXT NOT NULL,
+        approved_at TEXT
+    );
+    CREATE TRIGGER city_versions_immutable BEFORE UPDATE ON city_versions
+    WHEN OLD.status IN ('approved', 'rejected')
+    BEGIN SELECT RAISE(ABORT, 'approved or rejected city versions are immutable'); END;
+    CREATE TRIGGER city_versions_no_delete BEFORE DELETE ON city_versions
+    BEGIN SELECT RAISE(ABORT, 'city versions are never deleted'); END;
+    """,
 ]
 
 
