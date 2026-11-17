@@ -1,0 +1,6912 @@
+{
+ "objects": [
+  {
+   "id": "mayors_office/room/floor#0",
+   "location": "mayors_office",
+   "group": "mayors_office/room",
+   "name": "floor",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    0.0,
+    0.5,
+    -0.05
+   ],
+   "scale": [
+    9.0,
+    10.0,
+    0.1
+   ],
+   "material": {
+    "name": "floor_#5A3A26",
+    "colour": "#5A3A26",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/room/wall_back#0",
+   "location": "mayors_office",
+   "group": "mayors_office/room",
+   "name": "wall_back",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    0.0,
+    3.5,
+    3.5
+   ],
+   "scale": [
+    9.0,
+    0.2,
+    7.0
+   ],
+   "material": {
+    "name": "wall_cream",
+    "colour": "cream",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/room/wainscot#0",
+   "location": "mayors_office",
+   "group": "mayors_office/room",
+   "name": "wainscot",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    0.0,
+    3.38,
+    0.55
+   ],
+   "scale": [
+    9.0,
+    0.1,
+    1.1
+   ],
+   "material": {
+    "name": "wains_burgundy_dark",
+    "colour": "burgundy_dark",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/room/rail#0",
+   "location": "mayors_office",
+   "group": "mayors_office/room",
+   "name": "rail",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    0.0,
+    3.32,
+    1.12
+   ],
+   "scale": [
+    9.0,
+    0.06,
+    0.06
+   ],
+   "material": {
+    "name": "gold",
+    "colour": "gold",
+    "rough": 0.3,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/room/wall_side#0",
+   "location": "mayors_office",
+   "group": "mayors_office/room",
+   "name": "wall_side",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    -4.5,
+    0.5,
+    3.5
+   ],
+   "scale": [
+    0.2,
+    10.0,
+    7.0
+   ],
+   "material": {
+    "name": "wall_cream",
+    "colour": "cream",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/room/wall_side#1",
+   "location": "mayors_office",
+   "group": "mayors_office/room",
+   "name": "wall_side",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    4.5,
+    0.5,
+    3.5
+   ],
+   "scale": [
+    0.2,
+    10.0,
+    7.0
+   ],
+   "material": {
+    "name": "wall_cream",
+    "colour": "cream",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/window/win_frame#0",
+   "location": "mayors_office",
+   "group": "mayors_office/window",
+   "name": "win_frame",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    2.6,
+    3.45,
+    2.2
+   ],
+   "scale": [
+    1.36,
+    0.1,
+    1.76
+   ],
+   "material": {
+    "name": "cream_frame",
+    "colour": "cream",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/window/win_glass#0",
+   "location": "mayors_office",
+   "group": "mayors_office/window",
+   "name": "win_glass",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    2.6,
+    3.39,
+    2.2
+   ],
+   "scale": [
+    1.2,
+    0.02,
+    1.6
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 1.2
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/window/win_bar_v#0",
+   "location": "mayors_office",
+   "group": "mayors_office/window",
+   "name": "win_bar_v",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    2.6,
+    3.37,
+    2.2
+   ],
+   "scale": [
+    0.05,
+    0.02,
+    1.6
+   ],
+   "material": {
+    "name": "cream_frame",
+    "colour": "cream",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/window/win_bar_h#0",
+   "location": "mayors_office",
+   "group": "mayors_office/window",
+   "name": "win_bar_h",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    2.6,
+    3.37,
+    2.2
+   ],
+   "scale": [
+    1.2,
+    0.02,
+    0.05
+   ],
+   "material": {
+    "name": "cream_frame",
+    "colour": "cream",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/portrait/portrait_frame#0",
+   "location": "mayors_office",
+   "group": "mayors_office/portrait",
+   "name": "portrait_frame",
+   "kind": "cube",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    -1.6,
+    3.45,
+    2.5
+   ],
+   "scale": [
+    1.1,
+    0.08,
+    1.4
+   ],
+   "material": {
+    "name": "gold",
+    "colour": "gold",
+    "rough": 0.3,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/portrait/portrait#0",
+   "location": "mayors_office",
+   "group": "mayors_office/portrait",
+   "name": "portrait",
+   "kind": "cube",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    -1.6,
+    3.4,
+    2.5
+   ],
+   "scale": [
+    0.9,
+    0.04,
+    1.2
+   ],
+   "material": {
+    "name": "portrait_bg",
+    "colour": "racing_green",
+    "rough": 0.8,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/portrait/portrait_head#0",
+   "location": "mayors_office",
+   "group": "mayors_office/portrait",
+   "name": "portrait_head",
+   "kind": "sphere",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    -1.6,
+    3.35,
+    2.65
+   ],
+   "scale": [
+    0.22,
+    0.04,
+    0.24
+   ],
+   "material": {
+    "name": "portrait_skin",
+    "colour": "#E9B99A",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   }
+  },
+  {
+   "id": "mayors_office/portrait/portrait_tash#0",
+   "location": "mayors_office",
+   "group": "mayors_office/portrait",
+   "name": "portrait_tash",
+   "kind": "cube",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    -1.6,
+    3.32,
+    2.55
+   ],
+   "scale": [
+    0.4,
+    0.03,
+    0.06
+   ],
+   "material": {
+    "name": "portrait_tash",
+    "colour": "#E4DED3",
+    "rough": 0.8,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/portrait/portrait_label#0",
+   "location": "mayors_office",
+   "group": "mayors_office/portrait",
+   "name": "portrait_label",
+   "kind": "text",
+   "category": "decoration",
+   "condition": "intact",
+   "body": "A SELF-PORTRAIT",
+   "loc": [
+    -1.6,
+    3.38,
+    1.88
+   ],
+   "size": 0.07,
+   "colour": "gold",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "mayors_office/desk/desk#0",
+   "location": "mayors_office",
+   "group": "mayors_office/desk",
+   "name": "desk",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    0.0,
+    0.55,
+    0.42
+   ],
+   "scale": [
+    2.4,
+    0.95,
+    0.84
+   ],
+   "material": {
+    "name": "wood_desk",
+    "colour": "#6B3F22",
+    "rough": 0.45,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.03
+  },
+  {
+   "id": "mayors_office/desk/desk_top#0",
+   "location": "mayors_office",
+   "group": "mayors_office/desk",
+   "name": "desk_top",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    0.0,
+    0.55,
+    0.86
+   ],
+   "scale": [
+    2.5,
+    1.05,
+    0.05
+   ],
+   "material": {
+    "name": "desk_leather",
+    "colour": "racing_green",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/desk/desk_trim#0",
+   "location": "mayors_office",
+   "group": "mayors_office/desk",
+   "name": "desk_trim",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    0.0,
+    0.05,
+    0.6
+   ],
+   "scale": [
+    2.4,
+    0.02,
+    0.06
+   ],
+   "material": {
+    "name": "gold",
+    "colour": "gold",
+    "rough": 0.3,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/desk/inkwell#0",
+   "location": "mayors_office",
+   "group": "mayors_office/desk",
+   "name": "inkwell",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -0.8,
+    0.5,
+    0.95
+   ],
+   "radius": 0.07,
+   "depth": 0.12,
+   "material": {
+    "name": "ink",
+    "colour": "ink",
+    "rough": 0.2,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "mayors_office/desk/papers#0",
+   "location": "mayors_office",
+   "group": "mayors_office/desk",
+   "name": "papers",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    0.7,
+    0.45,
+    0.9
+   ],
+   "scale": [
+    0.4,
+    0.3,
+    0.03
+   ],
+   "material": {
+    "name": "paper",
+    "colour": "cream",
+    "rough": 0.9,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/desk/desk_label#0",
+   "location": "mayors_office",
+   "group": "mayors_office/desk",
+   "name": "desk_label",
+   "kind": "text",
+   "category": "furniture",
+   "condition": "intact",
+   "body": "MAYOR",
+   "loc": [
+    0.0,
+    0.04,
+    0.6
+   ],
+   "size": 0.12,
+   "colour": "gold",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "mayors_office/chair/chair_back#0",
+   "location": "mayors_office",
+   "group": "mayors_office/chair",
+   "name": "chair_back",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    0.0,
+    1.55,
+    1.25
+   ],
+   "scale": [
+    0.9,
+    0.15,
+    1.4
+   ],
+   "material": {
+    "name": "chair_red",
+    "colour": "burgundy",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.05
+  },
+  {
+   "id": "mayors_office/flag/flagpole#0",
+   "location": "mayors_office",
+   "group": "mayors_office/flag",
+   "name": "flagpole",
+   "kind": "cylinder",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    3.6,
+    3.1,
+    1.5
+   ],
+   "radius": 0.03,
+   "depth": 3.0,
+   "material": {
+    "name": "gold",
+    "colour": "gold",
+    "rough": 0.3,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "mayors_office/flag/flag_b#0",
+   "location": "mayors_office",
+   "group": "mayors_office/flag",
+   "name": "flag_b",
+   "kind": "cube",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    3.2,
+    3.1,
+    2.55
+   ],
+   "scale": [
+    0.8,
+    0.02,
+    0.55
+   ],
+   "material": {
+    "name": "flag_burgundy",
+    "colour": "burgundy",
+    "rough": 0.8,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/flag/flag_g#0",
+   "location": "mayors_office",
+   "group": "mayors_office/flag",
+   "name": "flag_g",
+   "kind": "cube",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    3.2,
+    3.08,
+    2.55
+   ],
+   "scale": [
+    0.8,
+    0.02,
+    0.12
+   ],
+   "material": {
+    "name": "gold_cloth",
+    "colour": "gold",
+    "rough": 0.6,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/shelf#0",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "shelf",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.6,
+    3.2,
+    1.4
+   ],
+   "scale": [
+    1.2,
+    0.4,
+    2.8
+   ],
+   "material": {
+    "name": "wood_desk",
+    "colour": "#6B3F22",
+    "rough": 0.45,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#0",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -4.06597,
+    3.0,
+    0.6
+   ],
+   "scale": [
+    0.06806,
+    0.25,
+    0.42712
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "gold",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#1",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.9884,
+    3.0,
+    0.6
+   ],
+   "scale": [
+    0.06708,
+    0.25,
+    0.41414
+   ],
+   "material": {
+    "name": "book3",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#2",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.8912,
+    3.0,
+    0.6
+   ],
+   "scale": [
+    0.10732,
+    0.25,
+    0.31408
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#3",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.78456,
+    3.0,
+    0.6
+   ],
+   "scale": [
+    0.08597,
+    0.25,
+    0.41434
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#4",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.69358,
+    3.0,
+    0.6
+   ],
+   "scale": [
+    0.07598,
+    0.25,
+    0.42027
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "gold",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#5",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.61468,
+    3.0,
+    0.6
+   ],
+   "scale": [
+    0.06184,
+    0.25,
+    0.30382
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#6",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.52316,
+    3.0,
+    0.6
+   ],
+   "scale": [
+    0.10119,
+    0.25,
+    0.44536
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#7",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.40966,
+    3.0,
+    0.6
+   ],
+   "scale": [
+    0.10582,
+    0.25,
+    0.44088
+   ],
+   "material": {
+    "name": "book1",
+    "colour": "gold",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#8",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.30982,
+    3.0,
+    0.6
+   ],
+   "scale": [
+    0.07385,
+    0.25,
+    0.33282
+   ],
+   "material": {
+    "name": "book3",
+    "colour": "gold",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#9",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.2051,
+    3.0,
+    0.6
+   ],
+   "scale": [
+    0.11559,
+    0.25,
+    0.36243
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#10",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.08842,
+    3.0,
+    0.6
+   ],
+   "scale": [
+    0.09776,
+    0.25,
+    0.40855
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#11",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -4.04771,
+    3.0,
+    1.25
+   ],
+   "scale": [
+    0.10459,
+    0.25,
+    0.43434
+   ],
+   "material": {
+    "name": "book3",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#12",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.94631,
+    3.0,
+    1.25
+   ],
+   "scale": [
+    0.0782,
+    0.25,
+    0.38814
+   ],
+   "material": {
+    "name": "book3",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#13",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.84954,
+    3.0,
+    1.25
+   ],
+   "scale": [
+    0.09534,
+    0.25,
+    0.30518
+   ],
+   "material": {
+    "name": "book1",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#14",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.74944,
+    3.0,
+    1.25
+   ],
+   "scale": [
+    0.08486,
+    0.25,
+    0.32595
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#15",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.65384,
+    3.0,
+    1.25
+   ],
+   "scale": [
+    0.08634,
+    0.25,
+    0.37626
+   ],
+   "material": {
+    "name": "book1",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#16",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.55956,
+    3.0,
+    1.25
+   ],
+   "scale": [
+    0.08223,
+    0.25,
+    0.40991
+   ],
+   "material": {
+    "name": "book3",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#17",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.46919,
+    3.0,
+    1.25
+   ],
+   "scale": [
+    0.07851,
+    0.25,
+    0.42725
+   ],
+   "material": {
+    "name": "book3",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#18",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.38487,
+    3.0,
+    1.25
+   ],
+   "scale": [
+    0.07012,
+    0.25,
+    0.33404
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#19",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.29363,
+    3.0,
+    1.25
+   ],
+   "scale": [
+    0.09238,
+    0.25,
+    0.42904
+   ],
+   "material": {
+    "name": "book1",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#20",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.19202,
+    3.0,
+    1.25
+   ],
+   "scale": [
+    0.09083,
+    0.25,
+    0.44287
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#21",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.07932,
+    3.0,
+    1.25
+   ],
+   "scale": [
+    0.11459,
+    0.25,
+    0.39888
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#22",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -4.04649,
+    3.0,
+    1.9
+   ],
+   "scale": [
+    0.10702,
+    0.25,
+    0.42307
+   ],
+   "material": {
+    "name": "book1",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#23",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.9402,
+    3.0,
+    1.9
+   ],
+   "scale": [
+    0.08557,
+    0.25,
+    0.30842
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#24",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.82918,
+    3.0,
+    1.9
+   ],
+   "scale": [
+    0.11646,
+    0.25,
+    0.36201
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#25",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.72057,
+    3.0,
+    1.9
+   ],
+   "scale": [
+    0.08076,
+    0.25,
+    0.38077
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#26",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.62219,
+    3.0,
+    1.9
+   ],
+   "scale": [
+    0.09599,
+    0.25,
+    0.42069
+   ],
+   "material": {
+    "name": "book1",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#27",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.50837,
+    3.0,
+    1.9
+   ],
+   "scale": [
+    0.11166,
+    0.25,
+    0.41977
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#28",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.38729,
+    3.0,
+    1.9
+   ],
+   "scale": [
+    0.1105,
+    0.25,
+    0.40097
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#29",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.27844,
+    3.0,
+    1.9
+   ],
+   "scale": [
+    0.08718,
+    0.25,
+    0.41312
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#30",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.18679,
+    3.0,
+    1.9
+   ],
+   "scale": [
+    0.07612,
+    0.25,
+    0.41959
+   ],
+   "material": {
+    "name": "book1",
+    "colour": "gold",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#31",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.10003,
+    3.0,
+    1.9
+   ],
+   "scale": [
+    0.07742,
+    0.25,
+    0.32512
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#32",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -4.0503,
+    3.0,
+    2.55
+   ],
+   "scale": [
+    0.0994,
+    0.25,
+    0.39723
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#33",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.93952,
+    3.0,
+    2.55
+   ],
+   "scale": [
+    0.10216,
+    0.25,
+    0.37447
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#34",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.83908,
+    3.0,
+    2.55
+   ],
+   "scale": [
+    0.07872,
+    0.25,
+    0.3515
+   ],
+   "material": {
+    "name": "book1",
+    "colour": "gold",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#35",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.75646,
+    3.0,
+    2.55
+   ],
+   "scale": [
+    0.06653,
+    0.25,
+    0.43497
+   ],
+   "material": {
+    "name": "book1",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#36",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.65869,
+    3.0,
+    2.55
+   ],
+   "scale": [
+    0.10902,
+    0.25,
+    0.30312
+   ],
+   "material": {
+    "name": "book0",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#37",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.55978,
+    3.0,
+    2.55
+   ],
+   "scale": [
+    0.06879,
+    0.25,
+    0.40783
+   ],
+   "material": {
+    "name": "book1",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#38",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.46425,
+    3.0,
+    2.55
+   ],
+   "scale": [
+    0.10228,
+    0.25,
+    0.40173
+   ],
+   "material": {
+    "name": "book1",
+    "colour": "slate",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#39",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.36641,
+    3.0,
+    2.55
+   ],
+   "scale": [
+    0.07339,
+    0.25,
+    0.39728
+   ],
+   "material": {
+    "name": "book3",
+    "colour": "gold",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#40",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.26992,
+    3.0,
+    2.55
+   ],
+   "scale": [
+    0.09959,
+    0.25,
+    0.36394
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/bookshelf/book#41",
+   "location": "mayors_office",
+   "group": "mayors_office/bookshelf",
+   "name": "book",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    -3.15109,
+    3.0,
+    2.55
+   ],
+   "scale": [
+    0.11807,
+    0.25,
+    0.43133
+   ],
+   "material": {
+    "name": "book2",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/rug/rug#0",
+   "location": "mayors_office",
+   "group": "mayors_office/rug",
+   "name": "rug",
+   "kind": "cube",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    0.0,
+    -0.6,
+    0.005
+   ],
+   "scale": [
+    4.0,
+    2.4,
+    0.01
+   ],
+   "material": {
+    "name": "rug",
+    "colour": "burgundy",
+    "rough": 0.9,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "mayors_office/lighting/office_key#0",
+   "location": "mayors_office",
+   "group": "mayors_office/lighting",
+   "name": "office_key",
+   "kind": "light",
+   "category": "light",
+   "condition": "intact",
+   "loc": [
+    -2.0,
+    -3.0,
+    3.2
+   ],
+   "target": [
+    0.0,
+    0.5,
+    1.4
+   ],
+   "energy": 650,
+   "size": 3.0,
+   "color": [
+    1.0,
+    0.9,
+    0.78
+   ]
+  },
+  {
+   "id": "mayors_office/lighting/office_fill#0",
+   "location": "mayors_office",
+   "group": "mayors_office/lighting",
+   "name": "office_fill",
+   "kind": "light",
+   "category": "light",
+   "condition": "intact",
+   "loc": [
+    2.5,
+    -2.0,
+    2.0
+   ],
+   "target": [
+    0.0,
+    0.5,
+    1.4
+   ],
+   "energy": 220,
+   "size": 4.0,
+   "color": [
+    0.85,
+    0.9,
+    1.0
+   ]
+  },
+  {
+   "id": "mayors_office/lighting/office_window#0",
+   "location": "mayors_office",
+   "group": "mayors_office/lighting",
+   "name": "office_window",
+   "kind": "light",
+   "category": "light",
+   "condition": "intact",
+   "loc": [
+    2.6,
+    2.9,
+    2.4
+   ],
+   "target": [
+    0.0,
+    0.6,
+    1.2
+   ],
+   "energy": 160,
+   "size": 1.5,
+   "color": [
+    0.9,
+    0.95,
+    1.0
+   ]
+  },
+  {
+   "id": "council_chamber/room/floor#0",
+   "location": "council_chamber",
+   "group": "council_chamber/room",
+   "name": "floor",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    40.0,
+    0.5,
+    -0.05
+   ],
+   "scale": [
+    11,
+    10.0,
+    0.1
+   ],
+   "material": {
+    "name": "floor_#4A3324",
+    "colour": "#4A3324",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/room/wall_back#0",
+   "location": "council_chamber",
+   "group": "council_chamber/room",
+   "name": "wall_back",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    40.0,
+    3.5,
+    3.5
+   ],
+   "scale": [
+    11,
+    0.2,
+    7.0
+   ],
+   "material": {
+    "name": "wall_cream",
+    "colour": "cream",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/room/wainscot#0",
+   "location": "council_chamber",
+   "group": "council_chamber/room",
+   "name": "wainscot",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    40.0,
+    3.38,
+    0.55
+   ],
+   "scale": [
+    11,
+    0.1,
+    1.1
+   ],
+   "material": {
+    "name": "wains_racing_green",
+    "colour": "racing_green",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/room/rail#0",
+   "location": "council_chamber",
+   "group": "council_chamber/room",
+   "name": "rail",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    40.0,
+    3.32,
+    1.12
+   ],
+   "scale": [
+    11,
+    0.06,
+    0.06
+   ],
+   "material": {
+    "name": "gold",
+    "colour": "gold",
+    "rough": 0.3,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/room/wall_side#0",
+   "location": "council_chamber",
+   "group": "council_chamber/room",
+   "name": "wall_side",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    34.5,
+    0.5,
+    3.5
+   ],
+   "scale": [
+    0.2,
+    10.0,
+    7.0
+   ],
+   "material": {
+    "name": "wall_cream",
+    "colour": "cream",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/room/wall_side#1",
+   "location": "council_chamber",
+   "group": "council_chamber/room",
+   "name": "wall_side",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    45.5,
+    0.5,
+    3.5
+   ],
+   "scale": [
+    0.2,
+    10.0,
+    7.0
+   ],
+   "material": {
+    "name": "wall_cream",
+    "colour": "cream",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/motto/frame#0",
+   "location": "council_chamber",
+   "group": "council_chamber/motto",
+   "name": "frame",
+   "kind": "cube",
+   "category": "sign",
+   "condition": "intact",
+   "loc": [
+    40.0,
+    3.46,
+    3.1
+   ],
+   "scale": [
+    3.52,
+    0.06,
+    0.72
+   ],
+   "material": {
+    "name": "gold",
+    "colour": "gold",
+    "rough": 0.3,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/motto/frame_bg#0",
+   "location": "council_chamber",
+   "group": "council_chamber/motto",
+   "name": "frame_bg",
+   "kind": "cube",
+   "category": "sign",
+   "condition": "intact",
+   "loc": [
+    40.0,
+    3.42,
+    3.1
+   ],
+   "scale": [
+    3.4,
+    0.04,
+    0.6
+   ],
+   "material": {
+    "name": "bg_burgundy_dark",
+    "colour": "burgundy_dark",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/motto/motto#0",
+   "location": "council_chamber",
+   "group": "council_chamber/motto",
+   "name": "motto",
+   "kind": "text",
+   "category": "sign",
+   "condition": "intact",
+   "body": "EX ERRORE GLORIA",
+   "loc": [
+    40.0,
+    3.39,
+    3.1
+   ],
+   "size": 0.28,
+   "colour": "gold",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "council_chamber/columns/column#0",
+   "location": "council_chamber",
+   "group": "council_chamber/columns",
+   "name": "column",
+   "kind": "cylinder",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    35.4,
+    3.2,
+    2.1
+   ],
+   "radius": 0.22,
+   "depth": 4.2,
+   "material": {
+    "name": "stone",
+    "colour": "stone",
+    "rough": 0.6,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "council_chamber/columns/column#1",
+   "location": "council_chamber",
+   "group": "council_chamber/columns",
+   "name": "column",
+   "kind": "cylinder",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    44.6,
+    3.2,
+    2.1
+   ],
+   "radius": 0.22,
+   "depth": 4.2,
+   "material": {
+    "name": "stone",
+    "colour": "stone",
+    "rough": 0.6,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "council_chamber/dais/dais#0",
+   "location": "council_chamber",
+   "group": "council_chamber/dais",
+   "name": "dais",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    40.0,
+    1.5,
+    0.15
+   ],
+   "scale": [
+    3.2,
+    1.6,
+    0.3
+   ],
+   "material": {
+    "name": "wood_dais",
+    "colour": "#5C3720",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/dais/lectern#0",
+   "location": "council_chamber",
+   "group": "council_chamber/dais",
+   "name": "lectern",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    40.0,
+    0.95,
+    0.75
+   ],
+   "scale": [
+    1.1,
+    0.5,
+    0.9
+   ],
+   "material": {
+    "name": "wood_desk",
+    "colour": "#6B3F22",
+    "rough": 0.45,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.03
+  },
+  {
+   "id": "council_chamber/dais/lectern_crest#0",
+   "location": "council_chamber",
+   "group": "council_chamber/dais",
+   "name": "lectern_crest",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    40.0,
+    0.69,
+    0.85
+   ],
+   "scale": [
+    0.5,
+    0.02,
+    0.4
+   ],
+   "material": {
+    "name": "flag_burgundy",
+    "colour": "burgundy",
+    "rough": 0.8,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/dais/crest_ring#0",
+   "location": "council_chamber",
+   "group": "council_chamber/dais",
+   "name": "crest_ring",
+   "kind": "torus",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    40.0,
+    0.67,
+    0.85
+   ],
+   "major": 0.15,
+   "minor": 0.02,
+   "material": {
+    "name": "gold",
+    "colour": "gold",
+    "rough": 0.3,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "council_chamber/gavel/gavel_handle#0",
+   "location": "council_chamber",
+   "group": "council_chamber/gavel",
+   "name": "gavel_handle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    40.35,
+    0.95,
+    1.27
+   ],
+   "radius": 0.03,
+   "depth": 0.7,
+   "material": {
+    "name": "wood_desk",
+    "colour": "#6B3F22",
+    "rough": 0.45,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    1.36591,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "council_chamber/gavel/gavel_head#0",
+   "location": "council_chamber",
+   "group": "council_chamber/gavel",
+   "name": "gavel_head",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    40.62,
+    0.95,
+    1.37
+   ],
+   "radius": 0.12,
+   "depth": 0.34,
+   "material": {
+    "name": "wood_dark",
+    "colour": "#3E2414",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "council_chamber/clerk_desk/clerk_desk#0",
+   "location": "council_chamber",
+   "group": "council_chamber/clerk_desk",
+   "name": "clerk_desk",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    38.4,
+    0.35,
+    0.42
+   ],
+   "scale": [
+    1.0,
+    0.6,
+    0.84
+   ],
+   "material": {
+    "name": "wood_desk",
+    "colour": "#6B3F22",
+    "rough": 0.45,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.02
+  },
+  {
+   "id": "council_chamber/clerk_desk/stamps#0",
+   "location": "council_chamber",
+   "group": "council_chamber/clerk_desk",
+   "name": "stamps",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    38.15,
+    0.25,
+    0.9
+   ],
+   "scale": [
+    0.35,
+    0.15,
+    0.08
+   ],
+   "material": {
+    "name": "ink",
+    "colour": "ink",
+    "rough": 0.3,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/clerk_desk/clerk_label#0",
+   "location": "council_chamber",
+   "group": "council_chamber/clerk_desk",
+   "name": "clerk_label",
+   "kind": "text",
+   "category": "furniture",
+   "condition": "intact",
+   "body": "CLERK",
+   "loc": [
+    38.4,
+    0.04,
+    0.5
+   ],
+   "size": 0.09,
+   "colour": "gold",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "council_chamber/bench_0/bench#0",
+   "location": "council_chamber",
+   "group": "council_chamber/bench_0",
+   "name": "bench",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    42.6,
+    1.0,
+    0.45
+   ],
+   "scale": [
+    2.2,
+    0.6,
+    0.45
+   ],
+   "material": {
+    "name": "bench_green",
+    "colour": "racing_green",
+    "rough": 0.45,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.05
+  },
+  {
+   "id": "council_chamber/bench_0/bench_back#0",
+   "location": "council_chamber",
+   "group": "council_chamber/bench_0",
+   "name": "bench_back",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    42.6,
+    1.28,
+    0.85
+   ],
+   "scale": [
+    2.2,
+    0.12,
+    0.8
+   ],
+   "material": {
+    "name": "bench_green",
+    "colour": "racing_green",
+    "rough": 0.45,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.05
+  },
+  {
+   "id": "council_chamber/bench_1/bench#0",
+   "location": "council_chamber",
+   "group": "council_chamber/bench_1",
+   "name": "bench",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    42.6,
+    2.2,
+    0.45
+   ],
+   "scale": [
+    2.2,
+    0.6,
+    0.45
+   ],
+   "material": {
+    "name": "bench_green",
+    "colour": "racing_green",
+    "rough": 0.45,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.05
+  },
+  {
+   "id": "council_chamber/bench_1/bench_back#0",
+   "location": "council_chamber",
+   "group": "council_chamber/bench_1",
+   "name": "bench_back",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    42.6,
+    2.48,
+    0.85
+   ],
+   "scale": [
+    2.2,
+    0.12,
+    0.8
+   ],
+   "material": {
+    "name": "bench_green",
+    "colour": "racing_green",
+    "rough": 0.45,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.05
+  },
+  {
+   "id": "council_chamber/banner_0/banner#0",
+   "location": "council_chamber",
+   "group": "council_chamber/banner_0",
+   "name": "banner",
+   "kind": "cube",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    38.4,
+    3.38,
+    2.6
+   ],
+   "scale": [
+    0.6,
+    0.04,
+    1.6
+   ],
+   "material": {
+    "name": "flag_burgundy",
+    "colour": "burgundy",
+    "rough": 0.8,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/banner_0/banner_band#0",
+   "location": "council_chamber",
+   "group": "council_chamber/banner_0",
+   "name": "banner_band",
+   "kind": "cube",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    38.4,
+    3.35,
+    2.0
+   ],
+   "scale": [
+    0.6,
+    0.02,
+    0.12
+   ],
+   "material": {
+    "name": "gold_cloth",
+    "colour": "gold",
+    "rough": 0.6,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/banner_1/banner#0",
+   "location": "council_chamber",
+   "group": "council_chamber/banner_1",
+   "name": "banner",
+   "kind": "cube",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    41.6,
+    3.38,
+    2.6
+   ],
+   "scale": [
+    0.6,
+    0.04,
+    1.6
+   ],
+   "material": {
+    "name": "flag_burgundy",
+    "colour": "burgundy",
+    "rough": 0.8,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/banner_1/banner_band#0",
+   "location": "council_chamber",
+   "group": "council_chamber/banner_1",
+   "name": "banner_band",
+   "kind": "cube",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    41.6,
+    3.35,
+    2.0
+   ],
+   "scale": [
+    0.6,
+    0.02,
+    0.12
+   ],
+   "material": {
+    "name": "gold_cloth",
+    "colour": "gold",
+    "rough": 0.6,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "council_chamber/lighting/chamber_key#0",
+   "location": "council_chamber",
+   "group": "council_chamber/lighting",
+   "name": "chamber_key",
+   "kind": "light",
+   "category": "light",
+   "condition": "intact",
+   "loc": [
+    37.5,
+    -3.5,
+    3.6
+   ],
+   "target": [
+    40.0,
+    0.6,
+    1.4
+   ],
+   "energy": 900,
+   "size": 4.0,
+   "color": [
+    1.0,
+    0.9,
+    0.78
+   ]
+  },
+  {
+   "id": "council_chamber/lighting/chamber_fill#0",
+   "location": "council_chamber",
+   "group": "council_chamber/lighting",
+   "name": "chamber_fill",
+   "kind": "light",
+   "category": "light",
+   "condition": "intact",
+   "loc": [
+    43.5,
+    -2.5,
+    2.5
+   ],
+   "target": [
+    41.0,
+    0.5,
+    1.2
+   ],
+   "energy": 330,
+   "size": 4.0,
+   "color": [
+    0.85,
+    0.9,
+    1.0
+   ]
+  },
+  {
+   "id": "council_chamber/lighting/chamber_rim#0",
+   "location": "council_chamber",
+   "group": "council_chamber/lighting",
+   "name": "chamber_rim",
+   "kind": "light",
+   "category": "light",
+   "condition": "intact",
+   "loc": [
+    40.0,
+    2.5,
+    3.5
+   ],
+   "target": [
+    40.0,
+    0.8,
+    1.4
+   ],
+   "energy": 300,
+   "size": 3.0,
+   "color": [
+    1.0,
+    0.85,
+    0.6
+   ]
+  },
+  {
+   "id": "main_street/road/road#0",
+   "location": "main_street",
+   "group": "main_street/road",
+   "name": "road",
+   "kind": "cube",
+   "category": "street",
+   "condition": "intact",
+   "loc": [
+    80.0,
+    2.0,
+    -0.05
+   ],
+   "scale": [
+    30,
+    14,
+    0.1
+   ],
+   "material": {
+    "name": "cobbles",
+    "colour": "slate",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/road/pavement#0",
+   "location": "main_street",
+   "group": "main_street/road",
+   "name": "pavement",
+   "kind": "cube",
+   "category": "street",
+   "condition": "intact",
+   "loc": [
+    80.0,
+    3.2,
+    0.06
+   ],
+   "scale": [
+    30,
+    2.0,
+    0.12
+   ],
+   "material": {
+    "name": "pavement",
+    "colour": "stone",
+    "rough": 0.8,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_0/house#0",
+   "location": "main_street",
+   "group": "main_street/house_0",
+   "name": "house",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    72.5,
+    5.6,
+    2.2943
+   ],
+   "scale": [
+    2.9,
+    3.0,
+    4.5886
+   ],
+   "material": {
+    "name": "house_brick",
+    "colour": "brick",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_0/roof#0",
+   "location": "main_street",
+   "group": "main_street/house_0",
+   "name": "roof",
+   "kind": "cone",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    72.5,
+    5.6,
+    5.1386
+   ],
+   "r1": 2.2,
+   "r2": 0.05,
+   "depth": 1.1,
+   "material": {
+    "name": "roof",
+    "colour": "#4A4E57",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0.7854
+   ],
+   "vertices": 4
+  },
+  {
+   "id": "main_street/house_0/door#0",
+   "location": "main_street",
+   "group": "main_street/house_0",
+   "name": "door",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    71.9,
+    4.08,
+    0.6
+   ],
+   "scale": [
+    0.6,
+    0.06,
+    1.2
+   ],
+   "material": {
+    "name": "door_racing_green",
+    "colour": "racing_green",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_0/shopwin#0",
+   "location": "main_street",
+   "group": "main_street/house_0",
+   "name": "shopwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    73.0,
+    4.06,
+    0.9
+   ],
+   "scale": [
+    1.1,
+    0.06,
+    1.0
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_0/upwin#0",
+   "location": "main_street",
+   "group": "main_street/house_0",
+   "name": "upwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    72.5,
+    4.06,
+    3.21202
+   ],
+   "scale": [
+    0.9,
+    0.06,
+    0.9
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_0/fascia#0",
+   "location": "main_street",
+   "group": "main_street/house_0",
+   "name": "fascia",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    72.5,
+    4.0,
+    1.7
+   ],
+   "scale": [
+    2.7,
+    0.08,
+    0.32
+   ],
+   "material": {
+    "name": "fascia",
+    "colour": "burgundy",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_0/shop_sign#0",
+   "location": "main_street",
+   "group": "main_street/house_0",
+   "name": "shop_sign",
+   "kind": "text",
+   "category": "building",
+   "condition": "intact",
+   "body": "BISCUIT ROW",
+   "loc": [
+    72.5,
+    3.95,
+    1.7
+   ],
+   "size": 0.13,
+   "colour": "gold",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "main_street/house_1/house#0",
+   "location": "main_street",
+   "group": "main_street/house_1",
+   "name": "house",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    75.5,
+    5.6,
+    2.19051
+   ],
+   "scale": [
+    2.9,
+    3.0,
+    4.38102
+   ],
+   "material": {
+    "name": "house_cream",
+    "colour": "cream",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_1/roof#0",
+   "location": "main_street",
+   "group": "main_street/house_1",
+   "name": "roof",
+   "kind": "cone",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    75.5,
+    5.6,
+    4.93102
+   ],
+   "r1": 2.2,
+   "r2": 0.05,
+   "depth": 1.1,
+   "material": {
+    "name": "roof",
+    "colour": "#4A4E57",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0.7854
+   ],
+   "vertices": 4
+  },
+  {
+   "id": "main_street/house_1/door#0",
+   "location": "main_street",
+   "group": "main_street/house_1",
+   "name": "door",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    74.9,
+    4.08,
+    0.6
+   ],
+   "scale": [
+    0.6,
+    0.06,
+    1.2
+   ],
+   "material": {
+    "name": "door_burgundy",
+    "colour": "burgundy",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_1/shopwin#0",
+   "location": "main_street",
+   "group": "main_street/house_1",
+   "name": "shopwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    76.0,
+    4.06,
+    0.9
+   ],
+   "scale": [
+    1.1,
+    0.06,
+    1.0
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_1/upwin#0",
+   "location": "main_street",
+   "group": "main_street/house_1",
+   "name": "upwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    75.5,
+    4.06,
+    3.06671
+   ],
+   "scale": [
+    0.9,
+    0.06,
+    0.9
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_1/fascia#0",
+   "location": "main_street",
+   "group": "main_street/house_1",
+   "name": "fascia",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    75.5,
+    4.0,
+    1.7
+   ],
+   "scale": [
+    2.7,
+    0.08,
+    0.32
+   ],
+   "material": {
+    "name": "fascia",
+    "colour": "racing_green",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_1/shop_sign#0",
+   "location": "main_street",
+   "group": "main_street/house_1",
+   "name": "shop_sign",
+   "kind": "text",
+   "category": "building",
+   "condition": "intact",
+   "body": "PUDDLE END POST OFFICE",
+   "loc": [
+    75.5,
+    3.95,
+    1.7
+   ],
+   "size": 0.13,
+   "colour": "gold",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "main_street/house_2/house#0",
+   "location": "main_street",
+   "group": "main_street/house_2",
+   "name": "house",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    78.5,
+    5.6,
+    2.49056
+   ],
+   "scale": [
+    2.9,
+    3.0,
+    4.98112
+   ],
+   "material": {
+    "name": "house_racing_green",
+    "colour": "racing_green",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_2/roof#0",
+   "location": "main_street",
+   "group": "main_street/house_2",
+   "name": "roof",
+   "kind": "cone",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    78.5,
+    5.6,
+    5.53112
+   ],
+   "r1": 2.2,
+   "r2": 0.05,
+   "depth": 1.1,
+   "material": {
+    "name": "roof",
+    "colour": "#4A4E57",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0.7854
+   ],
+   "vertices": 4
+  },
+  {
+   "id": "main_street/house_2/door#0",
+   "location": "main_street",
+   "group": "main_street/house_2",
+   "name": "door",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    77.9,
+    4.08,
+    0.6
+   ],
+   "scale": [
+    0.6,
+    0.06,
+    1.2
+   ],
+   "material": {
+    "name": "door_slate",
+    "colour": "slate",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_2/shopwin#0",
+   "location": "main_street",
+   "group": "main_street/house_2",
+   "name": "shopwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    79.0,
+    4.06,
+    0.9
+   ],
+   "scale": [
+    1.1,
+    0.06,
+    1.0
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_2/upwin#0",
+   "location": "main_street",
+   "group": "main_street/house_2",
+   "name": "upwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    78.5,
+    4.06,
+    3.48678
+   ],
+   "scale": [
+    0.9,
+    0.06,
+    0.9
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_2/fascia#0",
+   "location": "main_street",
+   "group": "main_street/house_2",
+   "name": "fascia",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    78.5,
+    4.0,
+    1.7
+   ],
+   "scale": [
+    2.7,
+    0.08,
+    0.32
+   ],
+   "material": {
+    "name": "fascia",
+    "colour": "burgundy",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_2/shop_sign#0",
+   "location": "main_street",
+   "group": "main_street/house_2",
+   "name": "shop_sign",
+   "kind": "text",
+   "category": "building",
+   "condition": "intact",
+   "body": "CRUMBS & CO.",
+   "loc": [
+    78.5,
+    3.95,
+    1.7
+   ],
+   "size": 0.13,
+   "colour": "gold",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "main_street/house_3/house#0",
+   "location": "main_street",
+   "group": "main_street/house_3",
+   "name": "house",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    81.5,
+    5.6,
+    2.14346
+   ],
+   "scale": [
+    2.9,
+    3.0,
+    4.28692
+   ],
+   "material": {
+    "name": "house_burgundy",
+    "colour": "burgundy",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_3/roof#0",
+   "location": "main_street",
+   "group": "main_street/house_3",
+   "name": "roof",
+   "kind": "cone",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    81.5,
+    5.6,
+    4.83692
+   ],
+   "r1": 2.2,
+   "r2": 0.05,
+   "depth": 1.1,
+   "material": {
+    "name": "roof",
+    "colour": "#4A4E57",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0.7854
+   ],
+   "vertices": 4
+  },
+  {
+   "id": "main_street/house_3/door#0",
+   "location": "main_street",
+   "group": "main_street/house_3",
+   "name": "door",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    80.9,
+    4.08,
+    0.6
+   ],
+   "scale": [
+    0.6,
+    0.06,
+    1.2
+   ],
+   "material": {
+    "name": "door_gold",
+    "colour": "gold",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_3/shopwin#0",
+   "location": "main_street",
+   "group": "main_street/house_3",
+   "name": "shopwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    82.0,
+    4.06,
+    0.9
+   ],
+   "scale": [
+    1.1,
+    0.06,
+    1.0
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_3/upwin#0",
+   "location": "main_street",
+   "group": "main_street/house_3",
+   "name": "upwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    81.5,
+    4.06,
+    3.00085
+   ],
+   "scale": [
+    0.9,
+    0.06,
+    0.9
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_3/fascia#0",
+   "location": "main_street",
+   "group": "main_street/house_3",
+   "name": "fascia",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    81.5,
+    4.0,
+    1.7
+   ],
+   "scale": [
+    2.7,
+    0.08,
+    0.32
+   ],
+   "material": {
+    "name": "fascia",
+    "colour": "racing_green",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_3/shop_sign#0",
+   "location": "main_street",
+   "group": "main_street/house_3",
+   "name": "shop_sign",
+   "kind": "text",
+   "category": "building",
+   "condition": "intact",
+   "body": "BOBBINGTON BAKERY",
+   "loc": [
+    81.5,
+    3.95,
+    1.7
+   ],
+   "size": 0.13,
+   "colour": "gold",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "main_street/house_4/house#0",
+   "location": "main_street",
+   "group": "main_street/house_4",
+   "name": "house",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    84.5,
+    5.6,
+    2.42153
+   ],
+   "scale": [
+    2.9,
+    3.0,
+    4.84306
+   ],
+   "material": {
+    "name": "house_#C9B79C",
+    "colour": "#C9B79C",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_4/roof#0",
+   "location": "main_street",
+   "group": "main_street/house_4",
+   "name": "roof",
+   "kind": "cone",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    84.5,
+    5.6,
+    5.39306
+   ],
+   "r1": 2.2,
+   "r2": 0.05,
+   "depth": 1.1,
+   "material": {
+    "name": "roof",
+    "colour": "#4A4E57",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0.7854
+   ],
+   "vertices": 4
+  },
+  {
+   "id": "main_street/house_4/door#0",
+   "location": "main_street",
+   "group": "main_street/house_4",
+   "name": "door",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    83.9,
+    4.08,
+    0.6
+   ],
+   "scale": [
+    0.6,
+    0.06,
+    1.2
+   ],
+   "material": {
+    "name": "door_burgundy",
+    "colour": "burgundy",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_4/shopwin#0",
+   "location": "main_street",
+   "group": "main_street/house_4",
+   "name": "shopwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    85.0,
+    4.06,
+    0.9
+   ],
+   "scale": [
+    1.1,
+    0.06,
+    1.0
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_4/upwin#0",
+   "location": "main_street",
+   "group": "main_street/house_4",
+   "name": "upwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    84.5,
+    4.06,
+    3.39014
+   ],
+   "scale": [
+    0.9,
+    0.06,
+    0.9
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_4/fascia#0",
+   "location": "main_street",
+   "group": "main_street/house_4",
+   "name": "fascia",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    84.5,
+    4.0,
+    1.7
+   ],
+   "scale": [
+    2.7,
+    0.08,
+    0.32
+   ],
+   "material": {
+    "name": "fascia",
+    "colour": "burgundy",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_4/shop_sign#0",
+   "location": "main_street",
+   "group": "main_street/house_4",
+   "name": "shop_sign",
+   "kind": "text",
+   "category": "building",
+   "condition": "intact",
+   "body": "TEAS",
+   "loc": [
+    84.5,
+    3.95,
+    1.7
+   ],
+   "size": 0.13,
+   "colour": "gold",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "main_street/house_5/house#0",
+   "location": "main_street",
+   "group": "main_street/house_5",
+   "name": "house",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    87.5,
+    5.6,
+    2.31941
+   ],
+   "scale": [
+    2.9,
+    3.0,
+    4.63883
+   ],
+   "material": {
+    "name": "house_brick",
+    "colour": "brick",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_5/roof#0",
+   "location": "main_street",
+   "group": "main_street/house_5",
+   "name": "roof",
+   "kind": "cone",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    87.5,
+    5.6,
+    5.18883
+   ],
+   "r1": 2.2,
+   "r2": 0.05,
+   "depth": 1.1,
+   "material": {
+    "name": "roof",
+    "colour": "#4A4E57",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0.7854
+   ],
+   "vertices": 4
+  },
+  {
+   "id": "main_street/house_5/door#0",
+   "location": "main_street",
+   "group": "main_street/house_5",
+   "name": "door",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    86.9,
+    4.08,
+    0.6
+   ],
+   "scale": [
+    0.6,
+    0.06,
+    1.2
+   ],
+   "material": {
+    "name": "door_ink",
+    "colour": "ink",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_5/shopwin#0",
+   "location": "main_street",
+   "group": "main_street/house_5",
+   "name": "shopwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    88.0,
+    4.06,
+    0.9
+   ],
+   "scale": [
+    1.1,
+    0.06,
+    1.0
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_5/upwin#0",
+   "location": "main_street",
+   "group": "main_street/house_5",
+   "name": "upwin",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    87.5,
+    4.06,
+    3.24718
+   ],
+   "scale": [
+    0.9,
+    0.06,
+    0.9
+   ],
+   "material": {
+    "name": "sky_glass",
+    "colour": "sky_day",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.6
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_5/fascia#0",
+   "location": "main_street",
+   "group": "main_street/house_5",
+   "name": "fascia",
+   "kind": "cube",
+   "category": "building",
+   "condition": "intact",
+   "loc": [
+    87.5,
+    4.0,
+    1.7
+   ],
+   "scale": [
+    2.7,
+    0.08,
+    0.32
+   ],
+   "material": {
+    "name": "fascia",
+    "colour": "racing_green",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/house_5/shop_sign#0",
+   "location": "main_street",
+   "group": "main_street/house_5",
+   "name": "shop_sign",
+   "kind": "text",
+   "category": "building",
+   "condition": "intact",
+   "body": "IRONMONGER",
+   "loc": [
+    87.5,
+    3.95,
+    1.7
+   ],
+   "size": 0.13,
+   "colour": "gold",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "main_street/bunting/flaglet#0",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    72.5,
+    3.6,
+    3.4
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#1",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    73.05,
+    3.6,
+    3.275
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt1",
+    "colour": "cream",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#2",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    73.6,
+    3.6,
+    3.18349
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#3",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    74.15,
+    3.6,
+    3.15
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#4",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    74.7,
+    3.6,
+    3.18349
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt1",
+    "colour": "cream",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#5",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    75.25,
+    3.6,
+    3.275
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#6",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    75.8,
+    3.6,
+    3.4
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#7",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    76.35,
+    3.6,
+    3.4
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt1",
+    "colour": "cream",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#8",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    76.9,
+    3.6,
+    3.275
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#9",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    77.45,
+    3.6,
+    3.18349
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#10",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    78.0,
+    3.6,
+    3.15
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt1",
+    "colour": "cream",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#11",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    78.55,
+    3.6,
+    3.18349
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#12",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    79.1,
+    3.6,
+    3.275
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#13",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    79.65,
+    3.6,
+    3.4
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt1",
+    "colour": "cream",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#14",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    80.2,
+    3.6,
+    3.4
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#15",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    80.75,
+    3.6,
+    3.275
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#16",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    81.3,
+    3.6,
+    3.18349
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt1",
+    "colour": "cream",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#17",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    81.85,
+    3.6,
+    3.15
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#18",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    82.4,
+    3.6,
+    3.18349
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#19",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    82.95,
+    3.6,
+    3.275
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt1",
+    "colour": "cream",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#20",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    83.5,
+    3.6,
+    3.4
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#21",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    84.05,
+    3.6,
+    3.4
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#22",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    84.6,
+    3.6,
+    3.275
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt1",
+    "colour": "cream",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#23",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    85.15,
+    3.6,
+    3.18349
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#24",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    85.7,
+    3.6,
+    3.15
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#25",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    86.25,
+    3.6,
+    3.18349
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt1",
+    "colour": "cream",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#26",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    86.8,
+    3.6,
+    3.275
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt2",
+    "colour": "racing_green",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/bunting/flaglet#27",
+   "location": "main_street",
+   "group": "main_street/bunting",
+   "name": "flaglet",
+   "kind": "cone",
+   "category": "decoration",
+   "condition": "intact",
+   "loc": [
+    87.35,
+    3.6,
+    3.4
+   ],
+   "r1": 0.12,
+   "r2": 0.0,
+   "depth": 0.25,
+   "material": {
+    "name": "bunt0",
+    "colour": "burgundy",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    3.14159,
+    0,
+    0
+   ],
+   "vertices": 3
+  },
+  {
+   "id": "main_street/historic_puddle/puddle#0",
+   "location": "main_street",
+   "group": "main_street/historic_puddle",
+   "name": "puddle",
+   "kind": "cylinder",
+   "category": "landmark",
+   "condition": "intact",
+   "loc": [
+    80.6,
+    -0.4,
+    0.01
+   ],
+   "radius": 0.9,
+   "depth": 0.01,
+   "material": {
+    "name": "puddle",
+    "colour": "#6E8FA8",
+    "rough": 0.05,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1.4,
+    0.8,
+    1
+   ]
+  },
+  {
+   "id": "main_street/historic_puddle/puddle_sign_post#0",
+   "location": "main_street",
+   "group": "main_street/historic_puddle",
+   "name": "puddle_sign_post",
+   "kind": "cylinder",
+   "category": "landmark",
+   "condition": "intact",
+   "loc": [
+    82.3,
+    0.4,
+    0.6
+   ],
+   "radius": 0.03,
+   "depth": 1.2,
+   "material": {
+    "name": "ink",
+    "colour": "ink",
+    "rough": 0.3,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "main_street/historic_puddle/puddle_sign#0",
+   "location": "main_street",
+   "group": "main_street/historic_puddle",
+   "name": "puddle_sign",
+   "kind": "cube",
+   "category": "landmark",
+   "condition": "intact",
+   "loc": [
+    82.3,
+    0.38,
+    1.25
+   ],
+   "scale": [
+    0.9,
+    0.04,
+    0.4
+   ],
+   "material": {
+    "name": "cream_board",
+    "colour": "cream",
+    "rough": 0.6,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "main_street/historic_puddle/puddle_label#0",
+   "location": "main_street",
+   "group": "main_street/historic_puddle",
+   "name": "puddle_label",
+   "kind": "text",
+   "category": "landmark",
+   "condition": "intact",
+   "body": "HISTORIC PUDDLE\nEST. 1953",
+   "loc": [
+    82.3,
+    0.35,
+    1.25
+   ],
+   "size": 0.07,
+   "colour": "burgundy_dark",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "main_street/bin_0/bin#0",
+   "location": "main_street",
+   "group": "main_street/bin_0",
+   "name": "bin",
+   "kind": "cylinder",
+   "category": "street_furniture",
+   "condition": "intact",
+   "loc": [
+    76.6,
+    3.0,
+    0.5
+   ],
+   "radius": 0.26,
+   "depth": 0.8,
+   "material": {
+    "name": "bin",
+    "colour": "#2E4F3E",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "main_street/bin_0/rubbish#0",
+   "location": "main_street",
+   "group": "main_street/bin_0",
+   "name": "rubbish",
+   "kind": "sphere",
+   "category": "street_furniture",
+   "condition": "intact",
+   "loc": [
+    76.6,
+    3.0,
+    0.98
+   ],
+   "scale": [
+    0.3,
+    0.3,
+    0.2
+   ],
+   "material": {
+    "name": "rubbish0",
+    "colour": "#8A7F6A",
+    "rough": 0.9,
+    "metal": 0.0,
+    "emission": 0.0
+   }
+  },
+  {
+   "id": "main_street/bin_1/bin#0",
+   "location": "main_street",
+   "group": "main_street/bin_1",
+   "name": "bin",
+   "kind": "cylinder",
+   "category": "street_furniture",
+   "condition": "intact",
+   "loc": [
+    77.2,
+    3.0,
+    0.5
+   ],
+   "radius": 0.26,
+   "depth": 0.8,
+   "material": {
+    "name": "bin",
+    "colour": "#2E4F3E",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "main_street/bin_1/rubbish#0",
+   "location": "main_street",
+   "group": "main_street/bin_1",
+   "name": "rubbish",
+   "kind": "sphere",
+   "category": "street_furniture",
+   "condition": "intact",
+   "loc": [
+    77.2,
+    3.0,
+    0.98
+   ],
+   "scale": [
+    0.3,
+    0.3,
+    0.2
+   ],
+   "material": {
+    "name": "rubbish1",
+    "colour": "#B9AE9A",
+    "rough": 0.9,
+    "metal": 0.0,
+    "emission": 0.0
+   }
+  },
+  {
+   "id": "main_street/bin_2/bin#0",
+   "location": "main_street",
+   "group": "main_street/bin_2",
+   "name": "bin",
+   "kind": "cylinder",
+   "category": "street_furniture",
+   "condition": "intact",
+   "loc": [
+    77.8,
+    3.0,
+    0.5
+   ],
+   "radius": 0.26,
+   "depth": 0.8,
+   "material": {
+    "name": "bin",
+    "colour": "#2E4F3E",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "main_street/bin_2/rubbish#0",
+   "location": "main_street",
+   "group": "main_street/bin_2",
+   "name": "rubbish",
+   "kind": "sphere",
+   "category": "street_furniture",
+   "condition": "intact",
+   "loc": [
+    77.8,
+    3.0,
+    0.98
+   ],
+   "scale": [
+    0.3,
+    0.3,
+    0.2
+   ],
+   "material": {
+    "name": "rubbish2",
+    "colour": "#6B5E4A",
+    "rough": 0.9,
+    "metal": 0.0,
+    "emission": 0.0
+   }
+  },
+  {
+   "id": "main_street/lamp_0/lamp#0",
+   "location": "main_street",
+   "group": "main_street/lamp_0",
+   "name": "lamp",
+   "kind": "cylinder",
+   "category": "street_furniture",
+   "condition": "intact",
+   "loc": [
+    74.0,
+    2.6,
+    1.6
+   ],
+   "radius": 0.05,
+   "depth": 3.2,
+   "material": {
+    "name": "ink",
+    "colour": "ink",
+    "rough": 0.3,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "main_street/lamp_0/lamp_glass#0",
+   "location": "main_street",
+   "group": "main_street/lamp_0",
+   "name": "lamp_glass",
+   "kind": "sphere",
+   "category": "street_furniture",
+   "condition": "intact",
+   "loc": [
+    74.0,
+    2.6,
+    3.25
+   ],
+   "scale": [
+    0.18,
+    0.18,
+    0.18
+   ],
+   "material": {
+    "name": "lamp_glow",
+    "colour": "gold_light",
+    "rough": 0.2,
+    "metal": 0.0,
+    "emission": 3.0
+   }
+  },
+  {
+   "id": "main_street/lamp_1/lamp#0",
+   "location": "main_street",
+   "group": "main_street/lamp_1",
+   "name": "lamp",
+   "kind": "cylinder",
+   "category": "street_furniture",
+   "condition": "intact",
+   "loc": [
+    85.0,
+    2.6,
+    1.6
+   ],
+   "radius": 0.05,
+   "depth": 3.2,
+   "material": {
+    "name": "ink",
+    "colour": "ink",
+    "rough": 0.3,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "main_street/lamp_1/lamp_glass#0",
+   "location": "main_street",
+   "group": "main_street/lamp_1",
+   "name": "lamp_glass",
+   "kind": "sphere",
+   "category": "street_furniture",
+   "condition": "intact",
+   "loc": [
+    85.0,
+    2.6,
+    3.25
+   ],
+   "scale": [
+    0.18,
+    0.18,
+    0.18
+   ],
+   "material": {
+    "name": "lamp_glow",
+    "colour": "gold_light",
+    "rough": 0.2,
+    "metal": 0.0,
+    "emission": 3.0
+   }
+  },
+  {
+   "id": "main_street/lighting/street_fill#0",
+   "location": "main_street",
+   "group": "main_street/lighting",
+   "name": "street_fill",
+   "kind": "light",
+   "category": "light",
+   "condition": "intact",
+   "loc": [
+    80.0,
+    -4.0,
+    3.0
+   ],
+   "target": [
+    80.0,
+    1.0,
+    1.2
+   ],
+   "energy": 500,
+   "size": 6.0,
+   "color": [
+    1.0,
+    0.96,
+    0.9
+   ]
+  },
+  {
+   "id": "pub/room/floor#0",
+   "location": "pub",
+   "group": "pub/room",
+   "name": "floor",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    120.0,
+    0.5,
+    -0.05
+   ],
+   "scale": [
+    8,
+    10.0,
+    0.1
+   ],
+   "material": {
+    "name": "floor_#3B2416",
+    "colour": "#3B2416",
+    "rough": 0.7,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "pub/room/wall_back#0",
+   "location": "pub",
+   "group": "pub/room",
+   "name": "wall_back",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    120.0,
+    3.5,
+    1.8
+   ],
+   "scale": [
+    8,
+    0.2,
+    3.6
+   ],
+   "material": {
+    "name": "wall_#7A5A3A",
+    "colour": "#7A5A3A",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "pub/room/wainscot#0",
+   "location": "pub",
+   "group": "pub/room",
+   "name": "wainscot",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    120.0,
+    3.38,
+    0.55
+   ],
+   "scale": [
+    8,
+    0.1,
+    1.1
+   ],
+   "material": {
+    "name": "wains_#3E2414",
+    "colour": "#3E2414",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "pub/room/rail#0",
+   "location": "pub",
+   "group": "pub/room",
+   "name": "rail",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    120.0,
+    3.32,
+    1.12
+   ],
+   "scale": [
+    8,
+    0.06,
+    0.06
+   ],
+   "material": {
+    "name": "gold",
+    "colour": "gold",
+    "rough": 0.3,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "pub/room/wall_side#0",
+   "location": "pub",
+   "group": "pub/room",
+   "name": "wall_side",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    116.0,
+    0.5,
+    1.8
+   ],
+   "scale": [
+    0.2,
+    10.0,
+    3.6
+   ],
+   "material": {
+    "name": "wall_#7A5A3A",
+    "colour": "#7A5A3A",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "pub/room/wall_side#1",
+   "location": "pub",
+   "group": "pub/room",
+   "name": "wall_side",
+   "kind": "cube",
+   "category": "structure",
+   "condition": "intact",
+   "loc": [
+    124.0,
+    0.5,
+    1.8
+   ],
+   "scale": [
+    0.2,
+    10.0,
+    3.6
+   ],
+   "material": {
+    "name": "wall_#7A5A3A",
+    "colour": "#7A5A3A",
+    "rough": 0.85,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "pub/bar/bar#0",
+   "location": "pub",
+   "group": "pub/bar",
+   "name": "bar",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    120.0,
+    0.2,
+    0.55
+   ],
+   "scale": [
+    4.5,
+    0.8,
+    1.1
+   ],
+   "material": {
+    "name": "bar_wood",
+    "colour": "#5A3418",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.03
+  },
+  {
+   "id": "pub/bar/bar_top#0",
+   "location": "pub",
+   "group": "pub/bar",
+   "name": "bar_top",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    120.0,
+    0.2,
+    1.12
+   ],
+   "scale": [
+    4.7,
+    0.95,
+    0.06
+   ],
+   "material": {
+    "name": "bar_top",
+    "colour": "#3E2414",
+    "rough": 0.25,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "pub/bar/tap#0",
+   "location": "pub",
+   "group": "pub/bar",
+   "name": "tap",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    121.3,
+    0.05,
+    1.35
+   ],
+   "radius": 0.03,
+   "depth": 0.4,
+   "material": {
+    "name": "brass",
+    "colour": "gold",
+    "rough": 0.25,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/bar/tap#1",
+   "location": "pub",
+   "group": "pub/bar",
+   "name": "tap",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    121.6,
+    0.05,
+    1.35
+   ],
+   "radius": 0.03,
+   "depth": 0.4,
+   "material": {
+    "name": "brass",
+    "colour": "gold",
+    "rough": 0.25,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/bar/tap#2",
+   "location": "pub",
+   "group": "pub/bar",
+   "name": "tap",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    121.9,
+    0.05,
+    1.35
+   ],
+   "radius": 0.03,
+   "depth": 0.4,
+   "material": {
+    "name": "brass",
+    "colour": "gold",
+    "rough": 0.25,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/back_shelf#0",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "back_shelf",
+   "kind": "cube",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    120.0,
+    3.25,
+    1.9
+   ],
+   "scale": [
+    4.5,
+    0.35,
+    0.06
+   ],
+   "material": {
+    "name": "bar_wood",
+    "colour": "#5A3418",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "pub/back_shelf/bottle#0",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    118.0,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle0",
+    "colour": "#2F5A2F",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#1",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    118.27,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle1",
+    "colour": "#6B3A1A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#2",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    118.54,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle2",
+    "colour": "#8C8C3A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#3",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    118.81,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle3",
+    "colour": "#3A2A5A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#4",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    119.08,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle0",
+    "colour": "#2F5A2F",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#5",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    119.35,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle1",
+    "colour": "#6B3A1A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#6",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    119.62,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle2",
+    "colour": "#8C8C3A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#7",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    119.89,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle3",
+    "colour": "#3A2A5A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#8",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    120.16,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle0",
+    "colour": "#2F5A2F",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#9",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    120.43,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle1",
+    "colour": "#6B3A1A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#10",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    120.7,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle2",
+    "colour": "#8C8C3A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#11",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    120.97,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle3",
+    "colour": "#3A2A5A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#12",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    121.24,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle0",
+    "colour": "#2F5A2F",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#13",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    121.51,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle1",
+    "colour": "#6B3A1A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#14",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    121.78,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle2",
+    "colour": "#8C8C3A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/back_shelf/bottle#15",
+   "location": "pub",
+   "group": "pub/back_shelf",
+   "name": "bottle",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    122.05,
+    3.25,
+    2.1
+   ],
+   "radius": 0.05,
+   "depth": 0.36,
+   "material": {
+    "name": "bottle3",
+    "colour": "#3A2A5A",
+    "rough": 0.1,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/chalkboard/chalkboard#0",
+   "location": "pub",
+   "group": "pub/chalkboard",
+   "name": "chalkboard",
+   "kind": "cube",
+   "category": "sign",
+   "condition": "intact",
+   "loc": [
+    122.2,
+    3.38,
+    2.3
+   ],
+   "scale": [
+    1.4,
+    0.05,
+    1.0
+   ],
+   "material": {
+    "name": "chalk",
+    "colour": "#1E2A24",
+    "rough": 0.9,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "pub/chalkboard/chalk_frame#0",
+   "location": "pub",
+   "group": "pub/chalkboard",
+   "name": "chalk_frame",
+   "kind": "cube",
+   "category": "sign",
+   "condition": "intact",
+   "loc": [
+    122.2,
+    3.41,
+    2.3
+   ],
+   "scale": [
+    1.55,
+    0.04,
+    1.15
+   ],
+   "material": {
+    "name": "bar_wood",
+    "colour": "#5A3418",
+    "rough": 0.4,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "pub/chalkboard/chalk_text#0",
+   "location": "pub",
+   "group": "pub/chalkboard",
+   "name": "chalk_text",
+   "kind": "text",
+   "category": "sign",
+   "condition": "intact",
+   "body": "TODAY'S SPECIAL:\nDISAPPOINTMENT",
+   "loc": [
+    122.2,
+    3.34,
+    2.3
+   ],
+   "size": 0.11,
+   "colour": "cream",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/segoeprb.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "pub/pub_sign/pub_sign#0",
+   "location": "pub",
+   "group": "pub/pub_sign",
+   "name": "pub_sign",
+   "kind": "cube",
+   "category": "sign",
+   "condition": "intact",
+   "loc": [
+    117.7,
+    3.38,
+    2.6
+   ],
+   "scale": [
+    1.6,
+    0.05,
+    0.5
+   ],
+   "material": {
+    "name": "fascia",
+    "colour": "racing_green",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "pub/pub_sign/pub_name#0",
+   "location": "pub",
+   "group": "pub/pub_sign",
+   "name": "pub_name",
+   "kind": "text",
+   "category": "sign",
+   "condition": "intact",
+   "body": "THE LEANING PICKLE",
+   "loc": [
+    117.7,
+    3.34,
+    2.6
+   ],
+   "size": 0.11,
+   "colour": "gold",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "pub/stool_0/stool#0",
+   "location": "pub",
+   "group": "pub/stool_0",
+   "name": "stool",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    118.5,
+    -0.55,
+    0.35
+   ],
+   "radius": 0.18,
+   "depth": 0.7,
+   "material": {
+    "name": "stool",
+    "colour": "burgundy",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/stool_1/stool#0",
+   "location": "pub",
+   "group": "pub/stool_1",
+   "name": "stool",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    120.0,
+    -0.55,
+    0.35
+   ],
+   "radius": 0.18,
+   "depth": 0.7,
+   "material": {
+    "name": "stool",
+    "colour": "burgundy",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/stool_2/stool#0",
+   "location": "pub",
+   "group": "pub/stool_2",
+   "name": "stool",
+   "kind": "cylinder",
+   "category": "furniture",
+   "condition": "intact",
+   "loc": [
+    121.5,
+    -0.55,
+    0.35
+   ],
+   "radius": 0.18,
+   "depth": 0.7,
+   "material": {
+    "name": "stool",
+    "colour": "burgundy",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "pub/lighting/pub_warm#0",
+   "location": "pub",
+   "group": "pub/lighting",
+   "name": "pub_warm",
+   "kind": "light",
+   "category": "light",
+   "condition": "intact",
+   "loc": [
+    118.5,
+    -2.5,
+    3.0
+   ],
+   "target": [
+    120.0,
+    0.6,
+    1.3
+   ],
+   "energy": 520,
+   "size": 3.0,
+   "color": [
+    1.0,
+    0.75,
+    0.45
+   ]
+  },
+  {
+   "id": "pub/lighting/pub_fill#0",
+   "location": "pub",
+   "group": "pub/lighting",
+   "name": "pub_fill",
+   "kind": "light",
+   "category": "light",
+   "condition": "intact",
+   "loc": [
+    122.5,
+    -2.0,
+    2.0
+   ],
+   "target": [
+    120.0,
+    0.6,
+    1.2
+   ],
+   "energy": 160,
+   "size": 3.0,
+   "color": [
+    0.9,
+    0.85,
+    1.0
+   ]
+  },
+  {
+   "id": "title_card/backdrop/title_bg#0",
+   "location": "title_card",
+   "group": "title_card/backdrop",
+   "name": "title_bg",
+   "kind": "cube",
+   "category": "identity",
+   "condition": "intact",
+   "loc": [
+    160.0,
+    3.0,
+    2.0
+   ],
+   "scale": [
+    12,
+    0.2,
+    10
+   ],
+   "material": {
+    "name": "title_bg",
+    "colour": "burgundy",
+    "rough": 0.8,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.0
+  },
+  {
+   "id": "title_card/coat_of_arms/shield#0",
+   "location": "title_card",
+   "group": "title_card/coat_of_arms",
+   "name": "shield",
+   "kind": "cube",
+   "category": "identity",
+   "condition": "intact",
+   "loc": [
+    160.0,
+    2.85,
+    2.95
+   ],
+   "scale": [
+    0.9,
+    0.06,
+    1.0
+   ],
+   "material": {
+    "name": "gold",
+    "colour": "gold",
+    "rough": 0.3,
+    "metal": 1.0,
+    "emission": 0.0
+   },
+   "bevel": 0.08
+  },
+  {
+   "id": "title_card/coat_of_arms/shield_in#0",
+   "location": "title_card",
+   "group": "title_card/coat_of_arms",
+   "name": "shield_in",
+   "kind": "cube",
+   "category": "identity",
+   "condition": "intact",
+   "loc": [
+    160.0,
+    2.8,
+    2.95
+   ],
+   "scale": [
+    0.78,
+    0.04,
+    0.88
+   ],
+   "material": {
+    "name": "flag_burgundy",
+    "colour": "burgundy_dark",
+    "rough": 0.6,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "bevel": 0.06
+  },
+  {
+   "id": "title_card/coat_of_arms/cup#0",
+   "location": "title_card",
+   "group": "title_card/coat_of_arms",
+   "name": "cup",
+   "kind": "cylinder",
+   "category": "identity",
+   "condition": "intact",
+   "loc": [
+    159.8,
+    2.76,
+    3.15
+   ],
+   "radius": 0.08,
+   "depth": 0.1,
+   "material": {
+    "name": "cream_cup",
+    "colour": "cream",
+    "rough": 0.3,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    1.5708,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "title_card/coat_of_arms/cup#1",
+   "location": "title_card",
+   "group": "title_card/coat_of_arms",
+   "name": "cup",
+   "kind": "cylinder",
+   "category": "identity",
+   "condition": "intact",
+   "loc": [
+    160.2,
+    2.76,
+    3.15
+   ],
+   "radius": 0.08,
+   "depth": 0.1,
+   "material": {
+    "name": "cream_cup",
+    "colour": "cream",
+    "rough": 0.3,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    1.5708,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "title_card/coat_of_arms/cup#2",
+   "location": "title_card",
+   "group": "title_card/coat_of_arms",
+   "name": "cup",
+   "kind": "cylinder",
+   "category": "identity",
+   "condition": "intact",
+   "loc": [
+    160.0,
+    2.76,
+    2.75
+   ],
+   "radius": 0.08,
+   "depth": 0.1,
+   "material": {
+    "name": "cream_cup",
+    "colour": "cream",
+    "rough": 0.3,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    1.5708,
+    0,
+    0
+   ],
+   "vertices": 24,
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "id": "title_card/coat_of_arms/crest_cone#0",
+   "location": "title_card",
+   "group": "title_card/coat_of_arms",
+   "name": "crest_cone",
+   "kind": "cone",
+   "category": "identity",
+   "condition": "intact",
+   "loc": [
+    160.0,
+    2.85,
+    3.68
+   ],
+   "r1": 0.15,
+   "r2": 0.02,
+   "depth": 0.32,
+   "material": {
+    "name": "cone",
+    "colour": "#E8742C",
+    "rough": 0.5,
+    "metal": 0.0,
+    "emission": 0.0
+   },
+   "rot": [
+    0,
+    0,
+    0
+   ],
+   "vertices": 24
+  },
+  {
+   "id": "title_card/coat_of_arms/tagline#0",
+   "location": "title_card",
+   "group": "title_card/coat_of_arms",
+   "name": "tagline",
+   "kind": "text",
+   "category": "identity",
+   "condition": "intact",
+   "body": "A TOWN FULL OF BAD DECISIONS",
+   "loc": [
+    160.0,
+    2.7,
+    1.1
+   ],
+   "size": 0.08,
+   "colour": "gold_light",
+   "extrude": 0.003,
+   "font": "C:/Windows/Fonts/georgiab.ttf",
+   "rot": [
+    1.5708,
+    0,
+    0
+   ]
+  },
+  {
+   "id": "title_card/lighting/title_key#0",
+   "location": "title_card",
+   "group": "title_card/lighting",
+   "name": "title_key",
+   "kind": "light",
+   "category": "light",
+   "condition": "intact",
+   "loc": [
+    160.0,
+    -2.0,
+    3.0
+   ],
+   "target": [
+    160.0,
+    2.7,
+    2.2
+   ],
+   "energy": 600,
+   "size": 5.0,
+   "color": [
+    1.0,
+    0.92,
+    0.8
+   ]
+  }
+ ],
+ "marks": {
+  "mayors_office": {
+   "desk": [
+    0.0,
+    1.05,
+    0,
+    0.0
+   ],
+   "door": [
+    -2.2,
+    -0.2,
+    20,
+    0.0
+   ],
+   "front": [
+    0.0,
+    -0.6,
+    0,
+    0.0
+   ]
+  },
+  "council_chamber": {
+   "dais": [
+    40.0,
+    1.55,
+    0,
+    0.3
+   ],
+   "clerk_desk": [
+    38.55,
+    0.95,
+    18,
+    0.0
+   ],
+   "bench_left": [
+    41.35,
+    0.55,
+    -22,
+    0.0
+   ],
+   "centre": [
+    40.0,
+    -0.5,
+    0,
+    0.0
+   ]
+  },
+  "main_street": {
+   "pavement_left": [
+    78.9,
+    0.6,
+    15,
+    0.0
+   ],
+   "pavement_right": [
+    80.7,
+    0.4,
+    -15,
+    0.0
+   ],
+   "centre": [
+    80.0,
+    0.5,
+    0,
+    0.0
+   ]
+  },
+  "pub": {
+   "behind_bar": [
+    120.0,
+    0.95,
+    0,
+    0.0
+   ],
+   "bar_front": [
+    120.8,
+    -0.6,
+    160,
+    0.0
+   ]
+  },
+  "title_card": {
+   "centre": [
+    160.0,
+    0.0,
+    0,
+    0.0
+   ]
+  }
+ },
+ "ref_cameras": {
+  "mayors_office": {
+   "loc": [
+    0.0,
+    -5.5,
+    2.2
+   ],
+   "target": [
+    0.0,
+    1.0,
+    1.5
+   ],
+   "lens": 24
+  },
+  "council_chamber": {
+   "loc": [
+    40.0,
+    -6.0,
+    2.4
+   ],
+   "target": [
+    40.0,
+    1.0,
+    1.6
+   ],
+   "lens": 24
+  },
+  "main_street": {
+   "loc": [
+    80.0,
+    -7.5,
+    2.6
+   ],
+   "target": [
+    80.0,
+    3.0,
+    1.8
+   ],
+   "lens": 24
+  },
+  "pub": {
+   "loc": [
+    120.0,
+    -5.0,
+    2.0
+   ],
+   "target": [
+    120.0,
+    1.5,
+    1.6
+   ],
+   "lens": 24
+  },
+  "title_card": {
+   "loc": [
+    160.0,
+    -3.0,
+    2.1
+   ],
+   "target": [
+    160.0,
+    2.7,
+    2.15
+   ],
+   "lens": 35
+  }
+ },
+ "environment": {
+  "season": "autumn",
+  "weather": "overcast, dry",
+  "time_of_day": "late morning",
+  "sun": {
+   "energy": 2.2,
+   "rotation_deg": [
+    50,
+    0,
+    30
+   ],
+   "colour": [
+    1.0,
+    0.95,
+    0.85
+   ]
+  },
+  "world": {
+   "colour": [
+    0.55,
+    0.62,
+    0.7
+   ],
+   "strength": 0.6
+  }
+ },
+ "characters": {
+  "designs": {
+   "winston": "76a01d84d52d8db2",
+   "margaret": "fc60d6054b302438",
+   "reginald": "3a677bb0479b02d7",
+   "brenda": "474f25346dc3d834",
+   "arthur": "cfbde87704ab9bf8",
+   "nigel": "67fbb53ed4f878fa"
+  },
+  "last_positions": {}
+ },
+ "version": "Bobbington_City_v001"
+}

@@ -1,0 +1,2152 @@
+{
+ "objects": {
+  "council_chamber/banner_0/banner#0": {
+   "loc": [
+    38.4,
+    3.38,
+    2.6
+   ],
+   "location": "council_chamber",
+   "material": "flag_burgundy"
+  },
+  "council_chamber/banner_0/banner_band#0": {
+   "loc": [
+    38.4,
+    3.35,
+    2.0
+   ],
+   "location": "council_chamber",
+   "material": "gold_cloth"
+  },
+  "council_chamber/banner_1/banner#0": {
+   "loc": [
+    41.6,
+    3.38,
+    2.6
+   ],
+   "location": "council_chamber",
+   "material": "flag_burgundy"
+  },
+  "council_chamber/banner_1/banner_band#0": {
+   "loc": [
+    41.6,
+    3.35,
+    2.0
+   ],
+   "location": "council_chamber",
+   "material": "gold_cloth"
+  },
+  "council_chamber/bench_0/bench#0": {
+   "loc": [
+    42.6,
+    1.0,
+    0.45
+   ],
+   "location": "council_chamber",
+   "material": "bench_green"
+  },
+  "council_chamber/bench_0/bench_back#0": {
+   "loc": [
+    42.6,
+    1.28,
+    0.85
+   ],
+   "location": "council_chamber",
+   "material": "bench_green"
+  },
+  "council_chamber/bench_1/bench#0": {
+   "loc": [
+    42.6,
+    2.2,
+    0.45
+   ],
+   "location": "council_chamber",
+   "material": "bench_green"
+  },
+  "council_chamber/bench_1/bench_back#0": {
+   "loc": [
+    42.6,
+    2.48,
+    0.85
+   ],
+   "location": "council_chamber",
+   "material": "bench_green"
+  },
+  "council_chamber/clerk_desk/clerk_desk#0": {
+   "loc": [
+    38.4,
+    0.35,
+    0.42
+   ],
+   "location": "council_chamber",
+   "material": "wood_desk"
+  },
+  "council_chamber/clerk_desk/clerk_label#0": {
+   "loc": [
+    38.4,
+    0.04,
+    0.5
+   ],
+   "location": "council_chamber",
+   "material": "text_gold",
+   "body": "CLERK"
+  },
+  "council_chamber/clerk_desk/stamps#0": {
+   "loc": [
+    38.15,
+    0.25,
+    0.9
+   ],
+   "location": "council_chamber",
+   "material": "ink"
+  },
+  "council_chamber/columns/column#0": {
+   "loc": [
+    35.4,
+    3.2,
+    2.1
+   ],
+   "location": "council_chamber",
+   "material": "stone"
+  },
+  "council_chamber/columns/column#1": {
+   "loc": [
+    44.6,
+    3.2,
+    2.1
+   ],
+   "location": "council_chamber",
+   "material": "stone"
+  },
+  "council_chamber/dais/crest_ring#0": {
+   "loc": [
+    40.0,
+    0.67,
+    0.85
+   ],
+   "location": "council_chamber",
+   "material": "gold"
+  },
+  "council_chamber/dais/dais#0": {
+   "loc": [
+    40.0,
+    1.5,
+    0.15
+   ],
+   "location": "council_chamber",
+   "material": "wood_dais"
+  },
+  "council_chamber/dais/lectern#0": {
+   "loc": [
+    40.0,
+    0.95,
+    0.75
+   ],
+   "location": "council_chamber",
+   "material": "wood_desk"
+  },
+  "council_chamber/dais/lectern_crest#0": {
+   "loc": [
+    40.0,
+    0.69,
+    0.85
+   ],
+   "location": "council_chamber",
+   "material": "flag_burgundy"
+  },
+  "council_chamber/gavel/gavel_handle#0": {
+   "loc": [
+    40.35,
+    0.95,
+    1.27
+   ],
+   "location": "council_chamber",
+   "material": "wood_desk"
+  },
+  "council_chamber/gavel/gavel_head#0": {
+   "loc": [
+    40.62,
+    0.95,
+    1.37
+   ],
+   "location": "council_chamber",
+   "material": "wood_dark"
+  },
+  "council_chamber/lighting/chamber_fill#0": {
+   "loc": [
+    43.5,
+    -2.5,
+    2.5
+   ],
+   "location": "council_chamber",
+   "material": ""
+  },
+  "council_chamber/lighting/chamber_key#0": {
+   "loc": [
+    37.5,
+    -3.5,
+    3.6
+   ],
+   "location": "council_chamber",
+   "material": ""
+  },
+  "council_chamber/lighting/chamber_rim#0": {
+   "loc": [
+    40.0,
+    2.5,
+    3.5
+   ],
+   "location": "council_chamber",
+   "material": ""
+  },
+  "council_chamber/motto/frame#0": {
+   "loc": [
+    40.0,
+    3.46,
+    3.1
+   ],
+   "location": "council_chamber",
+   "material": "gold"
+  },
+  "council_chamber/motto/frame_bg#0": {
+   "loc": [
+    40.0,
+    3.42,
+    3.1
+   ],
+   "location": "council_chamber",
+   "material": "bg_burgundy_dark"
+  },
+  "council_chamber/motto/motto#0": {
+   "loc": [
+    40.0,
+    3.39,
+    3.1
+   ],
+   "location": "council_chamber",
+   "material": "text_gold",
+   "body": "EX ERRORE GLORIA"
+  },
+  "council_chamber/room/floor#0": {
+   "loc": [
+    40.0,
+    0.5,
+    -0.05
+   ],
+   "location": "council_chamber",
+   "material": "floor_#4A3324"
+  },
+  "council_chamber/room/rail#0": {
+   "loc": [
+    40.0,
+    3.32,
+    1.12
+   ],
+   "location": "council_chamber",
+   "material": "gold"
+  },
+  "council_chamber/room/wainscot#0": {
+   "loc": [
+    40.0,
+    3.38,
+    0.55
+   ],
+   "location": "council_chamber",
+   "material": "wains_racing_green"
+  },
+  "council_chamber/room/wall_back#0": {
+   "loc": [
+    40.0,
+    3.5,
+    3.5
+   ],
+   "location": "council_chamber",
+   "material": "wall_cream"
+  },
+  "council_chamber/room/wall_side#0": {
+   "loc": [
+    34.5,
+    0.5,
+    3.5
+   ],
+   "location": "council_chamber",
+   "material": "wall_cream"
+  },
+  "council_chamber/room/wall_side#1": {
+   "loc": [
+    45.5,
+    0.5,
+    3.5
+   ],
+   "location": "council_chamber",
+   "material": "wall_cream"
+  },
+  "main_street/bin_0/bin#0": {
+   "loc": [
+    76.6,
+    3.0,
+    0.5
+   ],
+   "location": "main_street",
+   "material": "bin"
+  },
+  "main_street/bin_0/rubbish#0": {
+   "loc": [
+    76.6,
+    3.0,
+    0.98
+   ],
+   "location": "main_street",
+   "material": "rubbish0"
+  },
+  "main_street/bin_1/bin#0": {
+   "loc": [
+    77.2,
+    3.0,
+    0.5
+   ],
+   "location": "main_street",
+   "material": "bin"
+  },
+  "main_street/bin_1/rubbish#0": {
+   "loc": [
+    77.2,
+    3.0,
+    0.98
+   ],
+   "location": "main_street",
+   "material": "rubbish1"
+  },
+  "main_street/bin_2/bin#0": {
+   "loc": [
+    77.8,
+    3.0,
+    0.5
+   ],
+   "location": "main_street",
+   "material": "bin"
+  },
+  "main_street/bin_2/rubbish#0": {
+   "loc": [
+    77.8,
+    3.0,
+    0.98
+   ],
+   "location": "main_street",
+   "material": "rubbish2"
+  },
+  "main_street/bunting/flaglet#0": {
+   "loc": [
+    72.5,
+    3.6,
+    3.4
+   ],
+   "location": "main_street",
+   "material": "bunt0"
+  },
+  "main_street/bunting/flaglet#1": {
+   "loc": [
+    73.05,
+    3.6,
+    3.275
+   ],
+   "location": "main_street",
+   "material": "bunt1"
+  },
+  "main_street/bunting/flaglet#10": {
+   "loc": [
+    78.0,
+    3.6,
+    3.15
+   ],
+   "location": "main_street",
+   "material": "bunt1"
+  },
+  "main_street/bunting/flaglet#11": {
+   "loc": [
+    78.55,
+    3.6,
+    3.1835
+   ],
+   "location": "main_street",
+   "material": "bunt2"
+  },
+  "main_street/bunting/flaglet#12": {
+   "loc": [
+    79.1,
+    3.6,
+    3.275
+   ],
+   "location": "main_street",
+   "material": "bunt0"
+  },
+  "main_street/bunting/flaglet#13": {
+   "loc": [
+    79.65,
+    3.6,
+    3.4
+   ],
+   "location": "main_street",
+   "material": "bunt1"
+  },
+  "main_street/bunting/flaglet#14": {
+   "loc": [
+    80.2,
+    3.6,
+    3.4
+   ],
+   "location": "main_street",
+   "material": "bunt2"
+  },
+  "main_street/bunting/flaglet#15": {
+   "loc": [
+    80.75,
+    3.6,
+    3.275
+   ],
+   "location": "main_street",
+   "material": "bunt0"
+  },
+  "main_street/bunting/flaglet#16": {
+   "loc": [
+    81.3,
+    3.6,
+    3.1835
+   ],
+   "location": "main_street",
+   "material": "bunt1"
+  },
+  "main_street/bunting/flaglet#17": {
+   "loc": [
+    81.85,
+    3.6,
+    3.15
+   ],
+   "location": "main_street",
+   "material": "bunt2"
+  },
+  "main_street/bunting/flaglet#18": {
+   "loc": [
+    82.4,
+    3.6,
+    3.1835
+   ],
+   "location": "main_street",
+   "material": "bunt0"
+  },
+  "main_street/bunting/flaglet#19": {
+   "loc": [
+    82.95,
+    3.6,
+    3.275
+   ],
+   "location": "main_street",
+   "material": "bunt1"
+  },
+  "main_street/bunting/flaglet#2": {
+   "loc": [
+    73.6,
+    3.6,
+    3.1835
+   ],
+   "location": "main_street",
+   "material": "bunt2"
+  },
+  "main_street/bunting/flaglet#20": {
+   "loc": [
+    83.5,
+    3.6,
+    3.4
+   ],
+   "location": "main_street",
+   "material": "bunt2"
+  },
+  "main_street/bunting/flaglet#21": {
+   "loc": [
+    84.05,
+    3.6,
+    3.4
+   ],
+   "location": "main_street",
+   "material": "bunt0"
+  },
+  "main_street/bunting/flaglet#22": {
+   "loc": [
+    84.6,
+    3.6,
+    3.275
+   ],
+   "location": "main_street",
+   "material": "bunt1"
+  },
+  "main_street/bunting/flaglet#23": {
+   "loc": [
+    85.15,
+    3.6,
+    3.1835
+   ],
+   "location": "main_street",
+   "material": "bunt2"
+  },
+  "main_street/bunting/flaglet#24": {
+   "loc": [
+    85.7,
+    3.6,
+    3.15
+   ],
+   "location": "main_street",
+   "material": "bunt0"
+  },
+  "main_street/bunting/flaglet#25": {
+   "loc": [
+    86.25,
+    3.6,
+    3.1835
+   ],
+   "location": "main_street",
+   "material": "bunt1"
+  },
+  "main_street/bunting/flaglet#26": {
+   "loc": [
+    86.8,
+    3.6,
+    3.275
+   ],
+   "location": "main_street",
+   "material": "bunt2"
+  },
+  "main_street/bunting/flaglet#27": {
+   "loc": [
+    87.35,
+    3.6,
+    3.4
+   ],
+   "location": "main_street",
+   "material": "bunt0"
+  },
+  "main_street/bunting/flaglet#3": {
+   "loc": [
+    74.15,
+    3.6,
+    3.15
+   ],
+   "location": "main_street",
+   "material": "bunt0"
+  },
+  "main_street/bunting/flaglet#4": {
+   "loc": [
+    74.7,
+    3.6,
+    3.1835
+   ],
+   "location": "main_street",
+   "material": "bunt1"
+  },
+  "main_street/bunting/flaglet#5": {
+   "loc": [
+    75.25,
+    3.6,
+    3.275
+   ],
+   "location": "main_street",
+   "material": "bunt2"
+  },
+  "main_street/bunting/flaglet#6": {
+   "loc": [
+    75.8,
+    3.6,
+    3.4
+   ],
+   "location": "main_street",
+   "material": "bunt0"
+  },
+  "main_street/bunting/flaglet#7": {
+   "loc": [
+    76.35,
+    3.6,
+    3.4
+   ],
+   "location": "main_street",
+   "material": "bunt1"
+  },
+  "main_street/bunting/flaglet#8": {
+   "loc": [
+    76.9,
+    3.6,
+    3.275
+   ],
+   "location": "main_street",
+   "material": "bunt2"
+  },
+  "main_street/bunting/flaglet#9": {
+   "loc": [
+    77.45,
+    3.6,
+    3.1835
+   ],
+   "location": "main_street",
+   "material": "bunt0"
+  },
+  "main_street/historic_puddle/puddle#0": {
+   "loc": [
+    80.6,
+    -0.4,
+    0.01
+   ],
+   "location": "main_street",
+   "material": "puddle"
+  },
+  "main_street/historic_puddle/puddle_label#0": {
+   "loc": [
+    82.3,
+    0.35,
+    1.25
+   ],
+   "location": "main_street",
+   "material": "text_burgundy_dark",
+   "body": "HISTORIC PUDDLE\nEST. 1953"
+  },
+  "main_street/historic_puddle/puddle_sign#0": {
+   "loc": [
+    82.3,
+    0.38,
+    1.25
+   ],
+   "location": "main_street",
+   "material": "cream_board"
+  },
+  "main_street/historic_puddle/puddle_sign_post#0": {
+   "loc": [
+    82.3,
+    0.4,
+    0.6
+   ],
+   "location": "main_street",
+   "material": "ink"
+  },
+  "main_street/house_0/door#0": {
+   "loc": [
+    71.9,
+    4.08,
+    0.6
+   ],
+   "location": "main_street",
+   "material": "door_racing_green"
+  },
+  "main_street/house_0/fascia#0": {
+   "loc": [
+    72.5,
+    4.0,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "fascia"
+  },
+  "main_street/house_0/house#0": {
+   "loc": [
+    72.5,
+    5.6,
+    2.2943
+   ],
+   "location": "main_street",
+   "material": "house_brick"
+  },
+  "main_street/house_0/roof#0": {
+   "loc": [
+    72.5,
+    5.6,
+    5.1386
+   ],
+   "location": "main_street",
+   "material": "roof"
+  },
+  "main_street/house_0/shop_sign#0": {
+   "loc": [
+    72.5,
+    3.95,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "text_gold",
+   "body": "BISCUIT ROW"
+  },
+  "main_street/house_0/shopwin#0": {
+   "loc": [
+    73.0,
+    4.06,
+    0.9
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/house_0/upwin#0": {
+   "loc": [
+    72.5,
+    4.06,
+    3.212
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/house_1/door#0": {
+   "loc": [
+    74.9,
+    4.08,
+    0.6
+   ],
+   "location": "main_street",
+   "material": "door_burgundy"
+  },
+  "main_street/house_1/fascia#0": {
+   "loc": [
+    75.5,
+    4.0,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "fascia"
+  },
+  "main_street/house_1/house#0": {
+   "loc": [
+    75.5,
+    5.6,
+    2.1905
+   ],
+   "location": "main_street",
+   "material": "house_cream"
+  },
+  "main_street/house_1/roof#0": {
+   "loc": [
+    75.5,
+    5.6,
+    4.931
+   ],
+   "location": "main_street",
+   "material": "roof"
+  },
+  "main_street/house_1/shop_sign#0": {
+   "loc": [
+    75.5,
+    3.95,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "text_gold",
+   "body": "PUDDLE END POST OFFICE"
+  },
+  "main_street/house_1/shopwin#0": {
+   "loc": [
+    76.0,
+    4.06,
+    0.9
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/house_1/upwin#0": {
+   "loc": [
+    75.5,
+    4.06,
+    3.0667
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/house_2/door#0": {
+   "loc": [
+    77.9,
+    4.08,
+    0.6
+   ],
+   "location": "main_street",
+   "material": "door_slate"
+  },
+  "main_street/house_2/fascia#0": {
+   "loc": [
+    78.5,
+    4.0,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "fascia"
+  },
+  "main_street/house_2/house#0": {
+   "loc": [
+    78.5,
+    5.6,
+    2.4906
+   ],
+   "location": "main_street",
+   "material": "house_racing_green"
+  },
+  "main_street/house_2/roof#0": {
+   "loc": [
+    78.5,
+    5.6,
+    5.5311
+   ],
+   "location": "main_street",
+   "material": "roof"
+  },
+  "main_street/house_2/shop_sign#0": {
+   "loc": [
+    78.5,
+    3.95,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "text_gold",
+   "body": "CRUMBS & CO."
+  },
+  "main_street/house_2/shopwin#0": {
+   "loc": [
+    79.0,
+    4.06,
+    0.9
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/house_2/upwin#0": {
+   "loc": [
+    78.5,
+    4.06,
+    3.4868
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/house_3/door#0": {
+   "loc": [
+    80.9,
+    4.08,
+    0.6
+   ],
+   "location": "main_street",
+   "material": "door_gold"
+  },
+  "main_street/house_3/fascia#0": {
+   "loc": [
+    81.5,
+    4.0,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "fascia"
+  },
+  "main_street/house_3/house#0": {
+   "loc": [
+    81.5,
+    5.6,
+    2.1435
+   ],
+   "location": "main_street",
+   "material": "house_burgundy"
+  },
+  "main_street/house_3/roof#0": {
+   "loc": [
+    81.5,
+    5.6,
+    4.8369
+   ],
+   "location": "main_street",
+   "material": "roof"
+  },
+  "main_street/house_3/shop_sign#0": {
+   "loc": [
+    81.5,
+    3.95,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "text_gold",
+   "body": "BOBBINGTON BAKERY"
+  },
+  "main_street/house_3/shopwin#0": {
+   "loc": [
+    82.0,
+    4.06,
+    0.9
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/house_3/upwin#0": {
+   "loc": [
+    81.5,
+    4.06,
+    3.0008
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/house_4/door#0": {
+   "loc": [
+    83.9,
+    4.08,
+    0.6
+   ],
+   "location": "main_street",
+   "material": "door_burgundy"
+  },
+  "main_street/house_4/fascia#0": {
+   "loc": [
+    84.5,
+    4.0,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "fascia"
+  },
+  "main_street/house_4/house#0": {
+   "loc": [
+    84.5,
+    5.6,
+    2.4215
+   ],
+   "location": "main_street",
+   "material": "house_#C9B79C"
+  },
+  "main_street/house_4/roof#0": {
+   "loc": [
+    84.5,
+    5.6,
+    5.3931
+   ],
+   "location": "main_street",
+   "material": "roof"
+  },
+  "main_street/house_4/shop_sign#0": {
+   "loc": [
+    84.5,
+    3.95,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "text_gold",
+   "body": "TEAS"
+  },
+  "main_street/house_4/shopwin#0": {
+   "loc": [
+    85.0,
+    4.06,
+    0.9
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/house_4/upwin#0": {
+   "loc": [
+    84.5,
+    4.06,
+    3.3901
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/house_5/door#0": {
+   "loc": [
+    86.9,
+    4.08,
+    0.6
+   ],
+   "location": "main_street",
+   "material": "door_ink"
+  },
+  "main_street/house_5/fascia#0": {
+   "loc": [
+    87.5,
+    4.0,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "fascia"
+  },
+  "main_street/house_5/house#0": {
+   "loc": [
+    87.5,
+    5.6,
+    2.3194
+   ],
+   "location": "main_street",
+   "material": "house_brick"
+  },
+  "main_street/house_5/roof#0": {
+   "loc": [
+    87.5,
+    5.6,
+    5.1888
+   ],
+   "location": "main_street",
+   "material": "roof"
+  },
+  "main_street/house_5/shop_sign#0": {
+   "loc": [
+    87.5,
+    3.95,
+    1.7
+   ],
+   "location": "main_street",
+   "material": "text_gold",
+   "body": "IRONMONGER"
+  },
+  "main_street/house_5/shopwin#0": {
+   "loc": [
+    88.0,
+    4.06,
+    0.9
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/house_5/upwin#0": {
+   "loc": [
+    87.5,
+    4.06,
+    3.2472
+   ],
+   "location": "main_street",
+   "material": "sky_glass"
+  },
+  "main_street/lamp_0/lamp#0": {
+   "loc": [
+    74.0,
+    2.6,
+    1.6
+   ],
+   "location": "main_street",
+   "material": "ink"
+  },
+  "main_street/lamp_0/lamp_glass#0": {
+   "loc": [
+    74.0,
+    2.6,
+    3.25
+   ],
+   "location": "main_street",
+   "material": "lamp_glow"
+  },
+  "main_street/lamp_1/lamp#0": {
+   "loc": [
+    85.0,
+    2.6,
+    1.6
+   ],
+   "location": "main_street",
+   "material": "ink"
+  },
+  "main_street/lamp_1/lamp_glass#0": {
+   "loc": [
+    85.0,
+    2.6,
+    3.25
+   ],
+   "location": "main_street",
+   "material": "lamp_glow"
+  },
+  "main_street/lighting/street_fill#0": {
+   "loc": [
+    80.0,
+    -4.0,
+    3.0
+   ],
+   "location": "main_street",
+   "material": ""
+  },
+  "main_street/road/pavement#0": {
+   "loc": [
+    80.0,
+    3.2,
+    0.06
+   ],
+   "location": "main_street",
+   "material": "pavement"
+  },
+  "main_street/road/road#0": {
+   "loc": [
+    80.0,
+    2.0,
+    -0.05
+   ],
+   "location": "main_street",
+   "material": "cobbles"
+  },
+  "mayors_office/bookshelf/book#0": {
+   "loc": [
+    -4.066,
+    3.0,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/book#1": {
+   "loc": [
+    -3.9884,
+    3.0,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "book3"
+  },
+  "mayors_office/bookshelf/book#10": {
+   "loc": [
+    -3.0884,
+    3.0,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#11": {
+   "loc": [
+    -4.0477,
+    3.0,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "book3"
+  },
+  "mayors_office/bookshelf/book#12": {
+   "loc": [
+    -3.9463,
+    3.0,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "book3"
+  },
+  "mayors_office/bookshelf/book#13": {
+   "loc": [
+    -3.8495,
+    3.0,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "book1"
+  },
+  "mayors_office/bookshelf/book#14": {
+   "loc": [
+    -3.7494,
+    3.0,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#15": {
+   "loc": [
+    -3.6538,
+    3.0,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "book1"
+  },
+  "mayors_office/bookshelf/book#16": {
+   "loc": [
+    -3.5596,
+    3.0,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "book3"
+  },
+  "mayors_office/bookshelf/book#17": {
+   "loc": [
+    -3.4692,
+    3.0,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "book3"
+  },
+  "mayors_office/bookshelf/book#18": {
+   "loc": [
+    -3.3849,
+    3.0,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/book#19": {
+   "loc": [
+    -3.2936,
+    3.0,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "book1"
+  },
+  "mayors_office/bookshelf/book#2": {
+   "loc": [
+    -3.8912,
+    3.0,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/book#20": {
+   "loc": [
+    -3.192,
+    3.0,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#21": {
+   "loc": [
+    -3.0793,
+    3.0,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/book#22": {
+   "loc": [
+    -4.0465,
+    3.0,
+    1.9
+   ],
+   "location": "mayors_office",
+   "material": "book1"
+  },
+  "mayors_office/bookshelf/book#23": {
+   "loc": [
+    -3.9402,
+    3.0,
+    1.9
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#24": {
+   "loc": [
+    -3.8292,
+    3.0,
+    1.9
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#25": {
+   "loc": [
+    -3.7206,
+    3.0,
+    1.9
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#26": {
+   "loc": [
+    -3.6222,
+    3.0,
+    1.9
+   ],
+   "location": "mayors_office",
+   "material": "book1"
+  },
+  "mayors_office/bookshelf/book#27": {
+   "loc": [
+    -3.5084,
+    3.0,
+    1.9
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#28": {
+   "loc": [
+    -3.3873,
+    3.0,
+    1.9
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/book#29": {
+   "loc": [
+    -3.2784,
+    3.0,
+    1.9
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#3": {
+   "loc": [
+    -3.7846,
+    3.0,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/book#30": {
+   "loc": [
+    -3.1868,
+    3.0,
+    1.9
+   ],
+   "location": "mayors_office",
+   "material": "book1"
+  },
+  "mayors_office/bookshelf/book#31": {
+   "loc": [
+    -3.1,
+    3.0,
+    1.9
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#32": {
+   "loc": [
+    -4.0503,
+    3.0,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#33": {
+   "loc": [
+    -3.9395,
+    3.0,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/book#34": {
+   "loc": [
+    -3.8391,
+    3.0,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "book1"
+  },
+  "mayors_office/bookshelf/book#35": {
+   "loc": [
+    -3.7565,
+    3.0,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "book1"
+  },
+  "mayors_office/bookshelf/book#36": {
+   "loc": [
+    -3.6587,
+    3.0,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/book#37": {
+   "loc": [
+    -3.5598,
+    3.0,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "book1"
+  },
+  "mayors_office/bookshelf/book#38": {
+   "loc": [
+    -3.4643,
+    3.0,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "book1"
+  },
+  "mayors_office/bookshelf/book#39": {
+   "loc": [
+    -3.3664,
+    3.0,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "book3"
+  },
+  "mayors_office/bookshelf/book#4": {
+   "loc": [
+    -3.6936,
+    3.0,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/book#40": {
+   "loc": [
+    -3.2699,
+    3.0,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#41": {
+   "loc": [
+    -3.1511,
+    3.0,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "book2"
+  },
+  "mayors_office/bookshelf/book#5": {
+   "loc": [
+    -3.6147,
+    3.0,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/book#6": {
+   "loc": [
+    -3.5232,
+    3.0,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/book#7": {
+   "loc": [
+    -3.4097,
+    3.0,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "book1"
+  },
+  "mayors_office/bookshelf/book#8": {
+   "loc": [
+    -3.3098,
+    3.0,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "book3"
+  },
+  "mayors_office/bookshelf/book#9": {
+   "loc": [
+    -3.2051,
+    3.0,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "book0"
+  },
+  "mayors_office/bookshelf/shelf#0": {
+   "loc": [
+    -3.6,
+    3.2,
+    1.4
+   ],
+   "location": "mayors_office",
+   "material": "wood_desk"
+  },
+  "mayors_office/chair/chair_back#0": {
+   "loc": [
+    0.0,
+    1.55,
+    1.25
+   ],
+   "location": "mayors_office",
+   "material": "chair_red"
+  },
+  "mayors_office/desk/desk#0": {
+   "loc": [
+    0.0,
+    0.55,
+    0.42
+   ],
+   "location": "mayors_office",
+   "material": "wood_desk"
+  },
+  "mayors_office/desk/desk_label#0": {
+   "loc": [
+    0.0,
+    0.04,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "text_gold",
+   "body": "MAYOR"
+  },
+  "mayors_office/desk/desk_top#0": {
+   "loc": [
+    0.0,
+    0.55,
+    0.86
+   ],
+   "location": "mayors_office",
+   "material": "desk_leather"
+  },
+  "mayors_office/desk/desk_trim#0": {
+   "loc": [
+    0.0,
+    0.05,
+    0.6
+   ],
+   "location": "mayors_office",
+   "material": "gold"
+  },
+  "mayors_office/desk/inkwell#0": {
+   "loc": [
+    -0.8,
+    0.5,
+    0.95
+   ],
+   "location": "mayors_office",
+   "material": "ink"
+  },
+  "mayors_office/desk/papers#0": {
+   "loc": [
+    0.7,
+    0.45,
+    0.9
+   ],
+   "location": "mayors_office",
+   "material": "paper"
+  },
+  "mayors_office/flag/flag_b#0": {
+   "loc": [
+    3.2,
+    3.1,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "flag_burgundy"
+  },
+  "mayors_office/flag/flag_g#0": {
+   "loc": [
+    3.2,
+    3.08,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "gold_cloth"
+  },
+  "mayors_office/flag/flagpole#0": {
+   "loc": [
+    3.6,
+    3.1,
+    1.5
+   ],
+   "location": "mayors_office",
+   "material": "gold"
+  },
+  "mayors_office/lighting/office_fill#0": {
+   "loc": [
+    2.5,
+    -2.0,
+    2.0
+   ],
+   "location": "mayors_office",
+   "material": ""
+  },
+  "mayors_office/lighting/office_key#0": {
+   "loc": [
+    -2.0,
+    -3.0,
+    3.2
+   ],
+   "location": "mayors_office",
+   "material": ""
+  },
+  "mayors_office/lighting/office_window#0": {
+   "loc": [
+    2.6,
+    2.9,
+    2.4
+   ],
+   "location": "mayors_office",
+   "material": ""
+  },
+  "mayors_office/portrait/portrait#0": {
+   "loc": [
+    -1.6,
+    3.4,
+    2.5
+   ],
+   "location": "mayors_office",
+   "material": "portrait_bg"
+  },
+  "mayors_office/portrait/portrait_frame#0": {
+   "loc": [
+    -1.6,
+    3.45,
+    2.5
+   ],
+   "location": "mayors_office",
+   "material": "gold"
+  },
+  "mayors_office/portrait/portrait_head#0": {
+   "loc": [
+    -1.6,
+    3.35,
+    2.65
+   ],
+   "location": "mayors_office",
+   "material": "portrait_skin"
+  },
+  "mayors_office/portrait/portrait_label#0": {
+   "loc": [
+    -1.6,
+    3.38,
+    1.88
+   ],
+   "location": "mayors_office",
+   "material": "text_gold",
+   "body": "A SELF-PORTRAIT"
+  },
+  "mayors_office/portrait/portrait_tash#0": {
+   "loc": [
+    -1.6,
+    3.32,
+    2.55
+   ],
+   "location": "mayors_office",
+   "material": "portrait_tash"
+  },
+  "mayors_office/room/floor#0": {
+   "loc": [
+    0.0,
+    0.5,
+    -0.05
+   ],
+   "location": "mayors_office",
+   "material": "floor_#5A3A26"
+  },
+  "mayors_office/room/rail#0": {
+   "loc": [
+    0.0,
+    3.32,
+    1.12
+   ],
+   "location": "mayors_office",
+   "material": "gold"
+  },
+  "mayors_office/room/wainscot#0": {
+   "loc": [
+    0.0,
+    3.38,
+    0.55
+   ],
+   "location": "mayors_office",
+   "material": "wains_burgundy_dark"
+  },
+  "mayors_office/room/wall_back#0": {
+   "loc": [
+    0.0,
+    3.5,
+    3.5
+   ],
+   "location": "mayors_office",
+   "material": "wall_cream"
+  },
+  "mayors_office/room/wall_side#0": {
+   "loc": [
+    -4.5,
+    0.5,
+    3.5
+   ],
+   "location": "mayors_office",
+   "material": "wall_cream"
+  },
+  "mayors_office/room/wall_side#1": {
+   "loc": [
+    4.5,
+    0.5,
+    3.5
+   ],
+   "location": "mayors_office",
+   "material": "wall_cream"
+  },
+  "mayors_office/rug/rug#0": {
+   "loc": [
+    0.0,
+    -0.6,
+    0.005
+   ],
+   "location": "mayors_office",
+   "material": "rug"
+  },
+  "mayors_office/window/win_bar_h#0": {
+   "loc": [
+    2.6,
+    3.37,
+    2.2
+   ],
+   "location": "mayors_office",
+   "material": "cream_frame"
+  },
+  "mayors_office/window/win_bar_v#0": {
+   "loc": [
+    2.6,
+    3.37,
+    2.2
+   ],
+   "location": "mayors_office",
+   "material": "cream_frame"
+  },
+  "mayors_office/window/win_frame#0": {
+   "loc": [
+    2.6,
+    3.45,
+    2.2
+   ],
+   "location": "mayors_office",
+   "material": "cream_frame"
+  },
+  "mayors_office/window/win_glass#0": {
+   "loc": [
+    2.6,
+    3.39,
+    2.2
+   ],
+   "location": "mayors_office",
+   "material": "sky_glass"
+  },
+  "pub/back_shelf/back_shelf#0": {
+   "loc": [
+    120.0,
+    3.25,
+    1.9
+   ],
+   "location": "pub",
+   "material": "bar_wood"
+  },
+  "pub/back_shelf/bottle#0": {
+   "loc": [
+    118.0,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle0"
+  },
+  "pub/back_shelf/bottle#1": {
+   "loc": [
+    118.27,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle1"
+  },
+  "pub/back_shelf/bottle#10": {
+   "loc": [
+    120.7,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle2"
+  },
+  "pub/back_shelf/bottle#11": {
+   "loc": [
+    120.97,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle3"
+  },
+  "pub/back_shelf/bottle#12": {
+   "loc": [
+    121.24,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle0"
+  },
+  "pub/back_shelf/bottle#13": {
+   "loc": [
+    121.51,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle1"
+  },
+  "pub/back_shelf/bottle#14": {
+   "loc": [
+    121.78,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle2"
+  },
+  "pub/back_shelf/bottle#15": {
+   "loc": [
+    122.05,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle3"
+  },
+  "pub/back_shelf/bottle#2": {
+   "loc": [
+    118.54,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle2"
+  },
+  "pub/back_shelf/bottle#3": {
+   "loc": [
+    118.81,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle3"
+  },
+  "pub/back_shelf/bottle#4": {
+   "loc": [
+    119.08,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle0"
+  },
+  "pub/back_shelf/bottle#5": {
+   "loc": [
+    119.35,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle1"
+  },
+  "pub/back_shelf/bottle#6": {
+   "loc": [
+    119.62,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle2"
+  },
+  "pub/back_shelf/bottle#7": {
+   "loc": [
+    119.89,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle3"
+  },
+  "pub/back_shelf/bottle#8": {
+   "loc": [
+    120.16,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle0"
+  },
+  "pub/back_shelf/bottle#9": {
+   "loc": [
+    120.43,
+    3.25,
+    2.1
+   ],
+   "location": "pub",
+   "material": "bottle1"
+  },
+  "pub/bar/bar#0": {
+   "loc": [
+    120.0,
+    0.2,
+    0.55
+   ],
+   "location": "pub",
+   "material": "bar_wood"
+  },
+  "pub/bar/bar_top#0": {
+   "loc": [
+    120.0,
+    0.2,
+    1.12
+   ],
+   "location": "pub",
+   "material": "bar_top"
+  },
+  "pub/bar/tap#0": {
+   "loc": [
+    121.3,
+    0.05,
+    1.35
+   ],
+   "location": "pub",
+   "material": "brass"
+  },
+  "pub/bar/tap#1": {
+   "loc": [
+    121.6,
+    0.05,
+    1.35
+   ],
+   "location": "pub",
+   "material": "brass"
+  },
+  "pub/bar/tap#2": {
+   "loc": [
+    121.9,
+    0.05,
+    1.35
+   ],
+   "location": "pub",
+   "material": "brass"
+  },
+  "pub/chalkboard/chalk_frame#0": {
+   "loc": [
+    122.2,
+    3.41,
+    2.3
+   ],
+   "location": "pub",
+   "material": "bar_wood"
+  },
+  "pub/chalkboard/chalk_text#0": {
+   "loc": [
+    122.2,
+    3.34,
+    2.3
+   ],
+   "location": "pub",
+   "material": "text_cream",
+   "body": "TODAY'S SPECIAL:\nDISAPPOINTMENT"
+  },
+  "pub/chalkboard/chalkboard#0": {
+   "loc": [
+    122.2,
+    3.38,
+    2.3
+   ],
+   "location": "pub",
+   "material": "chalk"
+  },
+  "pub/lighting/pub_fill#0": {
+   "loc": [
+    122.5,
+    -2.0,
+    2.0
+   ],
+   "location": "pub",
+   "material": ""
+  },
+  "pub/lighting/pub_warm#0": {
+   "loc": [
+    118.5,
+    -2.5,
+    3.0
+   ],
+   "location": "pub",
+   "material": ""
+  },
+  "pub/pub_sign/pub_name#0": {
+   "loc": [
+    117.7,
+    3.34,
+    2.6
+   ],
+   "location": "pub",
+   "material": "text_gold",
+   "body": "THE LEANING PICKLE"
+  },
+  "pub/pub_sign/pub_sign#0": {
+   "loc": [
+    117.7,
+    3.38,
+    2.6
+   ],
+   "location": "pub",
+   "material": "fascia"
+  },
+  "pub/room/floor#0": {
+   "loc": [
+    120.0,
+    0.5,
+    -0.05
+   ],
+   "location": "pub",
+   "material": "floor_#3B2416"
+  },
+  "pub/room/rail#0": {
+   "loc": [
+    120.0,
+    3.32,
+    1.12
+   ],
+   "location": "pub",
+   "material": "gold"
+  },
+  "pub/room/wainscot#0": {
+   "loc": [
+    120.0,
+    3.38,
+    0.55
+   ],
+   "location": "pub",
+   "material": "wains_#3E2414"
+  },
+  "pub/room/wall_back#0": {
+   "loc": [
+    120.0,
+    3.5,
+    1.8
+   ],
+   "location": "pub",
+   "material": "wall_#7A5A3A"
+  },
+  "pub/room/wall_side#0": {
+   "loc": [
+    116.0,
+    0.5,
+    1.8
+   ],
+   "location": "pub",
+   "material": "wall_#7A5A3A"
+  },
+  "pub/room/wall_side#1": {
+   "loc": [
+    124.0,
+    0.5,
+    1.8
+   ],
+   "location": "pub",
+   "material": "wall_#7A5A3A"
+  },
+  "pub/stool_0/stool#0": {
+   "loc": [
+    118.5,
+    -0.55,
+    0.35
+   ],
+   "location": "pub",
+   "material": "stool"
+  },
+  "pub/stool_1/stool#0": {
+   "loc": [
+    120.0,
+    -0.55,
+    0.35
+   ],
+   "location": "pub",
+   "material": "stool"
+  },
+  "pub/stool_2/stool#0": {
+   "loc": [
+    121.5,
+    -0.55,
+    0.35
+   ],
+   "location": "pub",
+   "material": "stool"
+  },
+  "title_card/backdrop/title_bg#0": {
+   "loc": [
+    160.0,
+    3.0,
+    2.0
+   ],
+   "location": "title_card",
+   "material": "title_bg"
+  },
+  "title_card/coat_of_arms/crest_cone#0": {
+   "loc": [
+    160.0,
+    2.85,
+    3.68
+   ],
+   "location": "title_card",
+   "material": "cone"
+  },
+  "title_card/coat_of_arms/cup#0": {
+   "loc": [
+    159.8,
+    2.76,
+    3.15
+   ],
+   "location": "title_card",
+   "material": "cream_cup"
+  },
+  "title_card/coat_of_arms/cup#1": {
+   "loc": [
+    160.2,
+    2.76,
+    3.15
+   ],
+   "location": "title_card",
+   "material": "cream_cup"
+  },
+  "title_card/coat_of_arms/cup#2": {
+   "loc": [
+    160.0,
+    2.76,
+    2.75
+   ],
+   "location": "title_card",
+   "material": "cream_cup"
+  },
+  "title_card/coat_of_arms/shield#0": {
+   "loc": [
+    160.0,
+    2.85,
+    2.95
+   ],
+   "location": "title_card",
+   "material": "gold"
+  },
+  "title_card/coat_of_arms/shield_in#0": {
+   "loc": [
+    160.0,
+    2.8,
+    2.95
+   ],
+   "location": "title_card",
+   "material": "flag_burgundy"
+  },
+  "title_card/coat_of_arms/tagline#0": {
+   "loc": [
+    160.0,
+    2.7,
+    1.1
+   ],
+   "location": "title_card",
+   "material": "text_gold_light",
+   "body": "A TOWN FULL OF BAD DECISIONS"
+  },
+  "title_card/lighting/title_key#0": {
+   "loc": [
+    160.0,
+    -2.0,
+    3.0
+   ],
+   "location": "title_card",
+   "material": ""
+  }
+ },
+ "count": 237
+}

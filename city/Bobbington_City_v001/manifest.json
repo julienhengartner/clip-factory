@@ -1,0 +1,13 @@
+{
+  "version": "Bobbington_City_v001",
+  "parent": null,
+  "episode": null,
+  "state_hash": "06a388da20d867a849cc512730fe32ef25114af4ccf08e2e625eafc530a12226",
+  "objects": 237,
+  "created_at": "2026-11-17T06:55:48+00:00",
+  "continuity": {
+    "passed": true,
+    "issues": [],
+    "checked_at": "2026-11-17T06:56:37+00:00"
+  }
+}
